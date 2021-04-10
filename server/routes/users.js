@@ -1,13 +1,13 @@
 import express from 'express'
-import { createUser, updateUser, getUser } from "../controllers/UserControllers.js"
+import { createUser, updateUser, getUserById } from "../controllers/UserControllers.js"
 import { getPupsByOwner } from "../controllers/PupControllers.js"
 const router = express.Router();
 
 
 router.post("/", createUser)
-router.put("/:userId", updateUser)
 router.get("/:userId/pups", getPupsByOwner)
-router.get("/:userId", getUser)
+router.put("/:userId", updateUser)
+router.get("/:userId", getUserById)
 
 
 export {router as userRoutes}
