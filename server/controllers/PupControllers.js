@@ -1,4 +1,5 @@
 import Pups from "../models/PupModel.js"
+import mongoose from 'mongoose';
 
 export const createPup = (req, res) => {
   const pupsInfo = req.body;
@@ -12,7 +13,7 @@ export const createPup = (req, res) => {
 }
 
 export const getPupsByOwner = (req, res) => {
-  const owner_id = req.body.owner_id
+  const owner_id = req.params.userId
   Pups.find({owner_id: owner_id}, (err, data) => {
     if (err) {
       res.status(500).send(err);
@@ -23,7 +24,7 @@ export const getPupsByOwner = (req, res) => {
 }
 
 export const getPupById = (req, res) => {
-  const pupID = mongoose.Types.ObjectId(req.params.pupID);
+  const pupID = mongoose.Types.ObjectId(req.params.pupId);
   console.log(pupID);
   Pups.aggregate(
     [
