@@ -1,12 +1,10 @@
 import mongoose from "mongoose"
 
 const messageModel = mongoose.Schema({
-  _id: String,
-  name: String,
-  email: String,
-  photoURL: String,
-  blocks: Array,
-  likes: Array
+  chat_id: String,
+  sender_id: String,
+  text: String,
+  created_at: {type: Date, default: Date.now()}
 })
 
 export default mongoose.model("messages", messageModel)
