@@ -1,9 +1,9 @@
-
-const express = require('express');
+import express from "express"
+import { createPup, getAllPups } from "../controllers/PupControllers.js"
 const router = express.Router();
 
-module.exports = () => {
-  router.post("/", createPup)
+router.post("/", createPup);
+router.get("/", getAllPups);
+router.get("/:pupId", getPupById);
 
-  return router
-}
+export{router as pupsRoutes}
