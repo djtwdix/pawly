@@ -14,6 +14,8 @@ const httpServer = http.createServer(app)
 
 app.use(cors())
 
+app.use(express.json());
+
 const io = new Server(httpServer, {
   cors: {
     origin: "http://localhost:3002",
