@@ -4,6 +4,7 @@ import cors from "cors"
 import mongoose from "mongoose"
 import { Server } from "socket.io"
 import dotenv from 'dotenv';
+import {usersRoute} from "./routes/users";
 dotenv.config()
 
 const PORT = process.env.PORT || 8080
@@ -33,6 +34,10 @@ const db = mongoose.connection;
 db.on("open", () => {
   console.log("Connected to MongoDB")
 })
+
+
+
+app.use('/user', usersRoute);
 
 app.get("/", (req, res) => {
   res.status(200).send("Pawly")
