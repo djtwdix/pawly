@@ -7,6 +7,7 @@ const pupModel = mongoose.Schema({
   birthday: Date,
   bio: String,
   energy: Number,
+  owner_id: String
 })
 
 export default mongoose.model("pups", pupModel)
