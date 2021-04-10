@@ -1,4 +1,4 @@
-import Chats from "../models/Chats.js"
+import Chats from "../models/ChatModel.js"
 
 export const createChat = (req, res) => {
   const chatInfo = req.body
@@ -12,7 +12,7 @@ export const createChat = (req, res) => {
 }
 
 export const getChatsByUserId = (req, res) => {
-  const user_id = req.body
+  const user_id = req.body.user_id
   Chats.find({participants: user_id}, (err, data) => {
     if (err) {
       res.status(500).send(err);
