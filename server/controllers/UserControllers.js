@@ -1,4 +1,4 @@
-import Users from "../models/UserModel"
+import Users from "../models/UserModel.js"
 
 export const createUser = async (req, res) => {
   const userInfo = req.body
@@ -10,4 +10,5 @@ export const createUser = async (req, res) => {
     }
   });
 }
+
 
