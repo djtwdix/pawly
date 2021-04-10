@@ -4,7 +4,7 @@ import cors from "cors"
 import mongoose from "mongoose"
 import { Server } from "socket.io"
 import dotenv from 'dotenv';
-import {usersRoute} from "./routes/users";
+import { userRoutes } from "./routes/users.js";
 dotenv.config()
 
 const PORT = process.env.PORT || 8080
@@ -37,7 +37,7 @@ db.on("open", () => {
 
 
 
-app.use('/user', usersRoute);
+app.use('/users', userRoutes);
 
 app.get("/", (req, res) => {
   res.status(200).send("Pawly")
