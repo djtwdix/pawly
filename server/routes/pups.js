@@ -1,5 +1,5 @@
 import express from "express"
-import { createPup, getAllPups } from "../controllers/PupControllers.js"
+import { createPup, getAllPups, getPupById } from "../controllers/PupControllers.js"
 const router = express.Router();
 
 router.post("/", createPup);
