@@ -1,7 +1,7 @@
-import express from "express"
-import { createMessage } from "../controllers/MessageControllers.js"
+import express from "express";
+import { createMessage } from "../controllers/MessageControllers.js";
 const router = express.Router();
 
 router.post("/", createMessage);
- 
-export {router as messageRoutes};
+
+export { router as messageRoutes };

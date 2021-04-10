@@ -1,4 +1,4 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 
 const userModel = mongoose.Schema({
   _id: String,
@@ -6,7 +6,7 @@ const userModel = mongoose.Schema({
   email: String,
   photoURL: String,
   blocks: Array,
-  likes: Array
-})
+  likes: Array,
+});
 
-export default mongoose.model("users", userModel)
+export default mongoose.model("users", userModel);

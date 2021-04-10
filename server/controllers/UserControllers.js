@@ -1,4 +1,4 @@
-import Users from "../models/UserModel.js"
+import Users from "../models/UserModel.js";
 
 const checkIfUserExists = (userId) => {
   return Users.findById(userId, (err, data) => {
@@ -8,24 +8,24 @@ const checkIfUserExists = (userId) => {
       return data;
     }
   });
-}
+};
 
 export const getUserById = (req, res) => {
-  const user_id = req.params.userId
-  Users.find({_id: user_id}, (err, data) => {
+  const user_id = req.params.userId;
+  Users.find({ _id: user_id }, (err, data) => {
     if (err) {
       res.status(500).send(err);
     } else {
       res.status(200).send(data);
     }
   });
-}
+};
 
 export const createUser = async (req, res) => {
-  const userInfo = req.body
-  const userExists = await checkIfUserExists(req.body._id)
+  const userInfo = req.body;
+  const userExists = await checkIfUserExists(req.body._id);
   if (!userExists) {
-     Users.create(userInfo, (err, data) => {
+    Users.create(userInfo, (err, data) => {
       if (err) {
         res.status(500).send(err);
       } else {
@@ -33,7 +33,7 @@ export const createUser = async (req, res) => {
       }
     });
   } else {
-      Users.updateOne(userInfo, (err, data) => {
+    Users.updateOne(userInfo, (err, data) => {
       if (err) {
         res.status(500).send(err);
       } else {
@@ -41,10 +41,10 @@ export const createUser = async (req, res) => {
       }
     });
   }
-}
+};
 
 export const updateUser = (req, res) => {
-  const userInfo = req.body
+  const userInfo = req.body;
   Users.updateOne(userInfo, (err, data) => {
     if (err) {
       res.status(500).send(err);
@@ -52,12 +52,4 @@ export const updateUser = (req, res) => {
       res.status(200).send(data);
     }
   });
-}
-
-
-
-
-
-
-
-
+};

@@ -1,8 +1,8 @@
-import Messages from "../models/MessageModel.js"
-import mongoose from "mongoose"
+import Messages from "../models/MessageModel.js";
+import mongoose from "mongoose";
 
 export const createMessage = (req, res) => {
-  const messageInfo = req.body
+  const messageInfo = req.body;
   Messages.create(messageInfo, (err, data) => {
     if (err) {
       res.status(500).send(err);
@@ -10,11 +10,11 @@ export const createMessage = (req, res) => {
       res.status(201).send(data);
     }
   });
-}
+};
 
 export const getMessagesByChatId = (req, res) => {
-  const chat_id = req.params.chatId
-  console.log(chat_id)
+  const chat_id = req.params.chatId;
+  console.log(chat_id);
   Messages.aggregate(
     [
       {
@@ -39,4 +39,4 @@ export const getMessagesByChatId = (req, res) => {
       }
     }
   );
-}
+};

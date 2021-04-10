@@ -1,4 +1,4 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 
 const pupModel = mongoose.Schema({
   name: String,
@@ -7,7 +7,7 @@ const pupModel = mongoose.Schema({
   birthday: Date,
   bio: String,
   energy: Number,
-  owner_id: String
-})
+  owner_id: String,
+});
 
-export default mongoose.model("pups", pupModel)
+export default mongoose.model("pups", pupModel);

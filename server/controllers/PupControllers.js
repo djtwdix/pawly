@@ -1,5 +1,5 @@
-import Pups from "../models/PupModel.js"
-import mongoose from 'mongoose';
+import Pups from "../models/PupModel.js";
+import mongoose from "mongoose";
 
 export const createPup = (req, res) => {
   const pupsInfo = req.body;
@@ -10,18 +10,18 @@ export const createPup = (req, res) => {
       res.status(201).send(data);
     }
   });
-}
+};
 
 export const getPupsByOwner = (req, res) => {
-  const owner_id = req.params.userId
-  Pups.find({owner_id: owner_id}, (err, data) => {
+  const owner_id = req.params.userId;
+  Pups.find({ owner_id: owner_id }, (err, data) => {
     if (err) {
       res.status(500).send(err);
     } else {
       res.status(200).send(data);
     }
   });
-}
+};
 
 export const getPupById = (req, res) => {
   const pupID = mongoose.Types.ObjectId(req.params.pupId);
@@ -50,7 +50,7 @@ export const getPupById = (req, res) => {
       }
     }
   );
-}
+};
 
 export const getAllPups = (req, res) => {
   const user_id = req.body.user_id;
@@ -58,7 +58,7 @@ export const getAllPups = (req, res) => {
     [
       {
         $match: {
-          owner_id: {$ne: user_id}
+          owner_id: { $ne: user_id },
         },
       },
       {
@@ -78,4 +78,4 @@ export const getAllPups = (req, res) => {
       }
     }
   );
-}
+};
