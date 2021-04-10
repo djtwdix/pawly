@@ -1,4 +1,5 @@
-import Messages from "./MessageControllers"
+import Messages from "../models/MessageModel.js"
+import mongoose from "mongoose"
 
 export const createMessage = (req, res) => {
   const messageInfo = req.body
@@ -11,8 +12,9 @@ export const createMessage = (req, res) => {
   });
 }
 
-export const getMessagesByChatID = (req, res) => {
-  const chat_id = req.body
+export const getMessagesByChatId = (req, res) => {
+  const chat_id = req.params.chatId
+  console.log(chat_id)
   Messages.aggregate(
     [
       {
