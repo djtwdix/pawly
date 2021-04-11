@@ -31,5 +31,5 @@ export default function usePupData() {
     return axios.post("/pups", { ...formData, owner_id: user.uid });
   };
   
-  return {state, formData, charRemaining, selectedDate, setSelectedDate, setCharReamaining, setFormData, handleChange, handleDateChange, handleEnergyChange, addPup};
+  return {formData, charRemaining, selectedDate, setSelectedDate, setCharReamaining, setFormData, handleChange, handleDateChange, handleEnergyChange, addPup};
 }
