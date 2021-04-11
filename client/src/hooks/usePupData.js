@@ -24,7 +24,7 @@ export default function usePupData() {
     console.log(formData);
   }
 
-  const addPup = (e) => {
+  const addPup = (e, user) => {
     e.preventDefault();
     console.log("clicked submit");
     console.log("doggie data:", formData);

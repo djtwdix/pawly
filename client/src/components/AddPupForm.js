@@ -32,7 +32,9 @@ export default function AddPupForm({ user }) {
   } = usePupData();
 
   return (
-    <form className="pupForm" onSubmit={addPup}>
+    <form className="pupForm" onSubmit={(e) => {
+      addPup(e, user);
+    }}>
       <FormControl>
         <InputLabel htmlFor="image"></InputLabel>
         <Input
