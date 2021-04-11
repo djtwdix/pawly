@@ -23,6 +23,7 @@ import usePupData from "../hooks/usePupData";
 //Component for for adding new pup
 export default function AddPupForm({ user }) {
   const { formData, handleChange, handleDateChange, handleEnergyChange, addPup, charRemaining, setCharRemaining} = usePupData();
+  
   return (
     <form className="pupForm" onSubmit={addPup}>
       <FormControl>
