@@ -1,6 +1,7 @@
 import { Button } from "@material-ui/core";
 import TinderCard from "react-tinder-card";
 import useCardActions from "../hooks/useCardActions";
+import React from "react";
 
 export default function PupCard({ pup, user }) {
   const

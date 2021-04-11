@@ -6,7 +6,7 @@ export default function usePupData() {
   const [selectedDate, setSelectedDate] = useState();
   const [charRemaining, setCharReamaining] = useState(140);
   const [formData, setFormData] = useState({});
-
+  
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     console.log(formData);
