@@ -12,7 +12,7 @@ export default function usePupData() {
     console.log(formData);
   };
 
-  const handleDateChange = (e) => {
+  const handleDateChange = (date) => {
     console.log(date);
     setSelectedDate(date);
     setFormData({ ...formData, date: date });
