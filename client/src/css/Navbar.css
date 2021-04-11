@@ -1,1 +1,29 @@
-/* No CSS *//*# sourceMappingURL=Navbar.css.map */
+.navbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 25px;
+  -webkit-box-shadow: 0px 2px 2px #b0b0b0;
+          box-shadow: 0px 2px 2px #b0b0b0;
+}
+
+.navbar img {
+  height: 70px;
+}
+
+.navbar img:hover {
+  -webkit-filter: drop-shadow(0px 0px 2px #b0b0b0);
+          filter: drop-shadow(0px 0px 2px #b0b0b0);
+  cursor: pointer;
+}
+
+.navbar svg {
+  color: #b0b0b0;
+}
+/*# sourceMappingURL=Navbar.css.map */
