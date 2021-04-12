@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import usePupData from "../hooks/usePupData";
 import "../stylesheets/AddPupForm.scss";
 
+//material ui components
+
 import {
   Button,
   FormControl,
@@ -14,6 +16,7 @@ import {
   RadioGroup,
   Slider,
   TextField,
+  Avatar
 } from "@material-ui/core";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import {
@@ -29,10 +32,8 @@ import ImageIcon from "@material-ui/icons/Image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faVenus, faMars } from "@fortawesome/free-solid-svg-icons";
 
-import axios from "axios";
-import { Avatar } from "@material-ui/core";
-
 //Component for adding new pup
+
 export default function AddPupForm({ user }) {
   const {
     formData,
