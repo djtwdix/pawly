@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Chat from "./Chat";
 import useChatData from "../hooks/useChatData";
+import { Link } from "react-router-dom";
 
 export default function ChatList({ user }) {
   const { chatsRef } = useChatData();
@@ -34,7 +35,6 @@ export default function ChatList({ user }) {
   return (
     <section>
       {parsedChats}
-
       <Chat
         name="Jesse"
         message="Yooooo!"

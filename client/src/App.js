@@ -12,8 +12,10 @@ import PupsList from "./components/PupsList";
 import Pup from "./components/Pup";
 import ChatList from "./components/ChatList";
 
+
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import CardStack from "./components/CardStack";
+import ChatWindow from "./components/ChatWindow";
 
 function App() {
   const [user, loading, error] = useAuthState(auth);
@@ -26,11 +28,19 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Navbar user={user} />
-            {user ? <CardStack /> : <SignIn />}
+            {!loading && !user ? <SignIn /> : <CardStack />}
           </Route>
           <Route exact path="/chats">
-            <Navbar />
+            <Navbar backButton={true}
+            user={user}
+            />
             <ChatList />
+          </Route>
+          <Route path="/chats/:chatID">
+          <Navbar backButton={true}
+          user={user}
+          />
+          {user && <ChatWindow user={user} /> }
           </Route>
         </Switch>
       </Router>

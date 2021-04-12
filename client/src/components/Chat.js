@@ -2,12 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import "../css/Chat.css";
-import { Button } from "@material-ui/core";
+import ListItemContainer from "./ListItemContainer";
 
 export default function Chat ({ id, name, message, photoURL, timestamp }) {
   return (
-    <Link to={`/chat/${id}`}>
-      <Button style={{ width: "100%" }}>
+    <Link to={`/chats/1`}>
+      <ListItemContainer>
         <section className="chat">
           <Avatar 
           className="chat__image"
@@ -21,7 +21,7 @@ export default function Chat ({ id, name, message, photoURL, timestamp }) {
           </div>
           <p className="chat__timestamp">{timestamp}</p>
         </section>
-      </Button>
+      </ListItemContainer>
     </Link>
   );
 }

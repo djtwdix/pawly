@@ -6,7 +6,7 @@ import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import Input from "@material-ui/core/Input";
 import { Container } from "@material-ui/core";
-import "./ChatWindow.css";
+import "../css/ChatWindow.css";
 import useUserData from "../hooks/useUserData";
 import useChatData from "../hooks/useChatData";
 
@@ -30,12 +30,12 @@ export default function ChatWindow({ user }) {
   useEffect(() => {
     const chat = fetchChatData(user.uid);
     const messages = fetchMessageData(chat.id);
-    setOtherUser(chat.participants.filter((participant) => participant.id !== user.uid));
+    //setOtherUser(chat.participants.filter((participant) => participant.id !== user.uid));
     setMessages(messages);
   }, [chatID, user]);
 
   const parntnerInfo = getUserInfo(otherUser);
-
+/*
   const parsedMessages = messages.map((message) => {
     return message.user_id !== user.uid ? (
       <Container>
@@ -56,7 +56,7 @@ export default function ChatWindow({ user }) {
         ></Avatar>
       </div>
     );
-  });
+  }); */
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -88,7 +88,7 @@ export default function ChatWindow({ user }) {
   return (
     <section className="chatWindow">
       <p class="chatWindow__match"></p>
-      {parsedMessages}
+      {/* {parsedMessages} */}
       <form onSubmit={handleSubmit} className="chatWindow_messageInput">
         <div className="chatWindow__inputMessageText">
           <Input
