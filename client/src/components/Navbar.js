@@ -22,7 +22,7 @@ export default function Navbar({ user, backButton }) {
           />
         </IconButton>
       ) : user ? (
-        <Link to="users/:uid">
+        <Link to="users/2">
           <IconButton>
             <Avatar
               className="navbar__avatar"

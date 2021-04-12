@@ -16,6 +16,7 @@ import ChatList from "./components/ChatList";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import CardStack from "./components/CardStack";
 import ChatWindow from "./components/ChatWindow";
+import ProfileList from "./components/PofileList";
 
 function App() {
   const [user, loading, error] = useAuthState(auth);
@@ -42,6 +43,12 @@ function App() {
           />
           {user && <ChatWindow user={user} /> }
           </Route>
+          <Route path='/users/:uid'>
+          <Navbar backButton={true}
+            user={user}
+            />
+            <ProfileList />
+            </Route>
         </Switch>
       </Router>
     </div>
