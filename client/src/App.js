@@ -1,5 +1,7 @@
-import "./stylesheets/App.scss"
+import "./stylesheets/App.scss";
 
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "./firebase/config";
 
 //Components
 
@@ -10,6 +12,10 @@ import PupsList from "./components/PupsList"
 import Pup from "./components/Pup"
 
 function App() {
+  const [user, loading, error] = useAuthState(auth);
+
+  console.log(user);
+
   return (
     <div className="App">
       <Navbar />

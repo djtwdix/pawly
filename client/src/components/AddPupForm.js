@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import usePupData from "../hooks/usePupData";
 import "../stylesheets/AddPupForm.scss";
+
+//material ui components
 
 import {
   Button,
@@ -14,6 +16,7 @@ import {
   RadioGroup,
   Slider,
   TextField,
+  Avatar,
 } from "@material-ui/core";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import {
@@ -21,16 +24,16 @@ import {
   KeyboardDatePicker,
 } from "@material-ui/pickers";
 import MomentUtils from "@date-io/moment";
+import { muiTheme } from "../stylesheets/muiTheme";
+import { ThemeProvider } from "@material-ui/styles";
 
 //icons
 import ImageIcon from "@material-ui/icons/Image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faVenus, faMars } from "@fortawesome/free-solid-svg-icons";
 
-import { muiTheme } from "../stylesheets/muiTheme";
-import { ThemeProvider } from "@material-ui/styles";
-
 //Component for adding new pup
+
 export default function AddPupForm({ user }) {
   const {
     formData,
@@ -40,6 +43,8 @@ export default function AddPupForm({ user }) {
     addPup,
     charRemaining,
     selectedDate,
+    uploadImage,
+    photoURL,
   } = usePupData();
 
   const male = <FontAwesomeIcon className="pupForm__icons" icon={faMars} />;
@@ -54,13 +59,28 @@ export default function AddPupForm({ user }) {
             addPup(e, user);
           }}
         >
-          <Button>
-            <label class="pupForm__imageUpload">
-              <input type="file" />
-              <AddCircleIcon className="pupForm__icons__upload" />
-              <ImageIcon fontSize="large" className="pupForm__icons__image" />
-            </label>
-          </Button>
+          {photoURL ? (
+            <Avatar
+              style={{
+                height: "75px",
+                width: "75px",
+                alignSelf: "center",
+              }}
+              src={photoURL}
+              alt="your - pup"
+            />
+          ) : (
+            <Button>
+              <label className="pupForm__imageUpload">
+                <input
+                  type="file"
+                  onChange={(e) => uploadImage(e.target.files[0])}
+                />
+                <AddCircleIcon className="pupForm__icons__upload" />
+                <ImageIcon fontSize="large" className="pupForm__icons__image" />
+              </label>
+            </Button>
+          )}
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <FormControl>
               <InputLabel htmlFor="name">Name</InputLabel>
@@ -97,7 +117,7 @@ export default function AddPupForm({ user }) {
               onChange={handleChange}
             />
             <FormHelperText>
-              <span class={charRemaining < 0 && "pupForm__red"}>
+              <span className={charRemaining < 0 ? "pupForm__red" : undefined}>
                 {charRemaining} characters remaining
               </span>
             </FormHelperText>

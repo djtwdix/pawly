@@ -1,14 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
-import "./Chat.css";
+import "../css/Chat.css";
 import { Button } from "@material-ui/core";
 
 export default function Chat ({ id, name, message, photoURL, timestamp }) {
   return (
     <Link to={`/chat/${id}`}>
       <Button style={{ width: "100%" }}>
-        <Section className="chat">
+        <section className="chat">
           <Avatar 
           className="chat__image"
           alt={name}
@@ -20,7 +20,7 @@ export default function Chat ({ id, name, message, photoURL, timestamp }) {
             <p>{message}</p>
           </div>
           <p className="chat__timestamp">{timestamp}</p>
-        </Section>
+        </section>
       </Button>
     </Link>
   );
