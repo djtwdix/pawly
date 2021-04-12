@@ -6,7 +6,7 @@ export default function usePupData() {
   const [selectedDate, setSelectedDate] = useState();
   const [charRemaining, setCharReamaining] = useState(140);
   const [formData, setFormData] = useState({});
-
+  
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     console.log(formData);
@@ -31,5 +31,7 @@ export default function usePupData() {
     return axios.post("/pups", { ...formData, owner_id: user.uid });
   };
   
-  return { formData, charRemaining, selectedDate, setSelectedDate, setCharReamaining, setFormData, handleChange, handleDateChange, handleEnergyChange, addPup};
+
+  return {formData, charRemaining, selectedDate, setSelectedDate, setCharReamaining, setFormData, handleChange, handleDateChange, handleEnergyChange, addPup};
+
 }
