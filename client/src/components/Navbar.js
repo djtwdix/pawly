@@ -8,9 +8,8 @@ import ForumIcon from "@material-ui/icons/Forum";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { Avatar, IconButton } from "@material-ui/core";
 
-export default function Navbar() {
+export default function Navbar({ user }) {
   const backButton = true;
-  const user = true;
   return (
     <nav className="navbar">
       {backButton ? (
@@ -20,11 +19,12 @@ export default function Navbar() {
       ) : user ? (
         <IconButton>
           <Avatar
+            className="navbar__avatar"
+            src={user.photoURL}
             style={{
-              padding: "10px",
               margin: "0",
-              height: "29px",
-              width: "29px",
+              height: "49px",
+              width: "49px",
             }}
           >
             DT
@@ -35,7 +35,7 @@ export default function Navbar() {
           <PersonIcon fontSize="large" />
         </IconButton>
       )}
-      <img src={logo} alt="pawly-logo"></img>
+      <img className="navbar__logo" src={logo} alt="pawly-logo"></img>
       <IconButton>
         <ForumIcon fontSize="large" />
       </IconButton>
