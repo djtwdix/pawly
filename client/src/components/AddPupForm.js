@@ -57,7 +57,7 @@ export default function AddPupForm({ user }) {
             <label class="pupForm__imageUpload">
               <input type="file" />
               <ImageIcon fontSize="large" className="pupForm__icons__image" />
-              upload image
+              
             </label>
           </Button>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
