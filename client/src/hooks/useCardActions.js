@@ -1,7 +1,6 @@
 import { useState } from "react";
-import axios from "axios";
 
-export default function swipePupCards() {
+export default function useCardActions() {
   const [view, setView] = useState(false);
 
   const showStats = () => {
@@ -9,14 +8,13 @@ export default function swipePupCards() {
       setView(true);
     }
     setView(false);
-  }
-
-  const checkMatch = (user, pup) => {
-    const match = pup.owner.likes.includes(user.uid) ? true : false
-
-    return match
   };
 
+  const checkMatch = (user, pup) => {
+    const match = pup.owner.likes.includes(user.uid) ? true : false;
 
-return {view, setView, showStats, checkMatch }
-};
+    return match;
+  };
+
+  return { view, setView, showStats, checkMatch };
+}
