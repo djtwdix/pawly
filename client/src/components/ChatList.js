@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import Chat from "./Chat";
+import useChatData from "../hooks/useChatData";
 
-export default function Chats({ user }) { 
+export default function ChatList({ user }) {
+  const { chatsRef } = useChatData();
   const [chats, setChats] = useState([]);
 
   useEffect(() => {
-    if(user) {
-     
+    if (user) {
       const unsubscribe = setChats(chatsRef(user.id));
       return unsubscribe;
     }
-  }, [user]);
+  }, [user, chatsRef]);
 
   const parsedChats = chats.map((chat) => {
     console.log(user.uid);
