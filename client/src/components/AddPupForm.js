@@ -42,25 +42,12 @@ export default function AddPupForm({ user }) {
     addPup,
     charRemaining,
     selectedDate,
+    uploadImage,
+    photoURL,
   } = usePupData();
-
-  const [photoURL, setPhotoURL] = useState("");
 
   const male = <FontAwesomeIcon className="pupForm__icons" icon={faMars} />;
   const female = <FontAwesomeIcon className="pupForm__icons" icon={faVenus} />;
-
-  const uploadImage = (imageFile) => {
-    console.log(imageFile);
-    const formData = new FormData();
-    formData.append("file", imageFile);
-    formData.append("upload_preset", "pawlypreset");
-    console.log(formData);
-    axios
-      .post("https://api.cloudinary.com/v1_1/druwzs7ds/image/upload/", formData)
-      .then((res) => {
-        setPhotoURL(res.data.url);
-      });
-  };
 
   return (
     <div className="pupForm">
