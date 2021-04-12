@@ -6,14 +6,15 @@ import "./stylesheets/App.scss"
 import SignIn from "./components/SignIn";
 import Navbar from "./components/Navbar";
 import AddPupForm from "./components/AddPupForm";
-import Pups from "./components/Pups"
+import PupsList from "./components/PupsList"
+import Pup from "./components/Pup"
 
 function App() {
   return (
     <div className="App">
       <Navbar />
      {/* <AddPupForm /> */}
-     <Pups />
+     <Pup />
 
     </div>
   );
