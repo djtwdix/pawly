@@ -29,7 +29,6 @@ export default function AddPupForm({ user }) {
     handleEnergyChange,
     addPup,
     charRemaining,
-    setCharRemaining,
     selectedDate,
   } = usePupData();
 
