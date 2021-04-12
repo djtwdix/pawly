@@ -1,28 +1,28 @@
-import axios from 'axios';
-import {useState} from "react";
-
+import axios from "axios";
+import { useState } from "react";
 
 export default function usePupData() {
   const [selectedDate, setSelectedDate] = useState();
-  const [charRemaining, setCharReamaining] = useState(140);
+  const [charRemaining, setCharRemaining] = useState(140);
   const [formData, setFormData] = useState({});
-  
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    console.log(formData);
+    if (e.target.name === "bio") {
+      setCharRemaining(140 - e.target.value.length);
+    }
+    console.log(e.target.value)
   };
 
   const handleDateChange = (date) => {
     console.log(date);
     setSelectedDate(date);
     setFormData({ ...formData, date: date });
-    console.log(formData);
   };
 
   const handleEnergyChange = (event, number) => {
     setFormData({ ...formData, energy: number });
-    console.log(formData);
-  }
+  };
 
   const addPup = (e, user) => {
     e.preventDefault();
@@ -30,8 +30,17 @@ export default function usePupData() {
     console.log("doggie data:", formData);
     return axios.post("/pups", { ...formData, owner_id: user.uid });
   };
-  
 
-  return {formData, charRemaining, selectedDate, setSelectedDate, setCharReamaining, setFormData, handleChange, handleDateChange, handleEnergyChange, addPup};
-
+  return {
+    formData,
+    charRemaining,
+    selectedDate,
+    setSelectedDate,
+    setCharRemaining,
+    setFormData,
+    handleChange,
+    handleDateChange,
+    handleEnergyChange,
+    addPup,
+  };
 }
