@@ -2,6 +2,7 @@ import { Button } from "@material-ui/core";
 import TinderCard from "react-tinder-card";
 import useCardActions from "../hooks/useCardActions";
 import React from "react";
+import axios from "axios"
 
 export default function PupCard({ pup, user }) {
   const
@@ -14,7 +15,7 @@ export default function PupCard({ pup, user }) {
     if (direction === "right") {
       axios.put(`users/${user.uid}/likes`, { ownerID: pup.owner_id })
       if (checkMatch(user, pup)) {
-        participants = [user.uid, pup.owner_id];
+        const participants = [user.uid, pup.owner_id];
         axios.post('/chats', { participants })
       }
     }
