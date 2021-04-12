@@ -11,7 +11,7 @@ export default function usePupData() {
     if (e.target.name === "bio") {
       setCharRemaining(140 - e.target.value.length);
     }
-    console.log(e.target.value)
+    console.log(e.target.value);
   };
 
   const handleDateChange = (date) => {
