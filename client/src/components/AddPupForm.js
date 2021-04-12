@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import usePupData from "../hooks/usePupData";
 import "../stylesheets/AddPupForm.scss";
 
@@ -21,14 +21,16 @@ import {
   KeyboardDatePicker,
 } from "@material-ui/pickers";
 import MomentUtils from "@date-io/moment";
+import { muiTheme } from "../stylesheets/muiTheme";
+import { ThemeProvider } from "@material-ui/styles";
 
 //icons
 import ImageIcon from "@material-ui/icons/Image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faVenus, faMars } from "@fortawesome/free-solid-svg-icons";
 
-import { muiTheme } from "../stylesheets/muiTheme";
-import { ThemeProvider } from "@material-ui/styles";
+import axios from "axios";
+import { Avatar } from "@material-ui/core";
 
 //Component for adding new pup
 export default function AddPupForm({ user }) {
@@ -42,8 +44,23 @@ export default function AddPupForm({ user }) {
     selectedDate,
   } = usePupData();
 
+  const [photoURL, setPhotoURL] = useState("");
+
   const male = <FontAwesomeIcon className="pupForm__icons" icon={faMars} />;
   const female = <FontAwesomeIcon className="pupForm__icons" icon={faVenus} />;
+
+  const uploadImage = (imageFile) => {
+    console.log(imageFile);
+    const formData = new FormData();
+    formData.append("file", imageFile);
+    formData.append("upload_preset", "pawlypreset");
+    console.log(formData);
+    axios
+      .post("https://api.cloudinary.com/v1_1/druwzs7ds/image/upload/", formData)
+      .then((res) => {
+        setPhotoURL(res.data.url);
+      });
+  };
 
   return (
     <div className="pupForm">
@@ -54,13 +71,28 @@ export default function AddPupForm({ user }) {
             addPup(e, user);
           }}
         >
-          <Button>
-            <label class="pupForm__imageUpload">
-              <input type="file" />
-              <AddCircleIcon className="pupForm__icons__upload" />
-              <ImageIcon fontSize="large" className="pupForm__icons__image" />
-            </label>
-          </Button>
+          {photoURL ? (
+            <Avatar
+              style={{
+                height: "75px",
+                width: "75px",
+                alignSelf: "center",
+              }}
+              src={photoURL}
+              alt="your - pup"
+            />
+          ) : (
+            <Button>
+              <label class="pupForm__imageUpload">
+                <input
+                  type="file"
+                  onChange={(e) => uploadImage(e.target.files[0])}
+                />
+                <AddCircleIcon className="pupForm__icons__upload" />
+                <ImageIcon fontSize="large" className="pupForm__icons__image" />
+              </label>
+            </Button>
+          )}
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <FormControl>
               <InputLabel htmlFor="name">Name</InputLabel>
