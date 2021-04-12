@@ -7,8 +7,7 @@ import { auth } from "./firebase/config";
 
 import SignIn from "./components/SignIn";
 import Navbar from "./components/Navbar";
-import AddPupForm from "./components/AddPupForm";
-import PupsList from "./components/PupsList";
+import PupList from "./components/PupList";
 import Pup from "./components/Pup";
 import ChatList from "./components/ChatList";
 
@@ -17,6 +16,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import CardStack from "./components/CardStack";
 import ChatWindow from "./components/ChatWindow";
 import ProfileList from "./components/PofileList";
+import PupForm from "./components/PupForm";
 
 function App() {
   const [user, loading, error] = useAuthState(auth);
@@ -48,6 +48,18 @@ function App() {
             user={user}
             />
             <ProfileList />
+            </Route>
+            <Route exact path="/pups">
+            <Navbar backButton={true}
+               user={user}
+               />
+               <PupList/>
+            </Route>
+            <Route path="/pups/new">
+            <Navbar backButton={true}
+               user={user}
+               />
+               <PupForm/>
             </Route>
         </Switch>
       </Router>
