@@ -16,7 +16,7 @@ import {
   RadioGroup,
   Slider,
   TextField,
-  Avatar
+  Avatar,
 } from "@material-ui/core";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import {
@@ -71,7 +71,7 @@ export default function AddPupForm({ user }) {
             />
           ) : (
             <Button>
-              <label class="pupForm__imageUpload">
+              <label className="pupForm__imageUpload">
                 <input
                   type="file"
                   onChange={(e) => uploadImage(e.target.files[0])}
@@ -117,7 +117,7 @@ export default function AddPupForm({ user }) {
               onChange={handleChange}
             />
             <FormHelperText>
-              <span class={charRemaining < 0 && "pupForm__red"}>
+              <span className={charRemaining < 0 ? "pupForm__red" : undefined}>
                 {charRemaining} characters remaining
               </span>
             </FormHelperText>
