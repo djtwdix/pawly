@@ -9,7 +9,7 @@ import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { Avatar, IconButton } from "@material-ui/core";
 
 export default function Navbar() {
-  const backButton = false;
+  const backButton = true;
   const user = true;
   return (
     <nav className="navbar">
@@ -21,10 +21,10 @@ export default function Navbar() {
         <IconButton>
           <Avatar
             style={{
-              padding: "0",
+              padding: "10px",
               margin: "0",
-              height: "35px",
-              width: "35px",
+              height: "29px",
+              width: "29px",
             }}
           >
             DT
