@@ -15,9 +15,11 @@ export default function usePupData() {
   };
 
   const handleDateChange = (date) => {
-    console.log(date);
-    setSelectedDate(date);
-    setFormData({ ...formData, date: date });
+    if (date) {
+      const birthday = date._d.toDateString();
+      setSelectedDate(date);
+      setFormData({ ...formData, birthday: birthday });
+    }
   };
 
   const handleEnergyChange = (event, number) => {
