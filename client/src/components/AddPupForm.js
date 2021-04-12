@@ -1,3 +1,7 @@
+import React from "react";
+import usePupData from "../hooks/usePupData";
+import "../stylesheets/AddPupForm.scss";
+
 import {
   Button,
   FormControl,
@@ -16,16 +20,16 @@ import {
   KeyboardDatePicker,
 } from "@material-ui/pickers";
 import MomentUtils from "@date-io/moment";
-import usePupData from "../hooks/usePupData";
-import React from "react";
+
+//icons
+import ImageIcon from "@material-ui/icons/Image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faVenus, faMars } from "@fortawesome/free-solid-svg-icons";
-import "../stylesheets/AddPupForm.scss";
 
 import { muiTheme } from "../stylesheets/muiTheme";
 import { ThemeProvider } from "@material-ui/styles";
 
-//Component for for adding new pup
+//Component for adding new pup
 export default function AddPupForm({ user }) {
   const {
     formData,
@@ -37,8 +41,8 @@ export default function AddPupForm({ user }) {
     selectedDate,
   } = usePupData();
 
-  const male = <FontAwesomeIcon className="genderIcons" icon={faMars} />;
-  const female = <FontAwesomeIcon className="genderIcons" icon={faVenus} />;
+  const male = <FontAwesomeIcon className="pupForm__icons" icon={faMars} />;
+  const female = <FontAwesomeIcon className="pupForm__icons" icon={faVenus} />;
 
   return (
     <div className="pupForm">
@@ -49,31 +53,38 @@ export default function AddPupForm({ user }) {
             addPup(e, user);
           }}
         >
-          <label class="pupForm__button">
-            <input type="file" />
-            Upload Image
-          </label>
-          <FormControl>
-            <InputLabel htmlFor="name">Name</InputLabel>
-            <Input
-              name="name"
-              id="name"
-              value={formData.name}
-              aria-describedby="name"
-              onChange={handleChange}
-            />
-          </FormControl>
-          <FormControl>
-            <InputLabel htmlFor="breed">Breed</InputLabel>
-            <Input
-              type="text"
-              name="photoURL"
-              id="breed"
-              value={formData.breed}
-              aria-describedby="breed"
-              onChange={handleChange}
-            />
-          </FormControl>
+          <Button>
+            <label class="pupForm__imageUpload">
+              <input type="file" />
+              <ImageIcon fontSize="large" className="pupForm__icons__image" />
+              upload image
+            </label>
+          </Button>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <FormControl>
+              <InputLabel htmlFor="name">Name</InputLabel>
+              <Input
+                name="name"
+                id="name"
+                value={formData.name}
+                aria-describedby="name"
+                onChange={handleChange}
+                style={{ width: "9rem" }}
+              />
+            </FormControl>
+            <FormControl>
+              <InputLabel htmlFor="breed">Breed</InputLabel>
+              <Input
+                type="text"
+                name="photoURL"
+                id="breed"
+                value={formData.breed}
+                aria-describedby="breed"
+                onChange={handleChange}
+                style={{ width: "9rem" }}
+              />
+            </FormControl>
+          </div>
           <FormControl>
             <TextField
               error={charRemaining < 0}
