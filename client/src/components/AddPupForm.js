@@ -15,6 +15,7 @@ import {
   Slider,
   TextField,
 } from "@material-ui/core";
+import AddCircleIcon from "@material-ui/icons/AddCircle";
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
@@ -56,8 +57,8 @@ export default function AddPupForm({ user }) {
           <Button>
             <label class="pupForm__imageUpload">
               <input type="file" />
+              <AddCircleIcon className="pupForm__icons__upload" />
               <ImageIcon fontSize="large" className="pupForm__icons__image" />
-              
             </label>
           </Button>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -165,7 +166,12 @@ export default function AddPupForm({ user }) {
               }}
             />
           </MuiPickersUtilsProvider>
-          <Button type="submit">Submit</Button>
+          <Button
+            style={{ backgroundColor: "rgb(176, 176, 176)", color: "white" }}
+            type="submit"
+          >
+            Submit
+          </Button>
         </form>
       </ThemeProvider>
     </div>
