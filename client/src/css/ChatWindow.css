@@ -1,0 +1,53 @@
+.chatWindow__message {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+
+.chatWindow__match {
+  width: 100%;
+  text-align: center;
+  color: rgb(0, 0, 0);
+  padding: 20px;
+}
+
+.chatWindow__text {
+  margin-left: 10px;
+  display: flex;
+  background-color: #FD93FF;
+  padding: 15px;
+  color: rgb(255, 255, 255);
+  border-radius: 15px;
+}
+
+.chatWindow__textUser {
+  margin-right: 10px;
+  color: white;
+  display: flex;
+  background-color: rgb(137, 199, 254);
+  padding: 15px;
+  border-radius: 15px;
+  margin-left: auto;
+}
+
+.chatWindow_messageInput {
+  display: flex;
+  padding: 5px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid white;
+  background-color: white;
+}
+
+.chatWindow__inputMessageText {
+  flex: 1;
+  border: none;
+  padding: 10px;
+}
+
+.chatWindow__inputButton {
+  border: none;
+  margin-right: 20px;
+  color: #c401a7;
+}

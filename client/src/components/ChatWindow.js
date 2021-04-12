@@ -8,47 +8,35 @@ import Input from "@material-ui/core/Input";
 import { Container } from "@material-ui/core";
 import "./ChatWindow.css";
 import useUserData from "../hooks/useUserData";
+import useChatData from "../hooks/useChatData";
 
 export default function ChatWindow({ user }) {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
-  const [mongoMessages, setMongoMessages] = useState([]);
   const [otherUser, setOtherUser] = useState({});
   const [connection, setConnection] = useState({});
   const { chatID } = useParams;
   const { getUserInfo } = useUserData();
+  const { fetchChatData, fetchMessageData } = useChatData();
 
   useEffect(() => {
     const socket = io();
     setConnection(socket);
     socket.on("messages", (data) => {
-      setMongoMessages((prev) => [...prev, data]);
+      setMessages((prev) => [...prev, data]);
     });
   }, []);
 
-  useEffect(async () => {
-    try {
-      const chat = await axios.get(`/chats`, { user_id: user.uid });
-    } catch (error) {
-      return error;
-    }
+  useEffect(() => {
+    const chat = fetchChatData(user.uid);
+    const messages = fetchMessageData(chat.id);
     setOtherUser(chat.participants.filter((participant) => participant.id !== user.uid));
-    try {
-      const messages = await axios.get(`/chats/${chatID}/messages`);
-    } catch (error) {
-      return error;
-    }
-    if (messages) {
-      setMessages(messages)
-    }
-    await axios.get("messages/sync").then((res) => {
-      setMongoMessages(res.data);
-    });
+    setMessages(messages);
   }, [chatID, user]);
 
   const parntnerInfo = getUserInfo(otherUser);
 
-  const parsedMessages = mongoMessages.map((message) => {
+  const parsedMessages = messages.map((message) => {
     return message.user_id !== user.uid ? (
       <Container>
         <div class="chatWindow__message">
@@ -92,7 +80,7 @@ export default function ChatWindow({ user }) {
           message: input,
           received: "false",
         })
-        .then((res) => {})
+        .then((res) => { })
         .catch((err) => console.log(err.message));
     }
   };
