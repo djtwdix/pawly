@@ -34,7 +34,7 @@ import { faVenus, faMars } from "@fortawesome/free-solid-svg-icons";
 
 //Component for adding new pup
 
-export default function AddPupForm({ user }) {
+export default function PupForm({ user }) {
   const {
     formData,
     handleChange,

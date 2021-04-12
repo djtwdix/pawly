@@ -2,8 +2,9 @@ import { Add } from "@material-ui/icons";
 import React , { useState, useEffect }  from "react";
 import ListItemContainer from "./ListItemContainer"
 import Pup from "./Pup";
+import { Link } from "react-router-dom"
 
-export default function PupsList({ user }) {
+export default function PupList({ user }) {
   const [pups, setPups] = useState([]);
 
 
@@ -19,13 +20,11 @@ export default function PupsList({ user }) {
   return (
       <section>
         {parsedPups}
-        <ListItemContainer>
-          {/* <Link to={"/pups/new"}> */}
-           
+        <Link to="/pups/new">
+          <ListItemContainer>
             <Add />
-
-        {/* </Link> */}
-        </ListItemContainer>
+          </ListItemContainer>
+        </Link>
       </section>
     );
 
