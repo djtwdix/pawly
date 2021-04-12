@@ -1,5 +1,9 @@
-import SignIn from "./components/SignIn";
+import "./stylesheets/App.scss"
 
+
+//Components
+
+import SignIn from "./components/SignIn";
 import Navbar from "./components/Navbar";
 import AddPupForm from "./components/AddPupForm";
 
