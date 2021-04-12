@@ -22,7 +22,7 @@ export default function useChatData() {
   }
 
   const chatsRef = async (userId) => {
-    chats = await axios.get(`chats`, { userID: userId });
+    const chats = await axios.get(`chats`, { userID: userId });
     return chats;
   }
 
