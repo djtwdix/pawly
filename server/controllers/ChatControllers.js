@@ -1,14 +1,19 @@
 import Chats from "../models/ChatModel.js";
+import checkIfMatchExists from "../helpers/checkIfMatchExists.js";
 
-export const createChat = (req, res) => {
-  const chatInfo = req.body;
-  Chats.create(chatInfo, (err, data) => {
-    if (err) {
-      res.status(500).send(err);
-    } else {
-      res.status(201).send(data);
-    }
-  });
+export const createChat = async (req, res) => {
+  const participants = req.body;
+
+  const alreadyExists = checkIfMatchExists(participants);
+  if (!alreadyExists) {
+    Chats.create(participants, (err, data) => {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.status(201).send(data);
+      }
+    });
+  }
 };
 
 export const getChatsByUserId = (req, res) => {
