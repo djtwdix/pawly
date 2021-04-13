@@ -7,8 +7,10 @@ export default function PupCardStack({ user }) {
   const { getAllPups, pups } = usePupData()
   
   useEffect(() => {
+    
     if (user) {
-      getAllPups(user.uid);
+    const unsubscribe = getAllPups(user.uid);
+    return unsubscribe
     }
   }, [user]);
 

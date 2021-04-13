@@ -29,6 +29,12 @@ const io = new Server(httpServer, {
   },
 });
 
+io.on("connection", (socket) => {
+  socket.on("messages", (data) => {
+    io.emit("messages", data);
+  });
+});
+
 //mongoDB connection
 mongoose.connect(process.env.DB_URL, {
   useNewUrlParser: true,

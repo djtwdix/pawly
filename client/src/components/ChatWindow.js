@@ -14,7 +14,6 @@ export default function ChatWindow({ user }) {
   const [otherUser, setOtherUser] = useState({});
   const [connection, setConnection] = useState({});
   const { chatID } = useParams();
-  const { getUserInfo } = useUserData();
   const { getMessagesByChatId } = useChatData();
 
   useEffect(() => {
@@ -29,12 +28,16 @@ export default function ChatWindow({ user }) {
     })
   }, []);
 
-const handleSubmit = (e) => {
+  
+  const handleSubmit = (e) => {
+    let id = Math.random().toString(36).substring(7);
   e.preventDefault();
   connection.emit("messages", {
     name: user.displayName,
-    message: input,
-    user_id: user.uid,
+    text: input,
+    sender_id: user.uid,
+    chat_id: chatID,
+    _id: id
   });
 
   if (input) {
