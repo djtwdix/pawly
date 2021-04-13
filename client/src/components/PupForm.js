@@ -97,7 +97,7 @@ export default function PupForm({ user }) {
               <InputLabel htmlFor="breed">Breed</InputLabel>
               <Input
                 type="text"
-                name="photoURL"
+                name="breed"
                 id="breed"
                 value={formData.breed}
                 aria-describedby="breed"
