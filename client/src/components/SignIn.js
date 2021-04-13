@@ -1,6 +1,7 @@
 import React from "react";
 import firebase from "firebase/app";
 import { auth } from "../firebase/config.js";
+import axios from "axios";
 
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 
@@ -15,7 +16,14 @@ const uiConfig = {
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
   ],
   callbacks: {
-    signInSuccessWithAuthResult: () => {},
+    signInSuccessWithAuthResult: (userObj) => {
+      axios.post("/users", {
+        _id: userObj.user.uid,
+        name: userObj.user.displayName,
+        email: userObj.user.email,
+        photoURL: userObj.user.photoURL,
+      });
+    },
   },
 };
 
