@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import usePupData from "../hooks/usePupData";
 import "../stylesheets/AddPupForm.scss";
+import { useHistory } from "react-router-dom";
 
 //material ui components
 
@@ -47,6 +48,8 @@ export default function PupForm({ user }) {
     photoURL,
   } = usePupData();
 
+  const history = useHistory()
+
   const male = <FontAwesomeIcon className="pupForm__icons" icon={faMars} />;
   const female = <FontAwesomeIcon className="pupForm__icons" icon={faVenus} />;
 
@@ -56,7 +59,9 @@ export default function PupForm({ user }) {
         <form
           className="pupForm__card"
           onSubmit={(e) => {
-            addPup(e, user);
+            addPup(e, user).then(() => {
+              history.goBack()
+            })
           }}
         >
           {photoURL ? (
