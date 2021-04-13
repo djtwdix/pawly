@@ -7,7 +7,7 @@ export const createChat = async (req, res) => {
   const alreadyExists = await checkIfMatchExists(participants);
   console.log('alreadyExists: ', alreadyExists);
   if (!alreadyExists) {
-    Chats.create(participants, (err, data) => {
+    Chats.create({ participants }, (err, data) => {
       if (err) {
         res.status(500).send(err);
       } else {

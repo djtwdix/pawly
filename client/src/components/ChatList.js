@@ -18,7 +18,7 @@ export default function ChatList({ user }) {
  
     const parsedChats = chats.map(chat => {
       console.log("otherUser ", chat);
-      return <ChatListItem chat={chat} user={user}/>;
+      return <ChatListItem key={chat._id} chat={chat} user={user}/>;
     });
   
 

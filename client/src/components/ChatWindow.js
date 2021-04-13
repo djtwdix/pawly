@@ -13,7 +13,7 @@ export default function ChatWindow({ user }) {
   const [messages, setMessages] = useState([]);
   const [otherUser, setOtherUser] = useState({});
   const [connection, setConnection] = useState({});
-  const { chatID } = useParams;
+  const { chatID } = useParams();
   const { getUserInfo } = useUserData();
   const { getMessagesByChatId } = useChatData();
 
@@ -29,38 +29,10 @@ export default function ChatWindow({ user }) {
     })
   }, []);
 
-const parntnerInfo = getUserInfo(otherUser);
-/*
-const parsedMessages = messages.map((message) => {
-  return message.user_id !== user.uid ? (
-    <Container>
-      <div class="chatWindow__message">
-        <Avatar
-          className="chatWindow__image"
-          src={parntnerInfo.photoURL}
-        ></Avatar>
-        <p class="chatWindow__text">{message.message}</p>
-      </div>
-    </Container>
-  ) : (
-    <div class="chatWindow__message">
-      <p class="chatWindow__text__user">{message.message}</p>
-      <Avatar
-        className="chatWindow__image"
-        src={user.photoURL}
-      ></Avatar>
-    </div>
-  );
-}); */
 
+
+console.log(messages)
 const handleSubmit = (e) => {
-  e.preventDefault();
-  if (input) {
-    setMessages([...messages, { id: user.uid, text: input }]);
-  }
-};
-
-const handleSubmitNew = (e) => {
   e.preventDefault();
   connection.emit("messages", {
     name: user.displayName,
@@ -72,29 +44,23 @@ const handleSubmitNew = (e) => {
     axios
       .post("/messages", {
         name: user.displayName,
-        message: input,
-        received: "false",
+        text: input,
+        sender_id: user.uid,
+        chat_id: chatID
       })
       .then((res) => { })
       .catch((err) => console.log(err.message));
   }
 };
 
-const message = {
-  sender_id: user.uid,
-  text: "Hello",
-};
-
-const message2 = {
-  sender_id: "alskfhalskdjhfua",
-  text: "Hello There!",
-};
+const parsedMessages = messages.map(message => {
+  return <ChatMessage key={message._id} user={user} message={message} />
+})
 
 return (
   <section className="chatWindow">
     <p className="chatWindow__match">you matched with someone</p>
-    <ChatMessage user={user} message={message} />
-    <ChatMessage user={user} message={message2} />
+   {parsedMessages}
     <form onSubmit={handleSubmit} className="chatWindow__messageInput">
       <div className="chatWindow__messageInputText">
         <mui.Input
@@ -110,7 +76,6 @@ return (
       <mui.Button
         style={{ backgroundColor: "transparent" }}
         type="submit"
-        onClick={handleSubmitNew}
       >
         <p className="chatWindow__inputButton">SEND</p>
       </mui.Button>
