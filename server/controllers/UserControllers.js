@@ -56,10 +56,7 @@ export const updateUser = (req, res) => {
 
 export const addLike = (req, res) => {
   const userId = req.params.userId;
-  console.log("userId: ", userId);
-
   const likeId = req.body.likeId;
-  console.log("likeId: ", likeId);
   Users.updateOne(
     { _id: userId },
     { $addToSet: { likes: likeId } },
