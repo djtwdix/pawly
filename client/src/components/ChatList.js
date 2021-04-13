@@ -5,32 +5,27 @@ import { Link } from "react-router-dom";
 
 export default function ChatList({ user }) {
   const { getChatsByUserID, chats } = useChatData();
+  console.log('chats: ', chats);
  
 
   useEffect(() => {
     if (user) {
-      getChatsByUserID(user.id)
+     const unsubscribe = getChatsByUserID(user.uid)
+     return unsubscribe
     }
-  }, [user, getChatsByUserID]);
+  }, [user]);
+  
+ 
+    const parsedChats = chats.map(chat => {
+      console.log("otherUser ", chat);
+      return <ChatListItem chat={chat} user={user}/>;
+    });
+  
 
-  const parsedChats = chats.map((chat) => {
-    console.log(user.uid);
-    const otherUser = chat.participants.filter(
-      (participant) => participant.id !== user.uid
-    )[0];
-    console.log("otherUser ", chat);
-    return <ChatListItem chat={chat} />;
-  });
 
   return (
     <section>
       {parsedChats}
-      <ChatListItem
-        name="Jesse"
-        message="Yooooo!"
-        timestamp="30 seconds ago"
-        profile_pix="url..."
-      />
     </section>
   );
 }
