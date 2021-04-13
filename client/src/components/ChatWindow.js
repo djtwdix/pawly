@@ -113,7 +113,11 @@ export default function ChatWindow({ user }) {
             autoFocus={true}
           ></mui.Input>
         </div>
-        <mui.Button type="submit" onClick={handleSubmitNew}>
+        <mui.Button
+          style={{ backgroundColor: "transparent" }}
+          type="submit"
+          onClick={handleSubmitNew}
+        >
           <p className="chatWindow__inputButton">SEND</p>
         </mui.Button>
       </form>
