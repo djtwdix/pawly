@@ -1,24 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import usePupData from "../hooks/usePupData";
-import "../stylesheets/AddPupForm.scss";
+
 import { useHistory } from "react-router-dom";
 
 //material ui components
 
-import {
-  Button,
-  FormControl,
-  FormControlLabel,
-  FormHelperText,
-  FormLabel,
-  Input,
-  InputLabel,
-  Radio,
-  RadioGroup,
-  Slider,
-  TextField,
-  Avatar,
-} from "@material-ui/core";
+import * as mui from "@material-ui/core";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import {
   MuiPickersUtilsProvider,
@@ -65,7 +52,7 @@ export default function PupForm({ user }) {
           }}
         >
           {photoURL ? (
-            <Avatar
+            <mui.Avatar
               style={{
                 height: "75px",
                 width: "75px",
@@ -75,7 +62,7 @@ export default function PupForm({ user }) {
               alt="your - pup"
             />
           ) : (
-            <Button>
+            <mui.Button>
               <label className="pupForm__imageUpload">
                 <input
                   type="file"
@@ -84,12 +71,12 @@ export default function PupForm({ user }) {
                 <AddCircleIcon className="pupForm__icons__upload" />
                 <ImageIcon fontSize="large" className="pupForm__icons__image" />
               </label>
-            </Button>
+            </mui.Button>
           )}
           <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <FormControl>
-              <InputLabel htmlFor="name">Name</InputLabel>
-              <Input
+            <mui.FormControl>
+              <mui.InputLabel htmlFor="name">Name</mui.InputLabel>
+              <mui.Input
                 name="name"
                 id="name"
                 value={formData.name}
@@ -97,10 +84,10 @@ export default function PupForm({ user }) {
                 onChange={handleChange}
                 style={{ width: "9rem" }}
               />
-            </FormControl>
-            <FormControl>
-              <InputLabel htmlFor="breed">Breed</InputLabel>
-              <Input
+            </mui.FormControl>
+            <mui.FormControl>
+              <mui.InputLabel htmlFor="breed">Breed</mui.InputLabel>
+              <mui.Input
                 type="text"
                 name="breed"
                 id="breed"
@@ -109,10 +96,10 @@ export default function PupForm({ user }) {
                 onChange={handleChange}
                 style={{ width: "9rem" }}
               />
-            </FormControl>
+            </mui.FormControl>
           </div>
-          <FormControl>
-            <TextField
+          <mui.FormControl>
+            <mui.TextField
               error={charRemaining < 0}
               multiline
               label="Bio"
@@ -121,35 +108,35 @@ export default function PupForm({ user }) {
               aria-describedby="bio"
               onChange={handleChange}
             />
-            <FormHelperText>
+            <mui.FormHelperText>
               <span className={charRemaining < 0 ? "pupForm__red" : undefined}>
                 {charRemaining} characters remaining
               </span>
-            </FormHelperText>
-          </FormControl>
-          <FormControl component="fieldset">
-            <FormLabel className="pupForm__addPadding" component="legend">
+            </mui.FormHelperText>
+          </mui.FormControl>
+          <mui.FormControl component="fieldset">
+            <mui.FormLabel className="pupForm__addPadding" component="legend">
               Gender
-            </FormLabel>
-            <RadioGroup
+            </mui.FormLabel>
+            <mui.RadioGroup
               name="gender"
               onChange={handleChange}
               aria-label="gender"
               row
             >
               <div className="pupForm__genderGroup">
-                <FormControlLabel
+                <mui.FormControlLabel
                   value="female"
-                  control={<Radio />}
+                  control={<mui.Radio />}
                   label={female}
                   labelPlacement="start"
                   style={{
                     color: "black",
                   }}
                 />
-                <FormControlLabel
+                <mui.FormControlLabel
                   value="male"
-                  control={<Radio />}
+                  control={<mui.Radio />}
                   label={male}
                   labelPlacement="start"
                   style={{
@@ -157,13 +144,13 @@ export default function PupForm({ user }) {
                   }}
                 />
               </div>
-            </RadioGroup>
-          </FormControl>
-          <InputLabel className="pupForm__addPadding" htmlFor="energy" mt="3">
+            </mui.RadioGroup>
+          </mui.FormControl>
+          <mui.InputLabel className="pupForm__addPadding" htmlFor="energy" mt="3">
             Energy
-          </InputLabel>
+          </mui.InputLabel>
 
-          <Slider
+          <mui.Slider
             defaultValue={1}
             id="energy"
             name="energy"
@@ -191,12 +178,12 @@ export default function PupForm({ user }) {
               }}
             />
           </MuiPickersUtilsProvider>
-          <Button
+          <mui.Button
             style={{ backgroundColor: "rgb(176, 176, 176)", color: "white" }}
             type="submit"
           >
             Submit
-          </Button>
+          </mui.Button>
         </form>
       </ThemeProvider>
     </div>

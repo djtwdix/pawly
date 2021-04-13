@@ -3,20 +3,9 @@ import "./stylesheets/App.scss";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./firebase/config";
 
-//Components
-
-import SignIn from "./components/SignIn";
-import Navbar from "./components/Navbar";
-import PupList from "./components/PupList";
-import Pup from "./components/Pup";
-import ChatList from "./components/ChatList";
-
-
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import CardStack from "./components/CardStack";
-import ChatWindow from "./components/ChatWindow";
-import ProfileList from "./components/PofileList";
-import PupForm from "./components/PupForm";
+
+import * as comp from "./components";
 
 function App() {
   const [user, loading, error] = useAuthState(auth);
@@ -28,39 +17,29 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/">
-            <Navbar user={user} />
-            {!loading && !user ? <SignIn /> : <CardStack />}
+            <comp.Navbar user={user} />
+            {!loading && !user ? <comp.SignIn /> : <comp.CardStack />}
           </Route>
           <Route exact path="/chats">
-            <Navbar backButton={true}
-            user={user}
-            />
-            <ChatList />
+            <comp.Navbar backButton={true} user={user} />
+            <comp.ChatList />
           </Route>
           <Route path="/chats/:chatID">
-          <Navbar backButton={true}
-          user={user}
-          />
-          {user && <ChatWindow user={user} /> }
+            <comp.Navbar backButton={true} user={user} />
+            {user && <comp.ChatWindow user={user} />}
           </Route>
-          <Route path='/users/:uid'>
-          <Navbar backButton={true}
-            user={user}
-            />
-            <ProfileList />
-            </Route>
-            <Route exact path="/pups">
-            <Navbar backButton={true}
-               user={user}
-               />
-            <PupList user={user}/>
-            </Route>
-            <Route path="/pups/new">
-            <Navbar backButton={true}
-               user={user}
-               />
-               <PupForm user={user}/>
-            </Route>
+          <Route path="/users/:uid">
+            <comp.Navbar backButton={true} user={user} />
+            <comp.ProfileList />
+          </Route>
+          <Route exact path="/pups">
+            <comp.Navbar backButton={true} user={user} />
+            <comp.PupList user={user} />
+          </Route>
+          <Route path="/pups/new">
+            <comp.Navbar backButton={true} user={user} />
+            <comp.PupForm user={user} />
+          </Route>
         </Switch>
       </Router>
     </div>

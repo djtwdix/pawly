@@ -2,10 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
 import { io } from "socket.io-client";
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import Input from "@material-ui/core/Input";
-import { Container } from "@material-ui/core";
+import * as mui from "@material-ui/core";
 import "../css/ChatWindow.css";
 import useUserData from "../hooks/useUserData";
 import useChatData from "../hooks/useChatData";
@@ -98,7 +95,7 @@ export default function ChatWindow({ user }) {
       {/* {parsedMessages} */}
       <form onSubmit={handleSubmit} className="chatWindow_messageInput">
         <div className="chatWindow__inputMessageText">
-          <Input
+          <mui.Input
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Type a message here"
@@ -106,11 +103,11 @@ export default function ChatWindow({ user }) {
             required={true}
             fullWidth={true}
             autoFocus={true}
-          ></Input>
+          ></mui.Input>
         </div>
-        <Button type="submit" onClick={handleSubmitNew}>
+        <mui.Button type="submit" onClick={handleSubmitNew}>
           <p className="chatWindow__inputButton">SEND</p>
-        </Button>
+        </mui.Button>
       </form>
     </section>
   );

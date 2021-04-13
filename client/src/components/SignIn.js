@@ -1,7 +1,7 @@
 import React from "react";
 import firebase from "firebase/app";
 import { auth } from "../firebase/config.js";
-import "../stylesheets/SignIn.scss";
+
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 
 const uiConfig = {

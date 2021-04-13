@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import PupCard from "./PupCard";
 import axios from "axios";
 
-export default function CardStack({ user }) {
+export default function PupCardStack({ user }) {
   const [pups, setPups] = useState([]);
 
   useEffect(() => {

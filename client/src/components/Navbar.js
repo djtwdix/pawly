@@ -1,13 +1,14 @@
 import React from "react";
-import "../stylesheets/Navbar.scss";
+
 import logo from "../assets/images/pawlylogo.png";
 import { Link, useHistory } from "react-router-dom";
+
+import { Avatar, IconButton } from "@material-ui/core";
 
 //Icons
 import PersonIcon from "@material-ui/icons/Person";
 import ForumIcon from "@material-ui/icons/Forum";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import { Avatar, IconButton } from "@material-ui/core";
 
 export default function Navbar({ user, backButton }) {
   const history = useHistory();
@@ -15,10 +16,8 @@ export default function Navbar({ user, backButton }) {
   return (
     <nav className="navbar">
       {backButton ? (
-        <IconButton   onClick={(e) => history.goBack()}>
-          <ArrowBackIosIcon
-            fontSize="large"
-          />
+        <IconButton onClick={(e) => history.goBack()}>
+          <ArrowBackIosIcon fontSize="large" />
         </IconButton>
       ) : user ? (
         <Link to="users/2">
