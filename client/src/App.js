@@ -20,9 +20,9 @@ function App() {
             <comp.Navbar user={user} />
             {!loading && !user ? <comp.SignIn /> : <comp.CardStack user={user} />}
           </Route>
-          <Route exact path="/chats">
+          <Route exact path="/chats" >
             <comp.Navbar backButton={true} user={user} />
-            <comp.ChatList />
+            <comp.ChatList user={user}/>
           </Route>
           <Route path="/chats/:chatID">
             <comp.Navbar backButton={true} user={user} />
