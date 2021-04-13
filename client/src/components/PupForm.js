@@ -57,6 +57,7 @@ export default function PupForm({ user }) {
                 height: "75px",
                 width: "75px",
                 alignSelf: "center",
+                marginBottom: "18px",
               }}
               src={photoURL}
               alt="your - pup"
@@ -64,9 +65,10 @@ export default function PupForm({ user }) {
           ) : (
             <mui.Button>
               <label className="pupForm__imageUpload">
-                <input
+                <mui.Input
                   type="file"
                   onChange={(e) => uploadImage(e.target.files[0])}
+                  required={true}
                 />
                 <AddCircleIcon className="pupForm__icons__upload" />
                 <ImageIcon fontSize="large" className="pupForm__icons__image" />
@@ -83,6 +85,7 @@ export default function PupForm({ user }) {
                 aria-describedby="name"
                 onChange={handleChange}
                 style={{ width: "9rem" }}
+                required={true}
               />
             </mui.FormControl>
             <mui.FormControl>
@@ -95,6 +98,7 @@ export default function PupForm({ user }) {
                 aria-describedby="breed"
                 onChange={handleChange}
                 style={{ width: "9rem" }}
+                required={true}
               />
             </mui.FormControl>
           </div>
@@ -107,6 +111,7 @@ export default function PupForm({ user }) {
               value={formData.bio}
               aria-describedby="bio"
               onChange={handleChange}
+              required={true}
             />
             <mui.FormHelperText>
               <span className={charRemaining < 0 ? "pupForm__red" : undefined}>
@@ -127,7 +132,7 @@ export default function PupForm({ user }) {
               <div className="pupForm__genderGroup">
                 <mui.FormControlLabel
                   value="female"
-                  control={<mui.Radio />}
+                  control={<mui.Radio required={true} />}
                   label={female}
                   labelPlacement="start"
                   style={{
@@ -136,7 +141,7 @@ export default function PupForm({ user }) {
                 />
                 <mui.FormControlLabel
                   value="male"
-                  control={<mui.Radio />}
+                  control={<mui.Radio required={true} />}
                   label={male}
                   labelPlacement="start"
                   style={{
