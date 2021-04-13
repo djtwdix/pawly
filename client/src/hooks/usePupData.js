@@ -4,19 +4,26 @@ import { useState } from "react";
 export default function usePupData() {
   const [selectedDate, setSelectedDate] = useState();
   const [charRemaining, setCharRemaining] = useState(140);
-  const [formData, setFormData] = useState({name:"", breed:"",bio:"", gender:"",energy:"",birthday:""});
+  const [formData, setFormData] = useState({
+    name: "",
+    breed: "",
+    bio: "",
+    gender: "",
+    energy: "",
+    birthday: "",
+  });
   const [photoURL, setPhotoURL] = useState("");
   const [pups, setPups] = useState([]);
   const [userPups, setUserPups] = useState([]);
-  
+
   const getAllPups = async (user_id) => {
-    console.log('user_id:', user_id)
+    console.log("user_id:", user_id);
     const result = await axios.post("/pups/all", { user_id: user_id });
     setPups(result.data);
-   };
+  };
 
   const getPupsByOwnerId = async (owner_id) => {
-    const result = await axios.get(`/users/${owner_id}/pups`)
+    const result = await axios.get(`/users/${owner_id}/pups`);
     setUserPups(result.data);
   };
 
@@ -75,6 +82,6 @@ export default function usePupData() {
     getPupsByOwnerId,
     getAllPups,
     pups,
-    userPups
+    userPups,
   };
 }

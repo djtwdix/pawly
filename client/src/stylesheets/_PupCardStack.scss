@@ -1,0 +1,39 @@
+.card {
+  position: relative;
+  width: 600px;
+  max-width: 85vw;
+  height: 60vh;
+  margin-top: 1.5rem;
+  border-radius: 10px;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0px 15px 53px lightgray;
+  &__container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+}
+
+#pupBadge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $dark-pink;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 30px;
+  color: white;
+  border-bottom-right-radius: 10px;
+  border-top-left-radius: 5px;
+}
+
+#pupbadge,
+h3 {
+  color: white;
+}
+
+.swipe {
+  position: absolute;
+}
