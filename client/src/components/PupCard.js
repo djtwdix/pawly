@@ -7,10 +7,14 @@ import axios from "axios";
 export default function PupCard({ pup, user }) {
   const { view, showStats, checkMatch } = useCardActions();
 
-  const onSwipe = (direction) => {
+  const onSwipe = async (direction) => {
     if (direction === "right") {
-      axios.put(`users/${user.uid}/likes`, { ownerID: pup.owner_id });
-      if (checkMatch(user, pup)) {
+      axios.put(`/users/${user.uid}/likes`, {
+        likeId: pup.owner_id,
+      });
+      console.log(pup.owner_id);
+      const isMatch = await checkMatch(user.uid, pup.owner_id);
+      if (isMatch) {
         const participants = [user.uid, pup.owner_id];
         axios.post("/chats", { participants });
       }
