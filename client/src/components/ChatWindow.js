@@ -28,10 +28,17 @@ export default function ChatWindow({ user }) {
   }, []);
 
   useEffect(() => {
-    const chat = fetchChatData(user.uid);
-    const messages = fetchMessageData(chat.id);
+     fetchChatData(user.uid)
+     .then(res => { 
+       const chat = res.data
+       fetchMessageData(chat.id)
+       .then(res => {
+        setMessages(res.data);
+       })
+      })
+     
     //setOtherUser(chat.participants.filter((participant) => participant.id !== user.uid));
-    setMessages(messages);
+    
   }, [chatID, user]);
 
   const parntnerInfo = getUserInfo(otherUser);

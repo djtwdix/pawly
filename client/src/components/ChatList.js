@@ -9,8 +9,8 @@ export default function ChatList({ user }) {
 
   useEffect(() => {
     if (user) {
-      const unsubscribe = setChats(chatsRef(user.id));
-      return unsubscribe;
+      chatsRef(user.id)
+      .then(res=> setChats(res.data));
     }
   }, [user, chatsRef]);
 
