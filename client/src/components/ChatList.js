@@ -5,8 +5,6 @@ import { Link } from "react-router-dom";
 
 export default function ChatList({ user }) {
   const { getChatsByUserID, chats } = useChatData();
-  console.log('chats: ', chats);
- 
 
   useEffect(() => {
     if (user) {
@@ -15,13 +13,9 @@ export default function ChatList({ user }) {
     }
   }, [user]);
   
- 
     const parsedChats = chats.map(chat => {
-      console.log("otherUser ", chat);
       return <ChatListItem key={chat._id} chat={chat} user={user}/>;
     });
-  
-
 
   return (
     <section>

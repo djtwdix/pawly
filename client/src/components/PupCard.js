@@ -12,7 +12,6 @@ export default function PupCard({ pup, user }) {
       axios.put(`/users/${user.uid}/likes`, {
         likeId: pup.owner_id,
       });
-      console.log(pup.owner_id);
       const isMatch = await checkMatch(user.uid, pup.owner_id);
       if (isMatch) {
         const participants = [user.uid, pup.owner_id];

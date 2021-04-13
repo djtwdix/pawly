@@ -12,8 +12,6 @@ export default function PupCardStack({ user }) {
     }
   }, [user]);
 
-  console.log('puppers:', pups)
-
   const parsedPups = pups.map((pup) => {
     return <PupCard key={pup._id} pup={pup} user={user} owner={pup.owner_id} />;
   });

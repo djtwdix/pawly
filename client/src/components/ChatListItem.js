@@ -18,11 +18,7 @@ export default function Chat({ chat, user }) {
         })
      }
  }, [chat, user])
-
-   console.log("other user", otherUser)
-
-  console.log(chat)
-
+  
   return (
     <Link to={`/chats/${chat._id}`}>
         <ListItemContainer>

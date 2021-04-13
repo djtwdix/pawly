@@ -14,7 +14,6 @@ export const createMessage = (req, res) => {
 
 export const getMessagesByChatId = (req, res) => {
   const chat_id = req.params.chatId;
-  console.log(chat_id);
   Messages.aggregate(
     [
       {

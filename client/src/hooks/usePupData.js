@@ -17,7 +17,6 @@ export default function usePupData() {
   const [userPups, setUserPups] = useState([]);
 
   const getAllPups = async (user_id) => {
-    console.log("user_id:", user_id);
     const result = await axios.post("/pups/all", { user_id: user_id });
     setPups(result.data);
   };

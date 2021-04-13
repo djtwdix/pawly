@@ -5,7 +5,6 @@ export const createChat = async (req, res) => {
   const participants = req.body.participants;
 
   const alreadyExists = await checkIfMatchExists(participants);
-  console.log('alreadyExists: ', alreadyExists);
   if (!alreadyExists) {
     Chats.create({ participants }, (err, data) => {
       if (err) {
@@ -19,8 +18,6 @@ export const createChat = async (req, res) => {
 
 export const getChatsByUserId = (req, res) => {
   const user_id = req.body.user_id;
-  console.log('user_id: ', user_id);
-
   Chats.find({ participants: user_id }, (err, data) => {
     if (err) {
       res.status(500).send(err);

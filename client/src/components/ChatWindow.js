@@ -36,7 +36,7 @@ const handleSubmit = (e) => {
     message: input,
     user_id: user.uid,
   });
-  console.log("clicked");
+
   if (input) {
     axios
       .post("/messages", {

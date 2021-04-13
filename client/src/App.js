@@ -11,22 +11,24 @@ import { TrainRounded } from "@material-ui/icons";
 function App() {
   const [user, loading, error] = useAuthState(auth);
 
-  console.log(user);
-
   return (
     <div className="App">
       <Router>
         <Switch>
           <Route exact path="/">
             <comp.Navbar user={user} />
-            {!loading && !user ? <comp.SignIn /> : <comp.CardStack user={user} />}
+            {!loading && !user ? (
+              <comp.SignIn />
+            ) : (
+              <comp.CardStack user={user} />
+            )}
           </Route>
-          <Route exact path="/chats" >
-            <comp.Navbar backButton={true} user={user} hideChatButton={true}/>
-            <comp.ChatList user={user}/>
+          <Route exact path="/chats">
+            <comp.Navbar backButton={true} user={user} hideChatButton={true} />
+            <comp.ChatList user={user} />
           </Route>
           <Route path="/chats/:chatID">
-            <comp.Navbar backButton={true} user={user} hideChatButton={true}/>
+            <comp.Navbar backButton={true} user={user} />
             {user && <comp.ChatWindow user={user} />}
           </Route>
           <Route path="/users/:uid">
