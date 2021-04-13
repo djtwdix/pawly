@@ -15,10 +15,9 @@ export default function Navbar({ user, backButton }) {
   return (
     <nav className="navbar">
       {backButton ? (
-        <IconButton>
+        <IconButton   onClick={(e) => history.goBack()}>
           <ArrowBackIosIcon
             fontSize="large"
-            onClick={(e) => history.goBack()}
           />
         </IconButton>
       ) : user ? (
