@@ -3,19 +3,19 @@
   justify-content: space-between;
   align-items: center;
   padding: 25px;
-  box-shadow: 0px 2px 2px rgb(176, 176, 176);
+  box-shadow: 0px 2px 2px $light-gray;
   &__avatar img {
     border-radius: 50%;
   }
   &__logo {
     height: 70px;
-  }
-  &__logo img:hover {
-    filter: drop-shadow(0px 0px 2px rgb(176, 176, 176));
-    cursor: pointer;
+    &:hover {
+      filter: drop-shadow(0px 0px 2px $light-gray);
+      cursor: pointer;
+    }
   }
   svg {
-    color: rgb(176, 176, 176);
+    color: $light-gray;
     padding: 2px;
     font-size: 45px;
   }
