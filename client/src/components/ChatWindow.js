@@ -29,9 +29,6 @@ export default function ChatWindow({ user }) {
     })
   }, []);
 
-
-
-console.log(messages)
 const handleSubmit = (e) => {
   e.preventDefault();
   connection.emit("messages", {

@@ -10,8 +10,10 @@ import PersonIcon from "@material-ui/icons/Person";
 import ForumIcon from "@material-ui/icons/Forum";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
-export default function Navbar({ user, backButton }) {
+export default function Navbar({ user, backButton, hideChatButton }) {
   const history = useHistory();
+
+ 
 
   return (
     <nav className="navbar">
@@ -43,10 +45,10 @@ export default function Navbar({ user, backButton }) {
       <Link to="/">
         <img className="navbar__logo" src={logo} alt="pawly-logo"></img>
       </Link>
-      <Link to="/chats">
-        <IconButton>
+        <Link to="/chats"> 
+         <IconButton className={hideChatButton ? "hide": undefined}>
           <ForumIcon fontSize="large" />
-        </IconButton>
+        </IconButton> 
       </Link>
     </nav>
   );
