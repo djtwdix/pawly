@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Chat from "./Chat";
+import ChatListItem from "./ChatListItem";
 import useChatData from "../hooks/useChatData";
 import { Link } from "react-router-dom";
 
@@ -9,8 +9,7 @@ export default function ChatList({ user }) {
 
   useEffect(() => {
     if (user) {
-      chatsRef(user.id)
-      .then(res=> setChats(res.data));
+      chatsRef(user.id).then((res) => setChats(res.data));
     }
   }, [user, chatsRef]);
 
@@ -20,22 +19,13 @@ export default function ChatList({ user }) {
       (participant) => participant.id !== user.uid
     )[0];
     console.log("otherUser ", chat);
-    return (
-      <Chat
-        key={chat.id}
-        id={chat.id}
-        name={otherUser.name.split(" ")[0]}
-        message={chat.initialMessage}
-        timestamp="30 seconds ago"
-        photoURL={otherUser.photoURL}
-      />
-    );
+    return <ChatListItem chat={chat} />;
   });
 
   return (
     <section>
       {parsedChats}
-      <Chat
+      <ChatListItem
         name="Jesse"
         message="Yooooo!"
         timestamp="30 seconds ago"

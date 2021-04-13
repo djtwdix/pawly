@@ -1,1 +1,269 @@
-/* No CSS *//*# sourceMappingURL=App.css.map */
+.pupForm {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.pupForm__card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  width: 85vw;
+  height: 110%;
+  margin-top: 2rem;
+  max-width: 300px;
+  border-radius: 5px;
+}
+
+.pupForm__addPadding {
+  padding-top: 15px !important;
+}
+
+.pupForm__genderGroup {
+  margin-left: -13px;
+}
+
+.pupForm__icons {
+  color: #b0b0b0;
+  font-size: 25px;
+}
+
+.pupForm__icons__image {
+  color: #b0b0b0;
+  font-size: 70px !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.pupForm__icons__upload {
+  color: #5e5e5e;
+  font-size: 20px !important;
+  position: absolute;
+  top: 10px;
+  left: 160px;
+}
+
+.pupForm__imageUpload {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  font-size: 0.75rem;
+  cursor: pointer;
+  width: 100%;
+}
+
+.pupForm__imageUpload input[type="file"] {
+  display: none;
+}
+
+.pupForm__red {
+  color: red;
+}
+
+.chatWindow__message {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 20px;
+}
+
+.chatWindow__match {
+  width: 100%;
+  text-align: center;
+  color: #626262;
+  padding: 20px;
+}
+
+.chatWindow__text {
+  margin-left: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #ff00b8;
+  padding: 15px;
+  color: white;
+  border-radius: 15px;
+}
+
+.chatWindow__text__user {
+  margin-right: 10px;
+  margin-left: auto;
+  background-color: #319efe;
+}
+
+.chatWindow__messageInput {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 5px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid white;
+  background-color: white;
+}
+
+.chatWindow__messageInputText {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  border: none;
+  padding: 10px;
+}
+
+.chatWindow__inputButton {
+  border: none;
+  margin-right: 20px;
+  color: #ff00b8;
+}
+
+.listItemContainer {
+  width: 100%;
+  height: 15vh;
+  border-bottom: 1px solid #fbfbfb;
+  color: #626262 !important;
+}
+
+.navbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 25px;
+  -webkit-box-shadow: 0px 2px 2px #b0b0b0;
+          box-shadow: 0px 2px 2px #b0b0b0;
+}
+
+.navbar__avatar img {
+  border-radius: 50%;
+}
+
+.navbar__logo {
+  height: 70px;
+}
+
+.navbar__logo:hover {
+  -webkit-filter: drop-shadow(0px 0px 2px #b0b0b0);
+          filter: drop-shadow(0px 0px 2px #b0b0b0);
+  cursor: pointer;
+}
+
+.navbar svg {
+  color: #b0b0b0;
+  padding: 2px;
+  font-size: 45px;
+}
+
+.signInForm {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 80vh;
+}
+
+.signInForm__card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-shadow: 0px 0px 5px #b0b0b0;
+          box-shadow: 0px 0px 5px #b0b0b0;
+  width: 80vw;
+  max-width: 300px;
+  height: 300px;
+  border-radius: 5px;
+}
+
+.chat {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 20px;
+  height: 70px;
+  width: 100%;
+  color: #ff66c4;
+}
+
+.chat__details {
+  margin-right: auto;
+  margin-left: 20px;
+  text-align: start;
+}
+
+.chat__details p {
+  color: lightgray;
+  font-size: 1rem;
+}
+
+.chat__timestamp {
+  color: lightgray;
+}
+
+.pup {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 20px;
+  height: 70px;
+  width: 100%;
+  color: #ff66c4;
+}
+/*# sourceMappingURL=App.css.map */

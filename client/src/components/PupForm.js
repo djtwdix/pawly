@@ -35,7 +35,7 @@ export default function PupForm({ user }) {
     photoURL,
   } = usePupData();
 
-  const history = useHistory()
+  const history = useHistory();
 
   const male = <FontAwesomeIcon className="pupForm__icons" icon={faMars} />;
   const female = <FontAwesomeIcon className="pupForm__icons" icon={faVenus} />;
@@ -47,8 +47,8 @@ export default function PupForm({ user }) {
           className="pupForm__card"
           onSubmit={(e) => {
             addPup(e, user).then(() => {
-              history.goBack()
-            })
+              history.goBack();
+            });
           }}
         >
           {photoURL ? (
@@ -146,7 +146,11 @@ export default function PupForm({ user }) {
               </div>
             </mui.RadioGroup>
           </mui.FormControl>
-          <mui.InputLabel className="pupForm__addPadding" htmlFor="energy" mt="3">
+          <mui.InputLabel
+            className="pupForm__addPadding"
+            htmlFor="energy"
+            mt="3"
+          >
             Energy
           </mui.InputLabel>
 

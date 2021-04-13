@@ -2,21 +2,17 @@ import { Button } from "@material-ui/core";
 import TinderCard from "react-tinder-card";
 import useCardActions from "../hooks/useCardActions";
 import React from "react";
-import axios from "axios"
+import axios from "axios";
 
 export default function PupCard({ pup, user }) {
-  const
-    { view,
-      showStats,
-      checkMatch
-    } = useCardActions();
+  const { view, showStats, checkMatch } = useCardActions();
 
   const onSwipe = (direction) => {
     if (direction === "right") {
-      axios.put(`users/${user.uid}/likes`, { ownerID: pup.owner_id })
+      axios.put(`users/${user.uid}/likes`, { ownerID: pup.owner_id });
       if (checkMatch(user, pup)) {
         const participants = [user.uid, pup.owner_id];
-        axios.post('/chats', { participants })
+        axios.post("/chats", { participants });
       }
     }
   };
@@ -37,4 +33,4 @@ export default function PupCard({ pup, user }) {
       </div>
     </TinderCard>
   );
-};
+}

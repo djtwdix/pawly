@@ -3,7 +3,6 @@ import { useParams } from "react-router";
 import axios from "axios";
 import { io } from "socket.io-client";
 import * as mui from "@material-ui/core";
-import "../css/ChatWindow.css";
 import useUserData from "../hooks/useUserData";
 import useChatData from "../hooks/useChatData";
 
@@ -25,21 +24,18 @@ export default function ChatWindow({ user }) {
   }, []);
 
   useEffect(() => {
-     fetchChatData(user.uid)
-     .then(res => { 
-       const chat = res.data
-       fetchMessageData(chat.id)
-       .then(res => {
+    fetchChatData(user.uid).then((res) => {
+      const chat = res.data;
+      fetchMessageData(chat.id).then((res) => {
         setMessages(res.data);
-       })
-      })
-     
+      });
+    });
+
     //setOtherUser(chat.participants.filter((participant) => participant.id !== user.uid));
-    
   }, [chatID, user]);
 
   const parntnerInfo = getUserInfo(otherUser);
-/*
+  /*
   const parsedMessages = messages.map((message) => {
     return message.user_id !== user.uid ? (
       <Container>
@@ -53,7 +49,7 @@ export default function ChatWindow({ user }) {
       </Container>
     ) : (
       <div class="chatWindow__message">
-        <p class="chatWindow__textUser">{message.message}</p>
+        <p class="chatWindow__text__user">{message.message}</p>
         <Avatar
           className="chatWindow__image"
           src={user.photoURL}
@@ -84,7 +80,7 @@ export default function ChatWindow({ user }) {
           message: input,
           received: "false",
         })
-        .then((res) => { })
+        .then((res) => {})
         .catch((err) => console.log(err.message));
     }
   };
@@ -93,8 +89,8 @@ export default function ChatWindow({ user }) {
     <section className="chatWindow">
       <p class="chatWindow__match"></p>
       {/* {parsedMessages} */}
-      <form onSubmit={handleSubmit} className="chatWindow_messageInput">
-        <div className="chatWindow__inputMessageText">
+      <form onSubmit={handleSubmit} className="chatWindow__messageInput">
+        <div className="chatWindow__messageInputText">
           <mui.Input
             value={input}
             onChange={(e) => setInput(e.target.value)}
@@ -111,4 +107,4 @@ export default function ChatWindow({ user }) {
       </form>
     </section>
   );
-};
+}

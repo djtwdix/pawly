@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,kBAAkB,CAAC;EACjB,KAAK,EAAE,IAAI;EACX,MAAM,EAAE,IAAI;EACZ,aAAa,EAAE,GAAG,CAAC,KAAK,CAAC,OAAkB;CAC5C",
-    "sources": [
-        "../stylesheets/ListItemContainer.scss"
-    ],
-    "names": [],
-    "file": "ListItemContainer.css"
-}

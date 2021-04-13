@@ -1,7 +1,7 @@
-import React from 'react';
-import ListItemContainer from './ListItemContainer';
+import React from "react";
+import ListItemContainer from "./ListItemContainer";
 import signOut from "../helpers/signOut";
-import { Link, useHistory } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom";
 
 export default function ProfileList({ user }) {
   const history = useHistory();
@@ -10,10 +10,12 @@ export default function ProfileList({ user }) {
     <div>
       <ListItemContainer>profile</ListItemContainer>
       <Link to="/pups">
-      <ListItemContainer>pups</ListItemContainer>
+        <ListItemContainer>pups</ListItemContainer>
       </Link>
       <ListItemContainer>playdates</ListItemContainer>
-      <ListItemContainer signOut={() => signOut(history)}>signout</ListItemContainer>
+      <ListItemContainer signOut={() => signOut(history)}>
+        signout
+      </ListItemContainer>
     </div>
-  )
+  );
 }
