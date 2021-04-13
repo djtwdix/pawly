@@ -12,7 +12,7 @@ const checkIfUserExists = (userId) => {
 
 export const getUserById = (req, res) => {
   const user_id = req.params.userId;
-  Users.find({ _id: user_id }, (err, data) => {
+  Users.findOne({ _id: user_id }, (err, data) => {
     if (err) {
       res.status(500).send(err);
     } else {
@@ -62,7 +62,7 @@ export const addLike = (req, res) => {
   console.log("likeId: ", likeId);
   Users.updateOne(
     { _id: userId },
-    { $push: { likes: likeId } },
+    { $addToSet: { likes: likeId } },
     (err, data) => {
       if (err) {
         res.status(500).send(err);
