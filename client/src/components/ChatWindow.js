@@ -98,7 +98,7 @@ export default function ChatWindow({ user }) {
 
   return (
     <section className="chatWindow">
-      <p class="chatWindow__match"></p>
+      <p class="chatWindow__match">you matched with someone</p>
       <ChatMessage user={user} message={message} />
       <ChatMessage user={user} message={message2} />
       <form onSubmit={handleSubmit} className="chatWindow__messageInput">
