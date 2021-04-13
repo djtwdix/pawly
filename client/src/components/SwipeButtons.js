@@ -3,6 +3,9 @@ import StarRateIcon from "@material-ui/icons/StarRate";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import IconButton from "@material-ui/core/IconButton";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBone } from "@fortawesome/free-solid-svg-icons";
+
 import React from "react";
 
 export default function SwipeButtons() {
@@ -13,7 +16,7 @@ export default function SwipeButtons() {
           <CloseIcon className="swipeButtons__close" />
         </IconButton>
         <IconButton>
-          <StarRateIcon className="swipeButtons__star" />
+          <FontAwesomeIcon className="swipeButtons__bone" icon={faBone} />
         </IconButton>
         <IconButton>
           <FavoriteIcon className="swipeButtons__favorite" />
