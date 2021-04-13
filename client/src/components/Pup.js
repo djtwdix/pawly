@@ -2,21 +2,21 @@ import React from 'react'
 import ListItemContainer from "./ListItemContainer"
 import { Avatar } from "@material-ui/core";
 
-export default function Pup() {
+export default function Pup({pup}) {
   return (
  
 <ListItemContainer>
 {/*<Link to={"/"}>*/ }
-  <section /* key={pup.id} */ className="chat">
+  <section key={pup._id} className="chat">
     <Avatar
     
-      alt= "billie"
-      src= "billie.jpeg"
+      alt= {pup.name}
+      src={pup.photoURL}
     >
     </Avatar>
     
-      <h1> Billie</h1>
-      <p>Toy poodle</p>
+      <h1>{pup.name}</h1>
+      <p>{pup.breed}</p>
  
   </section>
 {/* </Link> */}
