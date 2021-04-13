@@ -1,0 +1,24 @@
+.swipeButtons {
+  position: fixed;
+  bottom: 5vh;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  &__close {
+    padding: 0.5vw !important;
+    color: red !important;
+  }
+  &__star {
+    padding: 0.5vw !important;
+    color: $blue !important;
+  }
+  &__favorite {
+    padding: 0.5vw !important;
+    color: $dark-pink !important;
+  }
+}
+
+.swipeButtons .MuiIconButton-root {
+  background-color: white;
+  box-shadow: 0px 0px 10px 0px $light-gray !important;
+}

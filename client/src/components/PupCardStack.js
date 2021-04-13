@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PupCard from "./PupCard";
 import axios from "axios";
+import SwipeButtons from "./SwipeButtons";
 
 export default function PupCardStack({ user }) {
   const [pups, setPups] = useState([]);
@@ -22,6 +23,7 @@ export default function PupCardStack({ user }) {
   return (
     <section>
       <div className="card__container">{parsedPups}</div>
+      <SwipeButtons />
     </section>
   );
 }
