@@ -12,8 +12,7 @@ import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
 export default function Navbar({ user, backButton, hideChatButton }) {
   const history = useHistory();
-
- 
+  const path = history.location.pathname;
 
   return (
     <nav className="navbar">
@@ -45,11 +44,17 @@ export default function Navbar({ user, backButton, hideChatButton }) {
       <Link to="/">
         <img className="navbar__logo" src={logo} alt="pawly-logo"></img>
       </Link>
-        <Link to="/chats"> 
-         <IconButton className={hideChatButton ? "hide": undefined}>
+      {hideChatButton ? (
+        <IconButton>
           <ForumIcon fontSize="large" />
-        </IconButton> 
-      </Link>
+        </IconButton>
+      ) : (
+        <Link to={hideChatButton ? path : "/chats"}>
+          <IconButton>
+            <ForumIcon fontSize="large" />
+          </IconButton>
+        </Link>
+      )}
     </nav>
   );
 }
