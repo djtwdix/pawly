@@ -1,18 +1,26 @@
 import axios from "axios";
 import { useState } from "react";
 
+
 export default function usePupData() {
   const [selectedDate, setSelectedDate] = useState();
   const [charRemaining, setCharRemaining] = useState(140);
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({name:"", breed:"",bio:"", gender:"",energy:"",birthday:""});
   const [photoURL, setPhotoURL] = useState("");
+  
+
+  const getPupsByOwnerId = (owner_id) => {
+    return axios.get(`/users/${owner_id}/pups`)
+  } 
+
+
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     if (e.target.name === "bio") {
       setCharRemaining(140 - e.target.value.length);
     }
-    console.log(e.target.value);
+    
   };
 
   const handleDateChange = (date) => {
@@ -29,8 +37,6 @@ export default function usePupData() {
 
   const addPup = (e, user) => {
     e.preventDefault();
-    console.log("clicked submit");
-    console.log("doggie data:", formData);
     return axios.post("/pups", {
       ...formData,
       owner_id: user.uid,
@@ -38,12 +44,11 @@ export default function usePupData() {
     });
   };
 
+
   const uploadImage = (imageFile) => {
-    console.log(imageFile);
     const formData = new FormData();
     formData.append("file", imageFile);
     formData.append("upload_preset", "pawlypreset");
-    console.log(formData);
     axios
       .post("https://api.cloudinary.com/v1_1/druwzs7ds/image/upload/", formData)
       .then((res) => {
@@ -64,5 +69,6 @@ export default function usePupData() {
     uploadImage,
     photoURL,
     addPup,
+    getPupsByOwnerId
   };
 }
