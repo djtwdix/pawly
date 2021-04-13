@@ -14,7 +14,9 @@ export default function useCardActions() {
   const checkMatch = async (userId, ownerId) => {
     const result = await getUserById(ownerId);
     const likes = result.data.likes;
-    return likes && likes.includes(userId) ? true : false;
+    if (likes) {
+      return likes.includes(userId) ? true : false;
+    }
   };
 
   return { view, setView, showStats, checkMatch };
