@@ -6,18 +6,12 @@ import { Link } from "react-router-dom";
 import usePupData from "../hooks/usePupData";
 
 export default function PupList({ user }) {
-  const { getPupsByOwnerId } = usePupData();
-  const [userPups, setUserPups] = useState([]);
+  const { getPupsByOwnerId, userPups } = usePupData();
+  
 
   useEffect(() => {
     if (user) {
       getPupsByOwnerId(user.uid)
-        .then((res) => {
-          setUserPups(res.data);
-        })
-        .catch((err) => {
-          console.log("err: ", err.message);
-        });
     }
   }, [user]);
 

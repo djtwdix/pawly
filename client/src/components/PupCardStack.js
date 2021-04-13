@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from "react";
+import usePupData from "../hooks/usePupData";
 import PupCard from "./PupCard";
-import axios from "axios";
 import SwipeButtons from "./SwipeButtons";
 
 export default function PupCardStack({ user }) {
-  const [pups, setPups] = useState([]);
-
+  const { getAllPups, pups } = usePupData()
+  
   useEffect(() => {
     if (user) {
-      const fetchData = async () => {
-        setPups(await axios.get("/pups", { user_id: user.uid }));
-      };
-      const unsubscribe = fetchData();
-      return unsubscribe;
+      getAllPups(user.uid);
     }
   }, [user]);
+
+  console.log('puppers:', pups)
 
   const parsedPups = pups.map((pup) => {
     return <PupCard key={pup._id} pup={pup} user={user} owner={pup.owner_id} />;

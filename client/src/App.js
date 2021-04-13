@@ -18,7 +18,7 @@ function App() {
         <Switch>
           <Route exact path="/">
             <comp.Navbar user={user} />
-            {!loading && !user ? <comp.SignIn /> : <comp.CardStack />}
+            {!loading && !user ? <comp.SignIn /> : <comp.CardStack user={user} />}
           </Route>
           <Route exact path="/chats">
             <comp.Navbar backButton={true} user={user} />

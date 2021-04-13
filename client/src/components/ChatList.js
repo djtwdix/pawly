@@ -4,14 +4,14 @@ import useChatData from "../hooks/useChatData";
 import { Link } from "react-router-dom";
 
 export default function ChatList({ user }) {
-  const { chatsRef } = useChatData();
-  const [chats, setChats] = useState([]);
+  const { getChatsByUserID, chats } = useChatData();
+ 
 
   useEffect(() => {
     if (user) {
-      chatsRef(user.id).then((res) => setChats(res.data));
+      getChatsByUserID(user.id)
     }
-  }, [user, chatsRef]);
+  }, [user, getChatsByUserID]);
 
   const parsedChats = chats.map((chat) => {
     console.log(user.uid);

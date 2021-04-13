@@ -1,18 +1,18 @@
 import axios from "axios";
+import { useState } from "react";
 
 export default function useChatData() {
-  const fetchChatData = (userId) => {
-      return axios.get(`/chats`, { user_id: { userId } });
+  const [chats, setChats] = useState([]);
+
+  const getChatsByUserID= async (userId) => {
+     const result = await axios.post(`/chats`, { user_id: userId });
+     setChats(result.data);
   }
 
-  const fetchMessageData = (chatId) => {
-    return axios.get(`/chats/${chatId}/messages`);
-  }
-
-  const chatsRef = (userId) => {
-    return axios.get(`chats`, { userID: userId });
+  const getMessagesByChatId = (chatId) => {
+    return axios.get(`/chats/${chatId}/`);
   }
 
 
-  return { fetchChatData, fetchMessageData, chatsRef };
+  return { getChatsByUserID, getMessagesByChatId, chats };
 }
