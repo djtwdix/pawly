@@ -29,11 +29,6 @@ export default function ChatWindow({ user }) {
     })
   }, []);
 
-
-
-  //setOtherUser(chat.participants.filter((participant) => participant.id !== user.uid));
-
-
 const parntnerInfo = getUserInfo(otherUser);
 /*
 const parsedMessages = messages.map((message) => {
