@@ -17,11 +17,14 @@
     padding: 15px;
     color: white;
     border-radius: 15px;
-    &__user {
-      margin-right: 10px;
-      margin-left: auto;
-      background-color: rgb(49, 158, 254);
-    }
+  }
+  &__textUser {
+    margin-right: 10px;
+    margin-left: auto;
+    background-color: rgb(49, 158, 254);
+    padding: 15px;
+    color: white;
+    border-radius: 15px;
   }
   &__messageInput {
     display: flex;

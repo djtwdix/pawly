@@ -5,6 +5,7 @@ import { io } from "socket.io-client";
 import * as mui from "@material-ui/core";
 import useUserData from "../hooks/useUserData";
 import useChatData from "../hooks/useChatData";
+import ChatMessage from "./ChatMessage";
 
 export default function ChatWindow({ user }) {
   const [input, setInput] = useState("");
@@ -85,10 +86,21 @@ export default function ChatWindow({ user }) {
     }
   };
 
+  const message = {
+    sender_id: user.uid,
+    text: "Hello",
+  };
+
+  const message2 = {
+    sender_id: "alskfhalskdjhfua",
+    text: "Hello There!",
+  };
+
   return (
     <section className="chatWindow">
       <p class="chatWindow__match"></p>
-      {/* {parsedMessages} */}
+      <ChatMessage user={user} message={message} />
+      <ChatMessage user={user} message={message2} />
       <form onSubmit={handleSubmit} className="chatWindow__messageInput">
         <div className="chatWindow__messageInputText">
           <mui.Input
