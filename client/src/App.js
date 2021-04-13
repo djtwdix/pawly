@@ -53,13 +53,13 @@ function App() {
             <Navbar backButton={true}
                user={user}
                />
-               <PupList/>
+            <PupList user={user}/>
             </Route>
             <Route path="/pups/new">
             <Navbar backButton={true}
                user={user}
                />
-               <PupForm/>
+               <PupForm user={user}/>
             </Route>
         </Switch>
       </Router>
