@@ -7,7 +7,7 @@ import {
 const router = express.Router();
 
 router.post("/", createPup);
-router.get("/", getAllPups);
+router.post("/all", getAllPups);
 router.get("/:pupId", getPupById);
 
 export { router as pupsRoutes };

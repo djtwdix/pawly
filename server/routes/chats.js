@@ -7,7 +7,7 @@ import { getMessagesByChatId } from "../controllers/MessageControllers.js";
 const router = express.Router();
 
 router.post("/", createChat);
-router.get("/", getChatsByUserId);
-router.get("/:chatId/messages", getMessagesByChatId);
+router.post("/", getChatsByUserId);
+router.get("/:chatId/", getMessagesByChatId);
 
 export { router as chatRoutes };

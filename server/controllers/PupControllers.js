@@ -54,6 +54,7 @@ export const getPupById = (req, res) => {
 
 export const getAllPups = (req, res) => {
   const user_id = req.body.user_id;
+  console.log('user:', user_id)
   Pups.aggregate(
     [
       {
