@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import usePupData from "../hooks/usePupData";
 import PupCard from "./PupCard";
 import SwipeButtons from "./SwipeButtons";
@@ -12,7 +12,7 @@ export default function PupCardStack({ user }) {
     const unsubscribe = getAllPups(user.uid);
     return unsubscribe
     }
-  }, [user]);
+  });
 
   const parsedPups = pups.map((pup) => {
     return <PupCard key={pup._id} pup={pup} user={user} owner={pup.owner_id} />;

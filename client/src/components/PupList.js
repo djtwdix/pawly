@@ -1,5 +1,5 @@
 import { Add } from "@material-ui/icons";
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import ListItemContainer from "./ListItemContainer";
 import PupListItem from "./PupListItem";
 import { Link } from "react-router-dom";
@@ -13,7 +13,7 @@ export default function PupList({ user }) {
     if (user) {
       getPupsByOwnerId(user.uid)
     }
-  }, [user]);
+  });
 
   const parsedPups = userPups.map((pup) => {
     return <PupListItem key={pup._id} pup={pup} />;
