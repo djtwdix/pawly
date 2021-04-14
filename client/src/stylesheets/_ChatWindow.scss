@@ -1,8 +1,8 @@
 .chatWindow {
-  overflow: scroll;
-  /*  display: flex;
+  overflow: auto;
+  display: flex;
   flex-direction: column-reverse;
-   */
+  max-height: calc(80vh - 70px);
   &__message {
     display: flex;
     align-items: center;
@@ -11,7 +11,7 @@
   &__match {
     text-align: center;
     color: $dark-gray;
-    padding: 20px;
+    padding-top: 20px;
   }
   &__text {
     margin-left: 10px;
