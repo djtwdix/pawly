@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Avatar } from "@material-ui/core";
-import useUserData from "../hooks/useUserData";
+import getUserById from "../helpers/getUserById";
 
 export default function ChatMessage({ user, message }) {
   const [otherUser, setOtherUser] = useState({});
-  const { getUserById } = useUserData();
-
+  
   useEffect(() => {
     if (message && user) {
       if (message.sender_id !== user.uid) {

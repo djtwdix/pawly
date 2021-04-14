@@ -2,13 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import ListItemContainer from "./ListItemContainer";
-import useUserData from "../hooks/useUserData";
+import getUserById from "../helpers/getUserById";
 import moment from "moment";
 
 export default function Chat({ chat, user }) {
   const [otherUser, setOtherUser] = useState({});
-  const { getUserById } = useUserData();
-
   const last_message = chat.last_message[0];
 
   useEffect(() => {
@@ -20,7 +18,7 @@ export default function Chat({ chat, user }) {
         setOtherUser(res.data);
       });
     }
-  });
+  }, []);
 
   return (
     <Link to={`/chats/${chat._id}`}>

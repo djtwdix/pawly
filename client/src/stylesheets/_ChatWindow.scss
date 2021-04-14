@@ -1,8 +1,4 @@
 .chatWindow {
-  overflow: auto;
-  display: flex;
-  flex-direction: column-reverse;
-  max-height: calc(80vh - 70px);
   &__message {
     display: flex;
     align-items: center;

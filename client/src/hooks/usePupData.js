@@ -1,7 +1,10 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { auth } from "../firebase/config";
 
 export default function usePupData() {
+  const user = auth.currentUser;
+  console.log(user);
   const [selectedDate, setSelectedDate] = useState();
   const [charRemaining, setCharRemaining] = useState(140);
   const [formData, setFormData] = useState({
@@ -16,14 +19,28 @@ export default function usePupData() {
   const [pups, setPups] = useState([]);
   const [userPups, setUserPups] = useState([]);
 
-  const getAllPups = async (user_id) => {
-    const result = await axios.post("/pups/all", { user_id: user_id });
-    setPups(result.data);
-  };
+  useEffect(() => {
+    if (user) {
+      const getAllPups = async (user_id) => {
+        const result = await axios.post("/pups/all", { user_id: user_id });
+        setPups(result.data);
+      };
+      getAllPups(user.uid);
+      const getPupsByOwnerId = async (owner_id) => {
+        const result = await axios.get(`/users/${owner_id}/pups`);
+        setUserPups(result.data);
+      };
+      getPupsByOwnerId(user.uid);
+    }
+  }, [user]);
 
-  const getPupsByOwnerId = async (owner_id) => {
-    const result = await axios.get(`/users/${owner_id}/pups`);
-    setUserPups(result.data);
+  const addPup = (e, user) => {
+    e.preventDefault();
+    return axios.post("/pups", {
+      ...formData,
+      owner_id: user.uid,
+      photoURL: photoURL,
+    });
   };
 
   const handleChange = (e) => {
@@ -43,15 +60,6 @@ export default function usePupData() {
 
   const handleEnergyChange = (event, number) => {
     setFormData({ ...formData, energy: number });
-  };
-
-  const addPup = (e, user) => {
-    e.preventDefault();
-    return axios.post("/pups", {
-      ...formData,
-      owner_id: user.uid,
-      photoURL: photoURL,
-    });
   };
 
   const uploadImage = (imageFile) => {
@@ -78,8 +86,6 @@ export default function usePupData() {
     uploadImage,
     photoURL,
     addPup,
-    getPupsByOwnerId,
-    getAllPups,
     pups,
     userPups,
   };

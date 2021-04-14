@@ -1,5 +1,5 @@
 import { useState } from "react";
-import useUserData from "./useUserData";
+import useUserData from "../helpers/getUserById";
 
 export default function useCardActions() {
   const [view, setView] = useState(false);

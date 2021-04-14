@@ -1,86 +1,25 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useParams } from "react-router";
-import axios from "axios";
-import { io } from "socket.io-client";
+import React, { useRef } from "react";
 import * as mui from "@material-ui/core";
 import moment from "moment";
-import useChatData from "../hooks/useChatData";
 import ChatMessage from "./ChatMessage";
 import SendIcon from "@material-ui/icons/Send";
 import Picker from "emoji-picker-react";
 import EmojiEmotionsIcon from "@material-ui/icons/EmojiEmotions";
 import CloseIcon from "@material-ui/icons/Close";
+import useChatWindowData from "../hooks/useChatWindowData";
 
 export default function ChatWindow({ user }) {
-  const [input, setInput] = useState("");
-  const [messages, setMessages] = useState([]);
-  const [connection, setConnection] = useState({});
-  const [chatInfo, setChatInfo] = useState({});
-  const { chatID } = useParams();
-  const { getMessagesByChatId } = useChatData();
-  const [showEmojis, setShowEmojis] = useState(false);
+  const {
+    messages,
+    chatInfo,
+    handleSubmit,
+    showEmojis,
+    showEmojiKeyboard,
+    onEmojiClick,
+    input,
+    setInput,
+  } = useChatWindowData();
   const messagesEndRef = useRef(null);
-
-  const onEmojiClick = (event, emojiObject) => {
-    setInput((prev) => prev + emojiObject.emoji);
-    setShowEmojis(false);
-  };
-
-  useEffect(() => {
-    getMessagesByChatId(chatID).then((res) => {
-      setMessages(res.data);
-    });
-    axios.get(`/chats/${chatID}`).then((res) => {
-      setChatInfo(res.data);
-    });
-  });
-
-  useEffect(() => {
-    const socket = io();
-    setConnection(socket);
-    socket.on("messages", (data) => {
-      setMessages((prev) => [...prev, data]);
-    });
-
-    return () => {
-      socket.disconnect();
-    };
-  }, []);
-
-  const showEmojiKeyboard = (e) => {
-    if (showEmojis) {
-      setShowEmojis(false);
-    } else {
-      setShowEmojis(true);
-    }
-  };
-
-  const handleSubmit = (e) => {
-    let id = Math.random().toString(36).substring(7);
-    e.preventDefault();
-    if (input) {
-      connection.emit("messages", {
-        name: user.displayName,
-        text: input,
-        sender_id: user.uid,
-        chat_id: chatID,
-        _id: id,
-      });
-      axios
-        .post("/messages", {
-          name: user.displayName,
-          text: input,
-          sender_id: user.uid,
-          chat_id: chatID,
-        })
-        .then((res) => {
-          setInput("");
-          const lastMessage = res.data;
-          axios.put("/chats", { lastMessage });
-        })
-        .catch((err) => console.log(err.message));
-    }
-  };
 
   const parsedMessages = messages.map((message) => {
     return <ChatMessage key={message._id} user={user} message={message} />;
