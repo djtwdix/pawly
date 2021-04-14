@@ -3,12 +3,6 @@ import TinderCard from "react-tinder-card";
 import useCardActions from "../hooks/useCardActions";
 import React from "react";
 import axios from "axios";
-import moment from "moment";
-import EnergyIcon from "./EnergyIcon";
-import InfoIcon from '@material-ui/icons/Info';
-import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBirthdayCake } from "@fortawesome/free-solid-svg-icons";
 
 export default function PupCard({ pup, user, photoController}) {
   const {  checkMatch } = useCardActions();
