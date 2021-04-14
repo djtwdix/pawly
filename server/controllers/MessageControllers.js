@@ -16,11 +16,9 @@ export const getMessagesByChatId = (req, res) => {
   const chat_id = req.params.chatId;
   Messages.aggregate(
     [
-      {
-        $match: {
-          chat_id: chat_id,
-        },
-      },
+      { $match: { chat_id: chat_id } },
+      { $sort: { created_at: -1 } },
+      { $limit: 50 },
       {
         $lookup: {
           from: "users",
