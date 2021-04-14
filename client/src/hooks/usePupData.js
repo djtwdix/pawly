@@ -4,7 +4,7 @@ import { auth } from "../firebase/config";
 
 export default function usePupData() {
   const user = auth.currentUser;
-  console.log(user);
+
   const [selectedDate, setSelectedDate] = useState();
   const [charRemaining, setCharRemaining] = useState(140);
   const [formData, setFormData] = useState({
