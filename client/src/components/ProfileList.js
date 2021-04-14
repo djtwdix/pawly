@@ -8,13 +8,13 @@ export default function ProfileList({ user }) {
 
   return (
     <div>
-      <ListItemContainer>profile</ListItemContainer>
+      <ListItemContainer>PROFILE</ListItemContainer>
       <Link to="/pups">
-        <ListItemContainer>pups</ListItemContainer>
+        <ListItemContainer>PUPS</ListItemContainer>
       </Link>
-      <ListItemContainer>playdates</ListItemContainer>
+      <ListItemContainer>PLAYDATES</ListItemContainer>
       <ListItemContainer signOut={() => signOut(history)}>
-        signout
+        SIGNOUT
       </ListItemContainer>
     </div>
   );
