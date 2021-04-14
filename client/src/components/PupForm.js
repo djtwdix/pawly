@@ -168,7 +168,7 @@ export default function PupForm({ user }) {
             step={1}
             valueLabelDisplay="auto"
             min={1}
-            max={5}
+            max={4}
           />
 
           <MuiPickersUtilsProvider utils={MomentUtils}>
