@@ -2,13 +2,14 @@ import { useState } from "react";
 import getUserById from "../helpers/getUserById";
 
 export default function useCardActions() {
-  const [view, setView] = useState(false);
+  const [showPhoto, setShowPhoto] = useState(true);
 
-  const showStats = () => {
-    if (!view) {
-      setView(true);
+  const photoController = () => {
+    if (!showPhoto) {
+      setShowPhoto(true);
+    } else {
+    setShowPhoto(false);
     }
-    setView(false);
   };
 
   const checkMatch = async (userId, ownerId) => {
@@ -19,5 +20,5 @@ export default function useCardActions() {
     }
   };
 
-  return { view, setView, showStats, checkMatch };
+  return { showPhoto, photoController, checkMatch };
 }
