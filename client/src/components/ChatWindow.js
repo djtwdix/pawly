@@ -6,7 +6,10 @@ import * as mui from "@material-ui/core";
 import moment from "moment";
 import useChatData from "../hooks/useChatData";
 import ChatMessage from "./ChatMessage";
+import SendIcon from "@material-ui/icons/Send";
 import Picker from "emoji-picker-react";
+import EmojiEmotionsIcon from "@material-ui/icons/EmojiEmotions";
+import CloseIcon from "@material-ui/icons/Close";
 
 export default function ChatWindow({ user }) {
   const [input, setInput] = useState("");
@@ -15,16 +18,12 @@ export default function ChatWindow({ user }) {
   const [chatInfo, setChatInfo] = useState({});
   const { chatID } = useParams();
   const { getMessagesByChatId } = useChatData();
+  const [showEmojis, setShowEmojis] = useState(false);
   const messagesEndRef = useRef(null);
 
-  const [chosenEmoji, setChosenEmoji] = useState(null);
-
   const onEmojiClick = (event, emojiObject) => {
-    setChosenEmoji(emojiObject);
-  };
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    setInput((prev) => prev + emojiObject.emoji);
+    setShowEmojis(false);
   };
 
   useEffect(() => {
@@ -34,7 +33,7 @@ export default function ChatWindow({ user }) {
     axios.get(`/chats/${chatID}`).then((res) => {
       setChatInfo(res.data);
     });
-  }, []);
+  });
 
   useEffect(() => {
     const socket = io();
@@ -48,9 +47,13 @@ export default function ChatWindow({ user }) {
     };
   }, []);
 
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
+  const showEmojiKeyboard = (e) => {
+    if (showEmojis) {
+      setShowEmojis(false);
+    } else {
+      setShowEmojis(true);
+    }
+  };
 
   const handleSubmit = (e) => {
     let id = Math.random().toString(36).substring(7);
@@ -84,36 +87,53 @@ export default function ChatWindow({ user }) {
   });
 
   return (
-    <section className="chatWindow">
+    <div>
       <p className="chatWindow__match">
         You matched {moment(chatInfo.created_at).fromNow()}
       </p>
-      {parsedMessages}
-      <div style={{ height: "63px" }} ref={messagesEndRef} />
-      <form onSubmit={handleSubmit} className="chatWindow__messageInput">
-        <div className="chatWindow__messageInputText">
-          <mui.Input
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Type a message here"
-            disableUnderline={true}
-            required={true}
-            fullWidth={true}
-            autoFocus={true}
-          ></mui.Input>
-        </div>
-        <div>
-          {chosenEmoji ? (
-            <span>You chose: {chosenEmoji.emoji}</span>
+      <section className="chatWindow">
+        {parsedMessages}
+        <div style={{ height: "63px" }} ref={messagesEndRef} />
+        <form onSubmit={handleSubmit} className="chatWindow__messageInput">
+          {showEmojis ? (
+            <div>
+              <mui.Button
+                style={{
+                  backgroundColor: "transparent",
+                  position: "fixed",
+                  bottom: "325px",
+                }}
+                onClick={showEmojiKeyboard}
+              >
+                <CloseIcon />
+                close
+              </mui.Button>
+              <Picker onEmojiClick={onEmojiClick} />
+            </div>
           ) : (
-            <span>No emoji Chosen</span>
+            <mui.Button
+              style={{ backgroundColor: "transparent" }}
+              onClick={showEmojiKeyboard}
+            >
+              <EmojiEmotionsIcon className="chatWindow__inputButton" />
+            </mui.Button>
           )}
-          <Picker onEmojiClick={onEmojiClick} />
-        </div>
-        <mui.Button style={{ backgroundColor: "transparent" }} type="submit">
-          <p className="chatWindow__inputButton">SEND</p>
-        </mui.Button>
-      </form>
-    </section>
+          <div className="chatWindow__messageInputText">
+            <mui.Input
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Type a message here"
+              disableUnderline={true}
+              required={true}
+              fullWidth={true}
+              autoFocus={true}
+            ></mui.Input>
+          </div>
+          <mui.Button style={{ backgroundColor: "transparent" }} type="submit">
+            <SendIcon className="chatWindow__inputButton" />
+          </mui.Button>
+        </form>
+      </section>
+    </div>
   );
 }
