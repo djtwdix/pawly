@@ -6,6 +6,7 @@ import { auth } from "../firebase/config";
 
 export default function useChatWindowData() {
   const user = auth.currentUser;
+  
   const { chatID } = useParams();
   const [messages, setMessages] = useState([]);
   const [chatInfo, setChatInfo] = useState({});
