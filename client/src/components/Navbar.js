@@ -21,7 +21,9 @@ export default function Navbar({ user, backButton, hideChatButton }) {
           <ArrowBackIosIcon fontSize="large" />
         </IconButton>
       ) : user ? (
-        <Link to="users/2">
+        <Link
+          to={`users/${user.displayName.split(" ").join("").toLowerCase()}`}
+        >
           <IconButton>
             <Avatar
               className="navbar__avatar"
