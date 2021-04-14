@@ -6,6 +6,7 @@ import * as mui from "@material-ui/core";
 import moment from "moment";
 import useChatData from "../hooks/useChatData";
 import ChatMessage from "./ChatMessage";
+import Picker from "emoji-picker-react";
 
 export default function ChatWindow({ user }) {
   const [input, setInput] = useState("");
@@ -15,6 +16,12 @@ export default function ChatWindow({ user }) {
   const { chatID } = useParams();
   const { getMessagesByChatId } = useChatData();
   const messagesEndRef = useRef(null);
+
+  const [chosenEmoji, setChosenEmoji] = useState(null);
+
+  const onEmojiClick = (event, emojiObject) => {
+    setChosenEmoji(emojiObject);
+  };
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -64,8 +71,8 @@ export default function ChatWindow({ user }) {
           chat_id: chatID,
         })
         .then((res) => {
+          setInput("");
           const lastMessage = res.data;
-          console.log("lastMessage: ", lastMessage);
           axios.put("/chats", { lastMessage });
         })
         .catch((err) => console.log(err.message));
@@ -94,6 +101,14 @@ export default function ChatWindow({ user }) {
             fullWidth={true}
             autoFocus={true}
           ></mui.Input>
+        </div>
+        <div>
+          {chosenEmoji ? (
+            <span>You chose: {chosenEmoji.emoji}</span>
+          ) : (
+            <span>No emoji Chosen</span>
+          )}
+          <Picker onEmojiClick={onEmojiClick} />
         </div>
         <mui.Button style={{ backgroundColor: "transparent" }} type="submit">
           <p className="chatWindow__inputButton">SEND</p>
