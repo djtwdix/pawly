@@ -3,6 +3,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 25px;
+  height: 50px;
   box-shadow: 0px 2px 2px $light-gray;
   &__avatar img {
     border-radius: 50%;
@@ -18,8 +19,5 @@
     color: $light-gray;
     padding: 2px;
     font-size: 45px;
-  }
-  .hide {
-    visibility: hidden;
   }
 }
