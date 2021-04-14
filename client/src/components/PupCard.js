@@ -28,7 +28,7 @@ export default function PupCard({ pup, user }) {
       className="swipe"
       onSwipe={onSwipe}
       preventSwipe={["up", "down"]}
-      key={pup.name}
+      key={pup._id}
     >
       <div className="card" style={{ backgroundImage: `url(${pup.photoURL})` }}>
         <div id="pupBadge">
