@@ -4,6 +4,7 @@ import { auth } from "../firebase/config";
 
 export default function useChatData() {
   const user = auth.currentUser;
+  
   const [chats, setChats] = useState([]);
 
   useEffect(() => {
