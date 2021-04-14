@@ -57,7 +57,7 @@ export default function PupForm({ user }) {
                 height: "75px",
                 width: "75px",
                 alignSelf: "center",
-                marginBottom: "18px",
+                marginTop: "15px",
               }}
               src={photoURL}
               alt="your - pup"
