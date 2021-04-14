@@ -6,10 +6,9 @@ import { auth } from "./firebase/config";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import * as comp from "./components";
-import { TrainRounded } from "@material-ui/icons";
 
 function App() {
-  const [user, loading, error] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
 
   return (
     <div className="App">
