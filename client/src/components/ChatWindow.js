@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import axios from "axios";
 import { io } from "socket.io-client";
 import * as mui from "@material-ui/core";
-import useUserData from "../hooks/useUserData";
+import moment from "moment";
 import useChatData from "../hooks/useChatData";
 import ChatMessage from "./ChatMessage";
 
@@ -11,6 +11,7 @@ export default function ChatWindow({ user }) {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
   const [connection, setConnection] = useState({});
+  const [chatInfo, setChatInfo] = useState({});
   const { chatID } = useParams();
   const { getMessagesByChatId } = useChatData();
   const messagesEndRef = useRef(null);
@@ -23,7 +24,10 @@ export default function ChatWindow({ user }) {
     getMessagesByChatId(chatID).then((res) => {
       setMessages(res.data);
     });
-  }, [getMessagesByChatId, chatID]);
+    axios.get(`/chats/${chatID}`).then((res) => {
+      setChatInfo(res.data);
+    });
+  }, []);
 
   useEffect(() => {
     const socket = io();
@@ -59,8 +63,10 @@ export default function ChatWindow({ user }) {
           sender_id: user.uid,
           chat_id: chatID,
         })
-        .then(() => {
-          setInput("");
+        .then((res) => {
+          const lastMessage = res.data;
+          console.log("lastMessage: ", lastMessage);
+          axios.put("/chats", { lastMessage });
         })
         .catch((err) => console.log(err.message));
     }
@@ -72,7 +78,9 @@ export default function ChatWindow({ user }) {
 
   return (
     <section className="chatWindow">
-      <p className="chatWindow__match">you matched with someone</p>
+      <p className="chatWindow__match">
+        You matched {moment(chatInfo.created_at).fromNow()}
+      </p>
       {parsedMessages}
       <div style={{ height: "63px" }} ref={messagesEndRef} />
       <form onSubmit={handleSubmit} className="chatWindow__messageInput">
