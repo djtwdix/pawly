@@ -30,7 +30,6 @@ export const getChatById = (req, res) => {
 
 export const updateLastMessage = (req, res) => {
   const last_message = req.body.lastMessage;
-  console.log("lastMessage: ", last_message);
   Chats.updateOne(
     { _id: last_message.chat_id },
     { last_message },
