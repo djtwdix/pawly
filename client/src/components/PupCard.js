@@ -1,11 +1,17 @@
-import { Button } from "@material-ui/core";
+import { Button, Avatar, IconButton } from "@material-ui/core";
 import TinderCard from "react-tinder-card";
 import useCardActions from "../hooks/useCardActions";
 import React from "react";
 import axios from "axios";
+import moment from "moment";
+import EnergyIcon from "./EnergyIcon";
+import InfoIcon from '@material-ui/icons/Info';
+import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBirthdayCake } from "@fortawesome/free-solid-svg-icons";
 
-export default function PupCard({ pup, user }) {
-  const { view, showStats, checkMatch } = useCardActions();
+export default function PupCard({ pup, user, photoController}) {
+  const {  checkMatch } = useCardActions();
 
   const onSwipe = async (direction) => {
     if (direction === "right") {
@@ -23,20 +29,21 @@ export default function PupCard({ pup, user }) {
     }
   };
 
-  return (
+  
+  return (  
     <TinderCard
-      className="swipe"
-      onSwipe={onSwipe}
-      preventSwipe={["up", "down"]}
-      key={pup._id}
-    >
-      <div className="card" style={{ backgroundImage: `url(${pup.photoURL})` }}>
-        <div id="pupBadge">
-          <Button onClick={showStats}>
-            <h3>{pup.name}</h3>
-          </Button>
-        </div>
+    className="swipe"
+    onSwipe={onSwipe}
+    preventSwipe={["up", "down"]}
+    key={pup._id}
+  >
+    <div className="card" style={{ backgroundImage: `url(${pup.photoURL})` }}>
+      <div id="pupBadge">
+        <Button onClick={(e) => photoController()}>
+          <h3>{pup.name}</h3>
+        </Button>
       </div>
-    </TinderCard>
+    </div>
+  </TinderCard>
   );
 }
