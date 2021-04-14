@@ -1,5 +1,4 @@
 import CloseIcon from "@material-ui/icons/Close";
-import StarRateIcon from "@material-ui/icons/StarRate";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import IconButton from "@material-ui/core/IconButton";
 
