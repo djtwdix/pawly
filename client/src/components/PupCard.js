@@ -15,7 +15,10 @@ export default function PupCard({ pup, user }) {
       const isMatch = await checkMatch(user.uid, pup.owner_id);
       if (isMatch) {
         const participants = [user.uid, pup.owner_id];
-        axios.post("/chats", { participants });
+        axios.post("/chats", {
+          participants,
+          last_message: { text: "Say hello!" },
+        });
       }
     }
   };
