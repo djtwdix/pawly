@@ -37,26 +37,27 @@ export default function PupCard({ pup, user, photoController }) {
       key={pup._id}
     >
       <div className="pupCard infoCard">
-        <div class="pupBadge">
-          <h3>{pup.name}</h3>
-        </div>
         <div className="infoCard__details">
           <div className="infoCard__breedName">
             <Avatar
               style={{ height: "80px", width: "80px", marginBottom: "0.5em" }}
               src={pup.photoURL}
             />
-            <div>{pup.name}</div>
+            <div>
+              <h1>{pup.name}</h1>
+            </div>
           </div>
-          <div>{pup.breed}</div>
-          <div>{pup.bio}</div>
-          <div className="infoCard__genderEnergy">
-            <GenderIcon gender={pup.gender} />
-            <EnergyIcon energy={pup.energy} />
+          <div>
+            <h4>{pup.breed}</h4>
           </div>
           <div>
             <FontAwesomeIcon className="infoCard__cake" icon={faBirthdayCake} />
-            {moment(pup.birthday).format("MMMM Do YYYY")}{" "}
+            {` ${moment(pup.birthday).format("MMMM Do YYYY")}`}
+          </div>
+          <div className="infoCard__bio">{pup.bio}</div>
+          <div className="infoCard__genderEnergy">
+            <GenderIcon gender={pup.gender} />
+            <EnergyIcon energy={pup.energy} />
           </div>
           <div className="infoCard__return">
             <IconButton onClick={(e) => photoController()}>
