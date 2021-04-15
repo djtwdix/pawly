@@ -1,11 +1,12 @@
-import { Button } from "@material-ui/core";
+import { IconButton } from "@material-ui/core";
+import InfoIcon from "@material-ui/icons/Info";
 import TinderCard from "react-tinder-card";
 import useCardActions from "../hooks/useCardActions";
 import React from "react";
 import axios from "axios";
 
-export default function PupCard({ pup, user, photoController}) {
-  const {  checkMatch } = useCardActions();
+export default function PupCard({ pup, user, photoController }) {
+  const { checkMatch } = useCardActions();
 
   const onSwipe = async (direction) => {
     if (direction === "right") {
@@ -23,21 +24,23 @@ export default function PupCard({ pup, user, photoController}) {
     }
   };
 
-  
-  return (  
+  return (
     <TinderCard
-    className="swipe"
-    onSwipe={onSwipe}
-    preventSwipe={["up", "down"]}
-    key={pup._id}
-  >
-    <div className="card" style={{ backgroundImage: `url(${pup.photoURL})` }}>
-      <div id="pupBadge">
-        <Button onClick={(e) => photoController()}>
+      className="swipe"
+      onSwipe={onSwipe}
+      preventSwipe={["up", "down"]}
+      key={pup._id}
+    >
+      <div className="pupCard" style={{ backgroundImage: `url(${pup.photoURL})` }}>
+        <div class="pupBadge">
           <h3>{pup.name}</h3>
-        </Button>
+        </div>
+        <div className="pupCard__info">
+          <IconButton onClick={(e) => photoController()}>
+            <InfoIcon fontSize="large" />
+          </IconButton>
+        </div>
       </div>
-    </div>
-  </TinderCard>
+    </TinderCard>
   );
 }
