@@ -1,29 +1,13 @@
 import "./stylesheets/App.scss";
-import { useEffect, useState } from "react";
-
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./firebase/config";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import useLocationData from "./hooks/useLocationData";
 import * as comp from "./components";
 
 function App() {
   const [user, loading] = useAuthState(auth);
-  const [location, setLocation] = useState({});
-
-  navigator.geolocation.getCurrentPosition((succ) => {
-    console.log(succ);
-  });
-  console.log(location);
-
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition((succ) => {
-      setLocation({
-        type: "Point",
-        coordinates: [succ.coords.longitude, succ.coords.latitude],
-      });
-      return;
-    });
-  }, []);
+  const { location } = useLocationData();
 
   return (
     <div className="App">
@@ -55,11 +39,11 @@ function App() {
           </Route>
           <Route path="/pups/new">
             <comp.Navbar backButton={true} user={user} />
-            <comp.EditPupForm user={user} />
+            <comp.EditPupForm user={user} location={location} />
           </Route>
           <Route path="/pups/edit">
-          <comp.Navbar backButton={true} user={user} />
-          <comp.EditPupForm user={user} />
+            <comp.Navbar backButton={true} user={user} />
+            <comp.EditPupForm user={user} location={location} />
           </Route>
         </Switch>
       </Router>
