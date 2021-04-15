@@ -1,9 +1,12 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { auth } from "../firebase/config";
+import { useParams } from "react-router-dom";
+
 
 export default function usePupData() {
   const user = auth.currentUser;
+  const { pupID } = useParams();
 
   const [selectedDate, setSelectedDate] = useState();
   const [charRemaining, setCharRemaining] = useState(140);
@@ -72,6 +75,23 @@ export default function usePupData() {
         setPhotoURL(res.data.url);
       });
   };
+
+  useEffect(() => {
+    if (pupID) {
+      const getPupById = async (pupID) => {
+        const result = await axios.get(`/pups/${pupID}`)
+        const pupInfo = result.data[0];
+        console.log(pupInfo);
+        setFormData({ ...pupInfo })
+        setCharRemaining(140 - pupInfo.bio.length);
+        setPhotoURL(pupInfo.photoURL);
+        setSelectedDate(pupInfo.birthday);
+      }
+      getPupById(pupID)
+
+      
+    }
+  }, [pupID])
 
   return {
     formData,
