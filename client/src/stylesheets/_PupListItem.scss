@@ -2,17 +2,33 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
-  height: 70px;
   width: 100%;
+  &__avatarDetails {
+    display: flex;
+    width: 175px;
+  }
   &__details {
     display: flex;
     flex-direction: column;
     margin-left: 20px;
     text-align: start;
+    color: $light-pink;
     p {
       color: lightgray;
       font-size: 1rem;
+      text-transform: none !important;
     }
+  }
+  &__container {
+    display: flex;
+    flex-direction: column;
+  }
+  &__button {
+    width: 100%;
+    height: 15vh;
+    border-bottom: 1px solid rgb(251, 251, 251);
+    color: $light-pink !important;
+    display: flex;
+    justify-content: center;
   }
 }
