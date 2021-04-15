@@ -23,7 +23,7 @@ import { faVenus, faMars } from "@fortawesome/free-solid-svg-icons";
 
 //Component for adding new pup
 
-export default function EditPupForm({ user }) {
+export default function EditPupForm({ user, location }) {
   const {
     formData,
     handleChange,
@@ -37,9 +37,10 @@ export default function EditPupForm({ user }) {
     editPup
   } = usePupData();
 
+  console.log(location)
+
   const pupID = formData._id;
-  console.log(formData);
-  console.log(pupID);
+
   const history = useHistory();
   const male = <FontAwesomeIcon className="pupForm__icons" icon={faMars} />;
   const female = <FontAwesomeIcon className="pupForm__icons" icon={faVenus} />
@@ -50,11 +51,11 @@ export default function EditPupForm({ user }) {
         <form
           className="pupForm__card"
           onSubmit={ !pupID ? (e) => {
-            addPup(e, user).then(() => {
+            addPup(e, user, location).then(() => {
               history.goBack();
             }) 
           } : (e) => {
-              editPup(e, user).then(() => {
+              editPup(e, user, location).then(() => {
                 history.goBack();
               })
             }
