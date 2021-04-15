@@ -22,7 +22,7 @@ import { faVenus, faMars } from "@fortawesome/free-solid-svg-icons";
 
 //Component for adding new pup
 
-export default function PupForm({ user }) {
+export default function PupForm({ user, location }) {
   const {
     formData,
     handleChange,
@@ -46,7 +46,7 @@ export default function PupForm({ user }) {
         <form
           className="pupForm__card"
           onSubmit={(e) => {
-            addPup(e, user).then(() => {
+            addPup(e, user, location).then(() => {
               history.goBack();
             });
           }}
