@@ -38,6 +38,7 @@ export default function EditPupForm({ user }) {
   } = usePupData();
 
   const pupID = formData._id;
+  console.log(formData);
   console.log(pupID);
   const history = useHistory();
   const male = <FontAwesomeIcon className="pupForm__icons" icon={faMars} />;
@@ -65,7 +66,7 @@ export default function EditPupForm({ user }) {
                 <mui.Input
                   type="file"
                   onChange={(e) => uploadImage(e.target.files[0])}
-                  required={true}
+                required={ !pupID ? true : false} 
                 />
                 <mui.Avatar
                   style={{
@@ -85,7 +86,7 @@ export default function EditPupForm({ user }) {
                 <mui.Input
                   type="file"
                   onChange={(e) => uploadImage(e.target.files[0])}
-                  required={true}
+                 required={true}
                 />
                 <AddCircleIcon className="pupForm__icons__upload" />
                 <ImageIcon fontSize="large" className="pupForm__icons__image" />
