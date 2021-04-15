@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { auth } from "../firebase/config";
 import { useParams } from "react-router-dom";
 
-
 export default function usePupData() {
   const user = auth.currentUser;
   const { pupID } = useParams();
@@ -21,28 +20,41 @@ export default function usePupData() {
   const [photoURL, setPhotoURL] = useState("");
   const [pups, setPups] = useState([]);
   const [userPups, setUserPups] = useState([]);
+  const [location, setLocation] = useState({});
 
   useEffect(() => {
+    navigator.geolocation.getCurrentPosition((succ) => {
+      setLocation({
+        type: "Point",
+        coordinates: [succ.coords.longitude, succ.coords.latitude],
+      });
+      return;
+    });
     if (user) {
-      const getAllPups = async (user_id) => {
-        const result = await axios.post("/pups/all", { user_id: user_id });
+      const getAllPups = async (user_id, coordinates) => {
+        console.log("coordinates: ", coordinates);
+        const result = await axios.post("/pups/all", {
+          user_id: user_id,
+          coordinates: coordinates,
+        });
         setPups(result.data);
       };
-      getAllPups(user.uid);
+      getAllPups(user.uid, location.coordinates);
       const getPupsByOwnerId = async (owner_id) => {
         const result = await axios.get(`/users/${owner_id}/pups`);
         setUserPups(result.data);
       };
       getPupsByOwnerId(user.uid);
     }
-  }, [user]);
+  }, [user, location]);
 
-  const addPup = (e, user) => {
+  const addPup = (e, user, location) => {
     e.preventDefault();
     return axios.post("/pups", {
       ...formData,
       owner_id: user.uid,
       photoURL: photoURL,
+      location: location,
     });
   };
 
@@ -79,19 +91,17 @@ export default function usePupData() {
   useEffect(() => {
     if (pupID) {
       const getPupById = async (pupID) => {
-        const result = await axios.get(`/pups/${pupID}`)
+        const result = await axios.get(`/pups/${pupID}`);
         const pupInfo = result.data[0];
         console.log(pupInfo);
-        setFormData({ ...pupInfo })
+        setFormData({ ...pupInfo });
         setCharRemaining(140 - pupInfo.bio.length);
         setPhotoURL(pupInfo.photoURL);
         setSelectedDate(pupInfo.birthday);
-      }
-      getPupById(pupID)
-
-      
+      };
+      getPupById(pupID);
     }
-  }, [pupID])
+  }, [pupID]);
 
   return {
     formData,
