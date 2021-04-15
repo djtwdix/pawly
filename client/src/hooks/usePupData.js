@@ -105,6 +105,7 @@ export default function usePupData() {
     handleEnergyChange,
     uploadImage,
     photoURL,
+    setPhotoURL,
     addPup,
     pups,
     userPups,
