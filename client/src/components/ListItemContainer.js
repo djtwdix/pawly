@@ -3,9 +3,9 @@ import { Button } from "@material-ui/core";
 
 export default function ListItemContainer({ children, signOut }) {
   return (
-    <div className="listItemContainer">
+    <div>
       <Button
-        className="listItemContainer"
+        className="listItemContainer pupListItemListItem"
         style={{ textTransform: "none" }}
         onClick={signOut ? signOut : undefined}
       >
