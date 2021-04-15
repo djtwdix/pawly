@@ -13,7 +13,7 @@ export default function PupList({ user }) {
   });
 
   return (
-    <section>
+    <section className="pupListItem__container">
       {parsedPups}
       <Link to="/pups/new">
         <ListItemContainer>
