@@ -27,12 +27,12 @@ export default function ChatWindow({ user }) {
 
   return (
     <div>
-      <p className="chatWindow__match">
-        You matched {moment(chatInfo.created_at).fromNow()}
-      </p>
       <section className="chatWindow">
+        <p className="chatWindow__match">
+          You matched {moment(chatInfo.created_at).fromNow()}
+        </p>
         {parsedMessages}
-        <div style={{ height: "63px" }} ref={messagesEndRef} />
+        <div style={{ height: "63px", display: "none" }} ref={messagesEndRef} />
         <form onSubmit={handleSubmit} className="chatWindow__messageInput">
           {showEmojis ? (
             <div>
@@ -66,6 +66,7 @@ export default function ChatWindow({ user }) {
               required={true}
               fullWidth={true}
               autoFocus={true}
+              inputProps={{ style: { fontSize: 20 } }}
             ></mui.Input>
           </div>
           <mui.Button style={{ backgroundColor: "transparent" }} type="submit">

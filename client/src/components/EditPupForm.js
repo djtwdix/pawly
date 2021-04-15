@@ -60,16 +60,25 @@ export default function EditPupForm({ user }) {
           }
         >
           {photoURL ? (
-            <mui.Avatar
-              style={{
-                height: "75px",
-                width: "75px",
-                alignSelf: "center",
-                marginTop: "15px",
-              }}
-              src={photoURL}
-              alt="your - pup"
-            />
+            <mui.Button>
+              <label className="pupForm__imageUpload">
+                <mui.Input
+                  type="file"
+                  onChange={(e) => uploadImage(e.target.files[0])}
+                  required={true}
+                />
+                <mui.Avatar
+                  style={{
+                    height: "75px",
+                    width: "75px",
+                    alignSelf: "center",
+                    marginTop: "15px",
+                  }}
+                  src={photoURL}
+                  alt="your - pup"
+                />
+              </label>
+            </mui.Button>
           ) : (
             <mui.Button>
               <label className="pupForm__imageUpload">
@@ -140,7 +149,12 @@ export default function EditPupForm({ user }) {
               <div className="pupForm__genderGroup">
                 <mui.FormControlLabel
                   value="female"
-                  control={<mui.Radio required={true} checked={formData.gender === "female" ? true : false} />}
+                  control={
+                    <mui.Radio
+                      required={true}
+                      checked={formData.gender === "female" ? true : false}
+                    />
+                  }
                   label={female}
                   labelPlacement="start"
                   style={{
@@ -149,7 +163,12 @@ export default function EditPupForm({ user }) {
                 />
                 <mui.FormControlLabel
                   value="male"
-                  control={<mui.Radio required={true} checked={formData.gender === "male" ? true : false} />}
+                  control={
+                    <mui.Radio
+                      required={true}
+                      checked={formData.gender === "male" ? true : false}
+                    />
+                  }
                   label={male}
                   labelPlacement="start"
                   style={{
