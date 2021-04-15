@@ -7,7 +7,6 @@ import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 
 export default function SignIn({ location }) {
   console.log(location);
-
   const uiConfig = {
     // Popup signin flow rather than redirect flow.
     signInFlow: "popup",
