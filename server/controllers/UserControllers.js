@@ -23,6 +23,7 @@ export const getUserById = (req, res) => {
 
 export const createUser = async (req, res) => {
   const userInfo = req.body;
+  console.log(req.body);
   const userExists = await checkIfUserExists(req.body._id);
   if (!userExists) {
     Users.create(userInfo, (err, data) => {
@@ -36,6 +37,7 @@ export const createUser = async (req, res) => {
     Users.updateOne(userInfo, (err, data) => {
       if (err) {
         res.status(500).send(err);
+        console.log(err)
       } else {
         res.status(200).send(data);
       }

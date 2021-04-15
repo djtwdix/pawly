@@ -1,4 +1,6 @@
 import "./stylesheets/App.scss";
+import { useEffect, useState } from "react";
+
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./firebase/config";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -6,7 +8,23 @@ import * as comp from "./components";
 
 function App() {
   const [user, loading] = useAuthState(auth);
-  
+  const [location, setLocation] = useState({});
+
+  navigator.geolocation.getCurrentPosition((succ) => {
+    console.log(succ);
+  });
+  console.log(location);
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((succ) => {
+      setLocation({
+        type: "Point",
+        coordinates: [succ.coords.longitude, succ.coords.latitude],
+      });
+      return;
+    });
+  }, []);
+
   return (
     <div className="App">
       <Router>
@@ -14,7 +32,7 @@ function App() {
           <Route exact path="/">
             <comp.Navbar user={user} />
             {!loading && !user ? (
-              <comp.SignIn />
+              <comp.SignIn location={location} />
             ) : (
               <comp.CardStack user={user} />
             )}

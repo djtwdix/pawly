@@ -6,6 +6,7 @@ export const createPup = (req, res) => {
   Pups.create(pupsInfo, (err, data) => {
     if (err) {
       res.status(500).send(err);
+      console.log(err);
     } else {
       res.status(201).send(data);
     }
@@ -30,6 +31,7 @@ export const getPupsByOwner = (req, res) => {
   Pups.find({ owner_id: owner_id }, (err, data) => {
     if (err) {
       res.status(500).send(err);
+      console.log(err);
     } else {
       res.status(200).send(data);
     }
@@ -57,6 +59,7 @@ export const getPupById = (req, res) => {
     (err, data) => {
       if (err) {
         res.status(500).send(err);
+        console.log(err);
       } else {
         res.status(200).send(data);
       }
@@ -66,6 +69,7 @@ export const getPupById = (req, res) => {
 
 export const getAllPups = (req, res) => {
   const user_id = req.body.user_id;
+  console.log(req.body);
   Pups.aggregate(
     [
       {
@@ -85,6 +89,7 @@ export const getAllPups = (req, res) => {
     (err, data) => {
       if (err) {
         res.status(500).send(err);
+        console.log(err);
       } else {
         res.status(200).send(data);
       }

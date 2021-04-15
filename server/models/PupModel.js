@@ -1,5 +1,15 @@
 import mongoose from "mongoose";
 
+const pointSchema = new mongoose.Schema({
+  type: {
+    type: String,
+    enum: ["Point"],
+  },
+  coordinates: {
+    type: [Number],
+  },
+});
+
 const pupModel = mongoose.Schema({
   name: String,
   photoURL: String,
@@ -8,7 +18,12 @@ const pupModel = mongoose.Schema({
   bio: String,
   energy: Number,
   owner_id: String,
-  gender: String
+  gender: String,
+  location: {
+    type: pointSchema,
+  },
 });
+
+
 
 export default mongoose.model("pups", pupModel);
