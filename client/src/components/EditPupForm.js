@@ -2,6 +2,7 @@ import React from "react";
 import usePupData from "../hooks/usePupData";
 import { useHistory } from "react-router-dom";
 
+
 //material ui components
 
 import * as mui from "@material-ui/core";
@@ -19,6 +20,7 @@ import ImageIcon from "@material-ui/icons/Image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faVenus, faMars } from "@fortawesome/free-solid-svg-icons";
 
+
 //Component for adding new pup
 
 export default function EditPupForm({ user }) {
@@ -32,23 +34,30 @@ export default function EditPupForm({ user }) {
     selectedDate,
     uploadImage,
     photoURL,
+    editPup
   } = usePupData();
 
- 
+  const pupID = formData._id;
+  console.log(pupID);
   const history = useHistory();
   const male = <FontAwesomeIcon className="pupForm__icons" icon={faMars} />;
   const female = <FontAwesomeIcon className="pupForm__icons" icon={faVenus} />
-  console.log(formData.gender);
+
   return (
     <div className="pupForm">
       <ThemeProvider theme={muiTheme}>
         <form
           className="pupForm__card"
-          onSubmit={(e) => {
+          onSubmit={ !pupID ? (e) => {
             addPup(e, user).then(() => {
               history.goBack();
-            });
-          }}
+            }) 
+          } : (e) => {
+              editPup(e, user).then(() => {
+                history.goBack();
+              })
+            }
+          }
         >
           {photoURL ? (
             <mui.Avatar
@@ -196,4 +205,6 @@ export default function EditPupForm({ user }) {
       </ThemeProvider>
     </div>
   );
+  
+            
 }
