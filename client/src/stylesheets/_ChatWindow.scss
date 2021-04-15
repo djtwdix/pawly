@@ -1,4 +1,6 @@
 .chatWindow {
+  max-height: calc(100vh - 167.75px);
+  overflow: scroll;
   &__message {
     display: flex;
     align-items: center;
@@ -10,20 +12,26 @@
     padding-top: 20px;
   }
   &__text {
+    display: flex;
+    align-items: center;
     margin-left: 10px;
     display: flex;
     background-color: $dark-pink;
-    padding: 15px;
     color: white;
     border-radius: 15px;
+    padding: 12px;
+    max-height: 15px;
   }
   &__textUser {
+    display: flex;
+    align-items: center;
     margin-right: 10px;
     margin-left: auto;
     background-color: rgb(49, 158, 254);
-    padding: 15px;
     color: white;
     border-radius: 15px;
+    padding: 12px;
+    max-height: 18px;
   }
   &__messageInput {
     display: flex;
