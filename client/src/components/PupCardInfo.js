@@ -5,9 +5,10 @@ import React from "react";
 import axios from "axios";
 import moment from "moment";
 import EnergyIcon from "./EnergyIcon";
-import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn';
+import KeyboardReturnIcon from "@material-ui/icons/KeyboardReturn";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBirthdayCake } from "@fortawesome/free-solid-svg-icons";
+import GenderIcon from "./GenderIcon";
 
 export default function PupCard({ pup, user, photoController }) {
   const { checkMatch } = useCardActions();
@@ -28,34 +29,42 @@ export default function PupCard({ pup, user, photoController }) {
     }
   };
 
-  
-  return ( 
-   (<TinderCard
-  className="swipe"
-  onSwipe={onSwipe}
-  preventSwipe={["up", "down"]}
-  key={pup._id}
->
-  <div className="card infoCard">
-    <div id="pupBadge"> 
-        <h3>{pup.name}</h3>
-    </div>
-    <div className="infoCard__details">
-    <div className="infoCard__breedName"> 
-    <Avatar style={{height: "80px", width: "80px", marginBottom: "0.5em"}} src={pup.photoURL} />
-    <div>{pup.name}</div>
-    </div>
-    <div>{pup.breed}</div>
-    <div>{pup.bio}</div>
-    <EnergyIcon energy={pup.energy} />
-    <div><FontAwesomeIcon className="inforCard__cake" icon={faBirthdayCake} /> {moment(pup.birthday).format("MMMM Do YYYY")} </div>
-    <div className="infoCard__return">
-       <IconButton onClick={(e) => photoController()}> 
-         <KeyboardReturnIcon fontSize="large"/>
-         </IconButton>
-         </div>
-    </div>
-  </div>
-</TinderCard> )
+  return (
+    <TinderCard
+      className="swipe"
+      onSwipe={onSwipe}
+      preventSwipe={["up", "down"]}
+      key={pup._id}
+    >
+      <div className="pupCard infoCard">
+        <div class="pupBadge">
+          <h3>{pup.name}</h3>
+        </div>
+        <div className="infoCard__details">
+          <div className="infoCard__breedName">
+            <Avatar
+              style={{ height: "80px", width: "80px", marginBottom: "0.5em" }}
+              src={pup.photoURL}
+            />
+            <div>{pup.name}</div>
+          </div>
+          <div>{pup.breed}</div>
+          <div>{pup.bio}</div>
+          <div className="infoCard__genderEnergy">
+            <GenderIcon gender={pup.gender} />
+            <EnergyIcon energy={pup.energy} />
+          </div>
+          <div>
+            <FontAwesomeIcon className="infoCard__cake" icon={faBirthdayCake} />
+            {moment(pup.birthday).format("MMMM Do YYYY")}{" "}
+          </div>
+          <div className="infoCard__return">
+            <IconButton onClick={(e) => photoController()}>
+              <KeyboardReturnIcon fontSize="large" />
+            </IconButton>
+          </div>
+        </div>
+      </div>
+    </TinderCard>
   );
 }
