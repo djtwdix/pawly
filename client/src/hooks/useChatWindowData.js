@@ -15,7 +15,7 @@ export default function useChatWindowData() {
   const [showEmojis, setShowEmojis] = useState(false);
 
   useEffect(() => {
-    console.log(chatID);
+
     const getMessagesByChatId = (chatId) => {
       return axios.get(`/chats/${chatId}/messages`);
     };
