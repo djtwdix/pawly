@@ -31,13 +31,16 @@ export default function PupCard({ pup, user, photoController }) {
       preventSwipe={["up", "down"]}
       key={pup._id}
     >
-      <div className="pupCard" style={{ backgroundImage: `url(${pup.photoURL})` }}>
-        <div class="pupBadge">
+      <div
+        className="pupCard"
+        style={{ backgroundImage: `url(${pup.photoURL})` }}
+      >
+        <div className="pupBadge">
           <h3>{pup.name}</h3>
         </div>
         <div className="pupCard__info">
           <IconButton onClick={(e) => photoController()}>
-            <InfoIcon fontSize="large" />
+            <InfoIcon fontSize="large" style={{ color: "white" }} />
           </IconButton>
         </div>
       </div>
