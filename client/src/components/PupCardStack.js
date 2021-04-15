@@ -19,7 +19,7 @@ export default function PupCardStack({ user }) {
 
   return (
     <section>
-      <div className="card__container">{ showPhoto ? parsedPups : parsedPupsInfo }</div>
+      <div className="pupCard__container">{ showPhoto ? parsedPups : parsedPupsInfo }</div>
       <SwipeButtons />
     </section>
   );
