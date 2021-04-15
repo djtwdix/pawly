@@ -8,3 +8,4 @@ export { default as PupForm } from "./PupForm";
 export { default as PupCard } from "./PupCard";
 export { default as PupList } from "./PupList";
 export { default as CardStack } from "./PupCardStack";
+export {default as EditPupForm } from "./EditPupForm";
