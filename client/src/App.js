@@ -42,6 +42,10 @@ function App() {
             <comp.Navbar backButton={true} user={user} />
             <comp.PupForm user={user} />
           </Route>
+          <Route path="/pups/:pupID">
+          <comp.Navbar backButton={true} user={user} />
+          <comp.EditPupForm user={user} />
+          </Route>
         </Switch>
       </Router>
     </div>
