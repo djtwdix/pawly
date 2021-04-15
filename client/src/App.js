@@ -1,15 +1,12 @@
 import "./stylesheets/App.scss";
-
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./firebase/config";
-
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-
 import * as comp from "./components";
 
 function App() {
   const [user, loading] = useAuthState(auth);
-
+  
   return (
     <div className="App">
       <Router>
@@ -40,9 +37,9 @@ function App() {
           </Route>
           <Route path="/pups/new">
             <comp.Navbar backButton={true} user={user} />
-            <comp.PupForm user={user} />
+            <comp.EditPupForm user={user} />
           </Route>
-          <Route path="/pups/:pupID">
+          <Route path="/pups/edit">
           <comp.Navbar backButton={true} user={user} />
           <comp.EditPupForm user={user} />
           </Route>
