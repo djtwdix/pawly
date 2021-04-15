@@ -18,7 +18,7 @@ export default function Chat({ chat, user }) {
         setOtherUser(res.data);
       });
     }
-  }, []);
+  }, [chat, user]);
 
   return (
     <Link to={`/chats/${chat._id}`}>
