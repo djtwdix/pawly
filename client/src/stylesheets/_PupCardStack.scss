@@ -10,7 +10,7 @@
   border-radius: 10px;
   background-size: cover;
   background-position: center;
-  box-shadow: 0px 15px 53px lightgray;
+  box-shadow: 0px 2px 5px lightgray;
   &__container {
     display: flex;
     justify-content: center;
@@ -41,7 +41,7 @@
 }
 
 .infoCard {
-  background-image: linear-gradient(to bottom right, white, $lighter-pink);
+  background-color: white;
 
   &__details {
     height: 100%;
@@ -53,14 +53,19 @@
     color: $dark-gray;
   }
   &__breedName {
-    margin-top: 4rem;
+    margin-top: 1rem;
     display: flex;
     width: 50%;
     align-items: center;
     justify-content: center;
     flex-direction: column;
   }
+  &__bio {
+    max-width: 70%;
+  }
   &__cake {
+    position: relative;
+    top: -2px;
     color: $dark-gray;
   }
   &__return {

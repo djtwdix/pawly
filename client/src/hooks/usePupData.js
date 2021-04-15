@@ -2,17 +2,12 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { auth } from "../firebase/config";
 import { useLocation } from "react-router-dom";
-
-
+import useLocationData from "./useLocationData";
 
 export default function usePupData() {
   const user = auth.currentUser;
   const data = useLocation();
-  let pupID = null
-  if (data.state) {
-    pupID = data.state._id
-  } 
- 
+  const { location } = useLocationData();
   const [selectedDate, setSelectedDate] = useState();
   const [charRemaining, setCharRemaining] = useState(140);
   const [formData, setFormData] = useState({
@@ -26,12 +21,18 @@ export default function usePupData() {
   const [photoURL, setPhotoURL] = useState("");
   const [pups, setPups] = useState([]);
   const [userPups, setUserPups] = useState([]);
-  
+  let pupID = null;
+  if (data.state) {
+    pupID = data.state._id;
+  }
 
   useEffect(() => {
     if (user) {
       const getAllPups = async (user_id) => {
-        const result = await axios.post("/pups/all", { user_id: user_id });
+
+        const result = await axios.post("/pups/all", {
+          user_id: user_id,
+        });
         setPups(result.data);
       };
       getAllPups(user.uid);
@@ -41,14 +42,15 @@ export default function usePupData() {
       };
       getPupsByOwnerId(user.uid);
     }
-  }, [user]);
+  }, [user, location]);
 
-  const addPup = (e, user) => {
+  const addPup = (e, user, location) => {
     e.preventDefault();
     return axios.post("/pups", {
       ...formData,
       owner_id: user.uid,
       photoURL: photoURL,
+      location: location,
     });
   };
 
@@ -61,7 +63,6 @@ export default function usePupData() {
       photoURL: photoURL,
     });
   };
- 
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -93,24 +94,19 @@ export default function usePupData() {
       });
   };
 
-  
   useEffect(() => {
-  
     if (pupID) {
       const getPupById = async (pupID) => {
-        const result = await axios.get(`/pups/${pupID}`)
+        const result = await axios.get(`/pups/${pupID}`);
         const pupInfo = result.data[0];
-        console.log(pupInfo);
-        setFormData({ ...pupInfo })
+        setFormData({ ...pupInfo });
         setCharRemaining(140 - pupInfo.bio.length);
         setPhotoURL(pupInfo.photoURL);
         setSelectedDate(pupInfo.birthday);
-      }
-      getPupById(pupID)
+      };
+      getPupById(pupID);
     }
-  
-  }, [pupID])
-  
+  }, [pupID]);
 
   return {
     formData,
@@ -129,6 +125,6 @@ export default function usePupData() {
     pups,
     userPups,
     setFormData,
-    editPup
+    editPup,
   };
 }
