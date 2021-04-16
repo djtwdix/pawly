@@ -25,6 +25,7 @@ export default function ChatWindow({ user }) {
     return <ChatMessage key={message._id} user={user} message={message} />;
   });
 
+
   return (
     <div>
       <section className="chatWindow">
