@@ -66,6 +66,13 @@ export default function usePupData() {
     });
   };
 
+  const destoryPup = (e, user ) => {
+    e.preventDefault();
+    return axios.delete(`/pups/${pupID}`, {
+      _id: pupID
+    });
+  };
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     if (e.target.name === "bio") {
@@ -127,6 +134,7 @@ export default function usePupData() {
     pups,
     userPups,
     editPup,
-    setPups
+    setPups,
+    destoryPup
   };
 }

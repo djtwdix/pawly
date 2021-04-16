@@ -95,3 +95,17 @@ export const getAllPups = (req, res) => {
     }
   );
 };
+
+export const destroyPupById = (req, res) => {
+  const pupID = req.params.pupId;
+
+  Pups.deleteOne({_id: pupID},  (err, data) => {
+    if (err) {
+      res.status(500).send(err);
+      console.log(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+}
+
