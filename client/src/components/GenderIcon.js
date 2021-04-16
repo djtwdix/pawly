@@ -9,7 +9,7 @@ export default function GenderIcon({ gender }) {
         <FontAwesomeIcon className="infoCard__genderIconMale" icon={faMars} />
       )}
       {gender === "female" && (
-        <FontAwesomeIcon className="infoCard__genderIconsFemale" icon={faVenus} />
+        <FontAwesomeIcon className="infoCard__genderIconFemale" icon={faVenus} />
       )}
     </div>
   );
