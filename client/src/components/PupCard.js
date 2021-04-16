@@ -13,6 +13,7 @@ export default function PupCard({
   photoController,
   removePup,
   index,
+  matchAlert
 }) {
   const { checkMatch } = useCardActions();
   const { pups } = usePupData();
@@ -38,6 +39,7 @@ export default function PupCard({
       });
       const isMatch = await checkMatch(user.uid, pup.owner_id);
       if (isMatch) {
+        matchAlert()
         const participants = [user.uid, pup.owner_id];
         axios.post("/chats", {
           participants,
