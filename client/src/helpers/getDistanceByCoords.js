@@ -1,5 +1,5 @@
 
-const getDistanceByCoords = (array1,array2) => {
+ const getDistanceByCoords = (array1,array2) => {
   // coordinate arrays 
   const lat1 = array1[1]
   const lat2 = array2[1]
@@ -27,6 +27,5 @@ const distanceKm = (R * c) / 1000; // Distance in km
   return Math.floor(distanceKm) ; //rounded 
 }
 
-//console.log(getDistanceByCoords([-73.6295116,45.5453757], [-66.65100029999999,45.9589747]))
-
+export default getDistanceByCoords
 

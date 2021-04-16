@@ -4,10 +4,16 @@ import PupCard from "./PupCard";
 import PupCardInfo from "./PupCardInfo";
 import SwipeButtons from "./SwipeButtons";
 import useCardActions from "../hooks/useCardActions";
+import getDistanceByCoords from "../helpers/getDistanceByCoords";
+import useLocationData from "../hooks/useLocationData";
 
 export default function PupCardStack({ user }) {
   const { pups, setPups } = usePupData();
   const { showPhoto, photoController } = useCardActions();
+  const { location } = useLocationData();
+
+  //const nearPups = pups.filter( pup => getDistanceByCoords(pup.location.coordinates,location.coordinates) < 50 )
+  
 
   const removePup = () => {
     setPups((prev) => [...prev.slice(0, prev.length - 1)]);
