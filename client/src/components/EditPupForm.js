@@ -74,7 +74,7 @@ export default function EditPupForm({ user, location }) {
                     height: "75px",
                     width: "75px",
                     alignSelf: "center",
-                    marginTop: "15px",
+                  
                   }}
                   src={photoURL}
                   alt="your - pup"
