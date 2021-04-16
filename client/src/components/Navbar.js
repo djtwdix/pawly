@@ -9,6 +9,7 @@ import { Avatar, IconButton } from "@material-ui/core";
 import PersonIcon from "@material-ui/icons/Person";
 import ForumIcon from "@material-ui/icons/Forum";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import getInitials from "../helpers/getInitials";
 
 export default function Navbar({ user, backButton, hideChatButton }) {
   const history = useHistory();
@@ -34,7 +35,7 @@ export default function Navbar({ user, backButton, hideChatButton }) {
                 width: "49px",
               }}
             >
-              DT
+              {getInitials(user.displayName)}
             </Avatar>
           </IconButton>
         </Link>
