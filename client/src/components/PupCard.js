@@ -3,12 +3,24 @@ import InfoIcon from "@material-ui/icons/Info";
 import TinderCard from "react-tinder-card";
 import SwipeButtons from "./SwipeButtons";
 import useCardActions from "../hooks/useCardActions";
-import React from "react";
+import React, { useMemo } from "react";
 import axios from "axios";
+import usePupData from "../hooks/usePupData";
 
 export default function PupCard({ pup, user, photoController, removePup }) {
   const { checkMatch } = useCardActions();
+  const { pups } = usePupData();
 
+  console.log(pups);
+
+/*   const childRefs = useMemo(
+    () =>
+      Array(pups.length)
+        .fill(0)
+        .map((i) => React.createRef()),
+    []
+  );
+ */
   const onSwipe = async (direction) => {
     if (direction === "right") {
       axios.put(`/users/${user.uid}/likes`, {
@@ -48,7 +60,7 @@ export default function PupCard({ pup, user, photoController, removePup }) {
           </div>
         </div>
       </TinderCard>
-      <SwipeButtons onSwipe={onSwipe}/>
+      <SwipeButtons onSwipe={onSwipe} />
     </>
   );
 }
