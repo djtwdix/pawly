@@ -7,27 +7,39 @@ import React, { useMemo } from "react";
 import axios from "axios";
 import usePupData from "../hooks/usePupData";
 
-export default function PupCard({ pup, user, photoController, removePup }) {
+export default function PupCard({
+  pup,
+  user,
+  photoController,
+  removePup,
+  index,
+  matchAlert
+}) {
   const { checkMatch } = useCardActions();
   const { pups } = usePupData();
 
-  console.log(pups);
-
-/*   const childRefs = useMemo(
+  const childRefs = useMemo(
     () =>
       Array(pups.length)
         .fill(0)
         .map((i) => React.createRef()),
-    []
+    [pups]
   );
- */
-  const onSwipe = async (direction) => {
+
+  const swipe = (direction) => {
+    if (pups.length) {
+      childRefs[index].current.swipe(direction)
+    }
+  };
+
+  const onSwipe = async (direction, id) => {
     if (direction === "right") {
       axios.put(`/users/${user.uid}/likes`, {
         likeId: pup.owner_id,
       });
       const isMatch = await checkMatch(user.uid, pup.owner_id);
       if (isMatch) {
+        matchAlert()
         const participants = [user.uid, pup.owner_id];
         axios.post("/chats", {
           participants,
@@ -35,16 +47,20 @@ export default function PupCard({ pup, user, photoController, removePup }) {
         });
       }
     }
-    removePup();
+    
+  /*   alreadyRemoved.push(id);
+    console.log("alreadyRemoved: ", alreadyRemoved); */
   };
 
   return (
     <>
       <TinderCard
+        ref={childRefs[index]}
         className="swipe"
         onSwipe={(dir) => onSwipe(dir)}
         preventSwipe={["up", "down"]}
         key={pup._id}
+        onCardLeftScreen={() => removePup()}
       >
         <div
           className="pupCard"
@@ -60,7 +76,7 @@ export default function PupCard({ pup, user, photoController, removePup }) {
           </div>
         </div>
       </TinderCard>
-      <SwipeButtons onSwipe={onSwipe} />
+      <SwipeButtons swipe={swipe} />
     </>
   );
 }

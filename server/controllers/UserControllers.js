@@ -34,7 +34,7 @@ export const createUser = async (req, res) => {
       }
     });
   } else {
-    Users.findOneAndUpdate({ _id: req.body_id }, userInfo, (err, data) => {
+    Users.findOneAndUpdate({ _id: req.body._id }, userInfo, (err, data) => {
       if (err) {
         res.status(500).send(err);
         console.log(err)
