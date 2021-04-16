@@ -1,7 +1,8 @@
 import { Avatar, IconButton } from "@material-ui/core";
 import TinderCard from "react-tinder-card";
 import useCardActions from "../hooks/useCardActions";
-import React from "react";
+import React, { useMemo } from "react";
+import SwipeButtons from "./SwipeButtons";
 import axios from "axios";
 import moment from "moment";
 import EnergyIcon from "./EnergyIcon";
@@ -9,9 +10,33 @@ import KeyboardReturnIcon from "@material-ui/icons/KeyboardReturn";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBirthdayCake } from "@fortawesome/free-solid-svg-icons";
 import GenderIcon from "./GenderIcon";
+import usePupData from "../hooks/usePupData";
 
-export default function PupCard({ pup, user, photoController, removePup, matchAlert }) {
+export default function PupCard({
+  pup,
+  user,
+  photoController,
+  removePup,
+  matchAlert,
+  index,
+}) {
   const { checkMatch } = useCardActions();
+
+  const { pups } = usePupData();
+
+  const childRefs = useMemo(
+    () =>
+      Array(pups.length)
+        .fill(0)
+        .map((i) => React.createRef()),
+    [pups]
+  );
+
+  const swipe = (direction) => {
+    if (pups.length) {
+      childRefs[index].current.swipe(direction);
+    }
+  };
 
   const onSwipe = async (direction) => {
     if (direction === "right") {
@@ -27,46 +52,53 @@ export default function PupCard({ pup, user, photoController, removePup, matchAl
         });
       }
     }
-    removePup();
   };
 
   return (
-    <TinderCard
-      className="swipe"
-      onSwipe={(dir) => onSwipe(dir)}
-      preventSwipe={["up", "down"]}
-      key={pup._id}
-    >
-      <div className="pupCard infoCard">
-        <div className="infoCard__details">
-          <div className="infoCard__breedName">
-            <Avatar
-              style={{ height: "80px", width: "80px", marginBottom: "0.5em" }}
-              src={pup.photoURL}
-            />
+    <>
+      <TinderCard
+        ref={childRefs[index]}
+        className="swipe"
+        onSwipe={(dir) => onSwipe(dir)}
+        preventSwipe={["up", "down"]}
+        key={pup._id}
+        onCardLeftScreen={() => removePup()}
+      >
+        <div className="pupCard infoCard">
+          <div className="infoCard__details">
+            <div className="infoCard__breedName">
+              <Avatar
+                style={{ height: "80px", width: "80px", marginBottom: "0.5em" }}
+                src={pup.photoURL}
+              />
+              <div>
+                <h1>{pup.name}</h1>
+              </div>
+            </div>
             <div>
-              <h1>{pup.name}</h1>
+              <h4>{pup.breed}</h4>
+            </div>
+            <div>
+              <FontAwesomeIcon
+                className="infoCard__cake"
+                icon={faBirthdayCake}
+              />
+              {` ${moment(pup.birthday).format("MMMM Do YYYY")}`}
+            </div>
+            <div className="infoCard__bio">{pup.bio}</div>
+            <div className="infoCard__genderEnergy">
+              <GenderIcon gender={pup.gender} />
+              <EnergyIcon energy={pup.energy} />
+            </div>
+            <div className="infoCard__return">
+              <IconButton onClick={(e) => photoController()}>
+                <KeyboardReturnIcon fontSize="large" />
+              </IconButton>
             </div>
           </div>
-          <div>
-            <h4>{pup.breed}</h4>
-          </div>
-          <div>
-            <FontAwesomeIcon className="infoCard__cake" icon={faBirthdayCake} />
-            {` ${moment(pup.birthday).format("MMMM Do YYYY")}`}
-          </div>
-          <div className="infoCard__bio">{pup.bio}</div>
-          <div className="infoCard__genderEnergy">
-            <GenderIcon gender={pup.gender} />
-            <EnergyIcon energy={pup.energy} />
-          </div>
-          <div className="infoCard__return">
-            <IconButton onClick={(e) => photoController()}>
-              <KeyboardReturnIcon fontSize="large" />
-            </IconButton>
-          </div>
         </div>
-      </div>
-    </TinderCard>
+      </TinderCard>
+      <SwipeButtons swipe={swipe} />
+    </>
   );
 }
