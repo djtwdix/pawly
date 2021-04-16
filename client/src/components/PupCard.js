@@ -16,24 +16,21 @@ export default function PupCard({
 }) {
   const { checkMatch } = useCardActions();
   const { pups } = usePupData();
-/* 
+
   const childRefs = useMemo(
     () =>
       Array(pups.length)
         .fill(0)
         .map((i) => React.createRef()),
     [pups]
-  ); */
+  );
 
-  /* const alreadyRemoved = []; */
-
- /*  const swipe = (direction) => {
-    childRefs[index].current.swipe(direction).then(() => {
-      onSwipe(direction);
-    });
-    console.log(`you swiped ${direction}`);
+  const swipe = (direction) => {
+    if (pups.length) {
+      childRefs[index].current.swipe(direction)
+    }
   };
- */
+
   const onSwipe = async (direction, id) => {
     if (direction === "right") {
       axios.put(`/users/${user.uid}/likes`, {
@@ -48,7 +45,7 @@ export default function PupCard({
         });
       }
     }
-    removePup();
+    
   /*   alreadyRemoved.push(id);
     console.log("alreadyRemoved: ", alreadyRemoved); */
   };
@@ -56,11 +53,12 @@ export default function PupCard({
   return (
     <>
       <TinderCard
-        /* ref={childRefs[index]} */
+        ref={childRefs[index]}
         className="swipe"
         onSwipe={(dir) => onSwipe(dir)}
         preventSwipe={["up", "down"]}
         key={pup._id}
+        onCardLeftScreen={() => removePup()}
       >
         <div
           className="pupCard"
@@ -76,7 +74,7 @@ export default function PupCard({
           </div>
         </div>
       </TinderCard>
-      <SwipeButtons /* swipe={swipe} */ />
+      <SwipeButtons swipe={swipe} />
     </>
   );
 }
