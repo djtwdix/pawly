@@ -7,7 +7,7 @@ import moment from "moment";
 
 export default function ChatListItem({ chat, user }) {
   const [otherUser, setOtherUser] = useState({});
-  const last_message = chat.last_message[0];
+  const last_message = chat.last_message;
 
   useEffect(() => {
     if (chat && user) {
