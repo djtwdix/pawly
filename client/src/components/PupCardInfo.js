@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBirthdayCake } from "@fortawesome/free-solid-svg-icons";
 import GenderIcon from "./GenderIcon";
 
-export default function PupCard({ pup, user, photoController, removePup }) {
+export default function PupCard({ pup, user, photoController, removePup, matchAlert }) {
   const { checkMatch } = useCardActions();
 
   const onSwipe = async (direction) => {
