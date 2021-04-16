@@ -5,6 +5,7 @@ export default function useLocationData() {
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((res) => {
+      console.log(res);
       setLocation({
         type: "Point",
         coordinates: [res.coords.longitude, res.coords.latitude],
