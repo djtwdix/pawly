@@ -4,7 +4,6 @@ import { auth } from "../firebase/config";
 import { useLocation } from "react-router-dom";
 import useLocationData from "./useLocationData";
 
-
 export default function usePupData() {
   const user = auth.currentUser;
   const data = useLocation();
@@ -16,12 +15,12 @@ export default function usePupData() {
     breed: "",
     bio: "",
     gender: "",
-    energy: "",
+    energy: 1,
     birthday: "",
   });
   const [photoURL, setPhotoURL] = useState("");
   const [pups, setPups] = useState([]);
-  
+
   const [userPups, setUserPups] = useState([]);
   let pupID = null;
   if (data.state) {
@@ -31,7 +30,6 @@ export default function usePupData() {
   useEffect(() => {
     if (user) {
       const getAllPups = async (user_id) => {
-
         const result = await axios.post("/pups/all", {
           user_id: user_id,
         });
@@ -56,7 +54,7 @@ export default function usePupData() {
     });
   };
 
-  const editPup = (e, user ) => {
+  const editPup = (e, user) => {
     e.preventDefault();
     return axios.put(`/pups/${pupID}`, {
       ...formData,
@@ -127,6 +125,6 @@ export default function usePupData() {
     pups,
     userPups,
     editPup,
-    setPups
+    setPups,
   };
 }
