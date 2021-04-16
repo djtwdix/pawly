@@ -21,7 +21,7 @@ export default function Chat({ chat, user }) {
   }, [chat, user]);
 
   return (
-    <Link to={`/chats/${chat._id}`}>
+    <Link to={{pathname: `/chats/messages`, state: chat}}>
       <ListItemContainer>
         <section className="chat">
           <Avatar

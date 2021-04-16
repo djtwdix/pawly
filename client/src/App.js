@@ -25,7 +25,7 @@ function App() {
             <comp.Navbar backButton={true} user={user} hideChatButton={true} />
             <comp.ChatList user={user} />
           </Route>
-          <Route path="/chats/:chatID">
+          <Route path="/chats/messages">
             <comp.Navbar backButton={true} user={user} />
             {user && <comp.ChatWindow user={user} />}
           </Route>

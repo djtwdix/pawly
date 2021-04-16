@@ -1,21 +1,24 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import { io } from "socket.io-client";
 import { auth } from "../firebase/config";
+import { useLocation} from "react-router-dom";
 
 export default function useChatWindowData() {
   const user = auth.currentUser;
-  
-  const { chatID } = useParams();
   const [messages, setMessages] = useState([]);
   const [chatInfo, setChatInfo] = useState({});
   const [connection, setConnection] = useState({});
   const [input, setInput] = useState("");
   const [showEmojis, setShowEmojis] = useState(false);
 
-  useEffect(() => {
+  const chatData = useLocation();
+  let chatID = null;
+  if (chatData.state) {
+    chatID = chatData.state._id
+  }
 
+  useEffect(() => {
     const getMessagesByChatId = (chatId) => {
       return axios.get(`/chats/${chatId}/messages`);
     };

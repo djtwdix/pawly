@@ -14,7 +14,7 @@ export default function ChatMessage({ user, message }) {
       }
     }
   });
-
+  
   return (
     <section>
       {user.uid !== message.sender_id ? (
