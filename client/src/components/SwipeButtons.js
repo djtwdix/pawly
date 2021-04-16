@@ -7,11 +7,11 @@ import { faBone } from "@fortawesome/free-solid-svg-icons";
 
 import React from "react";
 
-export default function SwipeButtons() {
+export default function SwipeButtons({ onSwipe }) {
   return (
     <section>
       <footer className="swipeButtons MultiIconButton-root">
-        <IconButton>
+        <IconButton >
           <CloseIcon className="swipeButtons__close" />
         </IconButton>
         <IconButton>
