@@ -47,9 +47,6 @@ export default function PupCard({
         });
       }
     }
-    
-  /*   alreadyRemoved.push(id);
-    console.log("alreadyRemoved: ", alreadyRemoved); */
   };
 
   return (
