@@ -44,6 +44,7 @@
   background-color: white;
 
   &__details {
+    margin-bottom: -20px;
     height: 100%;
     width: 100%;
     display: flex;
@@ -71,12 +72,22 @@
   &__return {
     align-self: flex-end;
     position: relative;
+    bottom: 20px;
   }
   &__genderEnergy {
     display: flex;
     color: $dark-gray;
   }
-  &__genderIcons {
-    font-size: 35px;
+  &__genderIconMale {
+    font-size: 30px;
+    position: relative;
+    top: 2px;
+    color: orange;
+  }
+  &__genderIconFemale {
+    font-size: 30px;
+    position: relative;
+    top: 2px;
+    color: $blue;
   }
 }

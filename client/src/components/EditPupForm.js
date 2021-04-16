@@ -2,7 +2,6 @@ import React from "react";
 import usePupData from "../hooks/usePupData";
 import { useHistory } from "react-router-dom";
 
-
 //material ui components
 
 import * as mui from "@material-ui/core";
@@ -20,7 +19,6 @@ import ImageIcon from "@material-ui/icons/Image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faVenus, faMars } from "@fortawesome/free-solid-svg-icons";
 
-
 //Component for adding new pup
 
 export default function EditPupForm({ user, location }) {
@@ -34,31 +32,34 @@ export default function EditPupForm({ user, location }) {
     selectedDate,
     uploadImage,
     photoURL,
-    editPup
+    editPup,
   } = usePupData();
 
-  console.log(location)
+  console.log(location);
 
   const pupID = formData._id;
 
   const history = useHistory();
   const male = <FontAwesomeIcon className="pupForm__icons" icon={faMars} />;
-  const female = <FontAwesomeIcon className="pupForm__icons" icon={faVenus} />
+  const female = <FontAwesomeIcon className="pupForm__icons" icon={faVenus} />;
 
   return (
     <div className="pupForm">
       <ThemeProvider theme={muiTheme}>
         <form
           className="pupForm__card"
-          onSubmit={ !pupID ? (e) => {
-            addPup(e, user, location).then(() => {
-              history.goBack();
-            }) 
-          } : (e) => {
-              editPup(e, user, location).then(() => {
-                history.goBack();
-              })
-            }
+          onSubmit={
+            !pupID
+              ? (e) => {
+                  addPup(e, user, location).then(() => {
+                    history.goBack();
+                  });
+                }
+              : (e) => {
+                  editPup(e, user, location).then(() => {
+                    history.goBack();
+                  });
+                }
           }
         >
           {photoURL ? (
@@ -67,14 +68,13 @@ export default function EditPupForm({ user, location }) {
                 <mui.Input
                   type="file"
                   onChange={(e) => uploadImage(e.target.files[0])}
-                required={ !pupID ? true : false} 
+                  required={!pupID ? true : false}
                 />
                 <mui.Avatar
                   style={{
                     height: "75px",
                     width: "75px",
                     alignSelf: "center",
-                  
                   }}
                   src={photoURL}
                   alt="your - pup"
@@ -87,7 +87,7 @@ export default function EditPupForm({ user, location }) {
                 <mui.Input
                   type="file"
                   onChange={(e) => uploadImage(e.target.files[0])}
-                 required={true}
+                  required={true}
                 />
                 <AddCircleIcon className="pupForm__icons__upload" />
                 <ImageIcon fontSize="large" className="pupForm__icons__image" />
@@ -189,6 +189,7 @@ export default function EditPupForm({ user, location }) {
           </mui.InputLabel>
 
           <mui.Slider
+            
             value={formData.energy}
             id="energy"
             name="energy"
@@ -226,6 +227,4 @@ export default function EditPupForm({ user, location }) {
       </ThemeProvider>
     </div>
   );
-  
-            
 }

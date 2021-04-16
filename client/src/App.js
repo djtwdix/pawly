@@ -8,7 +8,7 @@ import * as comp from "./components";
 function App() {
   const [user, loading] = useAuthState(auth);
   const { location } = useLocationData();
-  console.log('location: ', location);
+  console.log("location: ", location);
 
   return (
     <div className="App">
@@ -23,27 +23,27 @@ function App() {
             )}
           </Route>
           <Route exact path="/chats">
-            <comp.Navbar backButton={true} user={user} hideChatButton={true} />
+            <comp.Navbar backButton={"/"} user={user} hideChatButton={true} />
             <comp.ChatList user={user} />
           </Route>
           <Route path="/chats/messages">
-            <comp.Navbar backButton={true} user={user} />
+            <comp.Navbar backButton={"/chats"} user={user} />
             {user && <comp.ChatWindow user={user} />}
           </Route>
-          <Route path="/users/:uid">
-            <comp.Navbar backButton={true} user={user} />
+          <Route path="/profile">
+            <comp.Navbar backButton={"/"} user={user} />
             <comp.ProfileList />
           </Route>
           <Route exact path="/pups">
-            <comp.Navbar backButton={true} user={user} />
+            <comp.Navbar backButton={"/profile"} user={user} />
             <comp.PupList user={user} />
           </Route>
           <Route path="/pups/new">
-            <comp.Navbar backButton={true} user={user} />
+            <comp.Navbar backButton={"/pups"} user={user} />
             <comp.EditPupForm user={user} location={location} />
           </Route>
           <Route path="/pups/edit">
-            <comp.Navbar backButton={true} user={user} />
+            <comp.Navbar backButton={"/pups"} user={user} />
             <comp.EditPupForm user={user} location={location} />
           </Route>
         </Switch>

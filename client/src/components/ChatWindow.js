@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import * as mui from "@material-ui/core";
 import moment from "moment";
 import ChatMessage from "./ChatMessage";
@@ -25,6 +25,13 @@ export default function ChatWindow({ user }) {
     return <ChatMessage key={message._id} user={user} message={message} />;
   });
 
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   return (
     <div>
@@ -33,7 +40,7 @@ export default function ChatWindow({ user }) {
           You matched {moment(chatInfo.created_at).fromNow()}
         </p>
         {parsedMessages}
-        <div style={{ height: "63px", display: "none" }} ref={messagesEndRef} />
+        <div ref={messagesEndRef} />
         <form onSubmit={handleSubmit} className="chatWindow__messageInput">
           {showEmojis ? (
             <div>

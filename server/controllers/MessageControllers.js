@@ -17,7 +17,7 @@ export const getMessagesByChatId = (req, res) => {
   Messages.aggregate(
     [
       { $match: { chat_id: chat_id } },
-      { $limit: 50 },
+     
       {
         $lookup: {
           from: "users",

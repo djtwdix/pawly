@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: row;
   width: 100%;
   &__avatarDetails {
     display: flex;
@@ -24,11 +25,16 @@
     flex-direction: column;
   }
   &__button {
-    width: 100%;
+    width: 90%;
     height: 15vh;
     border-bottom: 1px solid rgb(251, 251, 251);
     color: $light-pink !important;
     display: flex;
     justify-content: center;
+  }
+  &__destroy {
+    display: flex;
+    width: 10%;
+    height: 100px;
   }
 }

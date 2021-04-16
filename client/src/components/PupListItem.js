@@ -11,6 +11,7 @@ export default function PupListItem({ pup }) {
   const { destroyPup } = usePupData();
 
   return (
+    <section>
     <Link to={{ pathname:`/pups/edit` , state: pup}}>
       <Button className="pupListItem__button">
         <section key={pup._id} className="pupListItem">
@@ -26,12 +27,11 @@ export default function PupListItem({ pup }) {
           </div>
           </div>
         </section>
-      </Button>
-      <div className="pupListItem__destroy">
-        <Button>
-         <DeleteForeverIcon onClick={() => destroyPup()}/> 
         </Button>
-      </div>
-    </Link>
+        </Link>
+        <Button className="pupListItem__destroy">
+         <DeleteForeverIcon onClick={() => destroyPup(pup._id)}/> 
+        </Button>
+        </section>
   );
 }

@@ -98,7 +98,7 @@ export const getAllPups = (req, res) => {
 
 export const destroyPupById = (req, res) => {
   const pupID = req.params.pupId;
-
+console.log(pupID);
   Pups.deleteOne({_id: pupID},  (err, data) => {
     if (err) {
       res.status(500).send(err);
