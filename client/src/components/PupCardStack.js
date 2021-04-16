@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import usePupData from "../hooks/usePupData";
 import PupCard from "./PupCard";
 import PupCardInfo from "./PupCardInfo";
@@ -16,21 +16,22 @@ export default function PupCardStack({ user }) {
     (pup) => console.log(pup) getDistanceByCoords(pup.location.coordinates, location.coordinates) < 50 
   ); */
 
+  
   const removePup = () => {
     setPups((prev) => [...prev.slice(0, prev.length - 1)]);
   };
 
-  console.log(pups);
-
-  const parsedPups = pups.map((pup) => {
+  const parsedPups = pups.map((pup, index) => {
     return (
       <PupCard
+        index={index}
         removePup={removePup}
         key={pup._id}
         pup={pup}
         user={user}
         owner={pup.owner_id}
         photoController={photoController}
+      
       />
     );
   });

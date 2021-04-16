@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 export default function useLocationData() {
   const [location, setLocation] = useState({});
 
-  useEffect(() => {
+   useEffect(() => {
     navigator.geolocation.getCurrentPosition((res) => {
       setLocation({
         type: "Point",
