@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 
 export default function useLocationData() {
-  const [location, setLocation] = useState({});
+  const [location, setLocation] = useState(null);
 
-  useEffect(() => {
+   useEffect(() => {
     navigator.geolocation.getCurrentPosition((res) => {
       console.log(res);
       setLocation({

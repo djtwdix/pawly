@@ -5,7 +5,7 @@ import ListItemContainer from "./ListItemContainer";
 import getUserById from "../helpers/getUserById";
 import moment from "moment";
 
-export default function Chat({ chat, user }) {
+export default function ChatListItem({ chat, user }) {
   const [otherUser, setOtherUser] = useState({});
   const last_message = chat.last_message[0];
 
