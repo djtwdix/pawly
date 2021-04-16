@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBirthdayCake } from "@fortawesome/free-solid-svg-icons";
 import GenderIcon from "./GenderIcon";
 
-export default function PupCard({ pup, user, photoController }) {
+export default function PupCard({ pup, user, photoController, removePup }) {
   const { checkMatch } = useCardActions();
 
   const onSwipe = async (direction) => {
@@ -27,12 +27,13 @@ export default function PupCard({ pup, user, photoController }) {
         });
       }
     }
+    removePup();
   };
 
   return (
     <TinderCard
       className="swipe"
-      onSwipe={onSwipe}
+      onSwipe={(dir) => onSwipe(dir)}
       preventSwipe={["up", "down"]}
       key={pup._id}
     >
