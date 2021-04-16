@@ -18,12 +18,12 @@ export default function Navbar({ user, backButton, hideChatButton }) {
   return (
     <nav className="navbar">
       {backButton ? (
-        <IconButton onClick={(e) => history.goBack()}>
+        <IconButton onClick={(e) => history.push(backButton)}>
           <ArrowBackIosIcon fontSize="large" />
         </IconButton>
       ) : user ? (
         <Link
-          to={`users/${user.displayName.split(" ").join("").toLowerCase()}`}
+          to={"/profile"}
         >
           <IconButton>
             <Avatar
