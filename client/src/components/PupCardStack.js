@@ -12,8 +12,9 @@ export default function PupCardStack({ user }) {
   const { showPhoto, photoController } = useCardActions();
   const { location } = useLocationData();
 
-  //const nearPups = pups.filter( pup => getDistanceByCoords(pup.location.coordinates,location.coordinates) < 50 )
-  
+  /* const nearPups = pups.filter(
+    (pup) => console.log(pup) getDistanceByCoords(pup.location.coordinates, location.coordinates) < 50 
+  ); */
 
   const removePup = () => {
     setPups((prev) => [...prev.slice(0, prev.length - 1)]);
@@ -52,7 +53,6 @@ export default function PupCardStack({ user }) {
       <div className="pupCard__container">
         {showPhoto ? parsedPups : parsedPupsInfo}
       </div>
-      
     </section>
   );
 }
