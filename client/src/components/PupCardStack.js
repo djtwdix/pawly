@@ -9,28 +9,26 @@ import useLocationData from "../hooks/useLocationData";
 import MatchAlert from "./MatchAlert";
 import MatchAlert2 from "./MatchAlert2";
 
-
 export default function PupCardStack({ user }) {
   const { pups, setPups } = usePupData();
   const { showPhoto, photoController } = useCardActions();
   const { location } = useLocationData();
   const [showMatchAlert, setShowMatchAlert] = useState(false);
 
-   const nearPups = pups.filter(
-    (pup) => {
-      if(location){
-      return getDistanceByCoords(pup.location.coordinates, location.coordinates) < 50 
-      }
-    }); 
-    console.log(nearPups)
-  /* const matchAlert = () => {
+  const setMatchAlertFalse = () => {
     if (showMatchAlert) {
       setShowMatchAlert(false);
-    } else {
-      setShowMatchAlert(true);
-      
     }
-  }; */
+  };
+
+  const nearPups = pups.filter((pup) => {
+    if (location) {
+      return (
+        getDistanceByCoords(pup.location.coordinates, location.coordinates) < 50
+      );
+    }
+    return null;
+  });
 
   const removePup = () => {
     setPups((prev) => [...prev.slice(0, prev.length - 1)]);
@@ -51,7 +49,7 @@ export default function PupCardStack({ user }) {
     );
   });
 
-  const parsedPupsInfo = pups.map((pup, index) => {
+  const parsedPupsInfo = nearPups.map((pup, index) => {
     return (
       <PupCardInfo
         index={index}
@@ -70,7 +68,7 @@ export default function PupCardStack({ user }) {
     <section>
       <div className="pupCard__container">
         {showMatchAlert ? (
-            <MatchAlert2 />
+          <MatchAlert2 setMatchAlertFalse={setMatchAlertFalse} />
         ) : showPhoto ? (
           parsedPups
         ) : (
