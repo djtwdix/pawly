@@ -8,6 +8,7 @@ import getDistanceByCoords from "../helpers/getDistanceByCoords";
 import useLocationData from "../hooks/useLocationData";
 import MatchAlert from "./MatchAlert";
 import MatchAlert2 from "./MatchAlert2";
+import Zoom from "@material-ui/core/Zoom";
 
 export default function PupCardStack({ user }) {
   const { pups, setPups } = usePupData();
@@ -65,7 +66,15 @@ export default function PupCardStack({ user }) {
   return (
     <section>
       <div className="pupCard__container">
-        {showMatchAlert ? <MatchAlert2 /> : showPhoto ? parsedPups : parsedPupsInfo}
+        {showMatchAlert ? (
+          
+            <MatchAlert2 />
+     
+        ) : showPhoto ? (
+          parsedPups
+        ) : (
+          parsedPupsInfo
+        )}
       </div>
     </section>
   );
