@@ -32,7 +32,7 @@ function App() {
           </Route>
           <Route path="/profile">
             <comp.Navbar backButton={"/"} user={user} />
-            <comp.ProfileList />
+            <comp.ProfileList user={user}/>
           </Route>
           <Route exact path="/pups">
             <comp.Navbar backButton={"/profile"} user={user} />
@@ -45,6 +45,10 @@ function App() {
           <Route path="/pups/edit">
             <comp.Navbar backButton={"/pups"} user={user} />
             <comp.EditPupForm user={user} location={location} />
+          </Route>
+          <Route path="/user">
+          <comp.Navbar backButton={"/profile"} user={user} />
+            <comp.UserProfile />
           </Route>
         </Switch>
       </Router>
