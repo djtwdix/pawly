@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { io } from "socket.io-client";
 import { auth } from "../firebase/config";
-import { useLocation} from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 export default function useChatWindowData() {
   const user = auth.currentUser;
@@ -15,7 +15,7 @@ export default function useChatWindowData() {
   const chatData = useLocation();
   let chatID = null;
   if (chatData.state) {
-    chatID = chatData.state._id
+    chatID = chatData.state._id;
   }
 
   useEffect(() => {

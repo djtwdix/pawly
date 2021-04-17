@@ -4,7 +4,6 @@ import checkIfMatchExists from "../helpers/checkIfMatchExists.js";
 export const createChat = async (req, res) => {
   const participants = req.body.participants;
   const last_message = req.body.last_message;
-  console.log("last_message: ", last_message);
 
   const alreadyExists = await checkIfMatchExists(participants);
   if (!alreadyExists) {

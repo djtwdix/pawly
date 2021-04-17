@@ -2,13 +2,13 @@ import React, { useMemo, useState } from "react";
 import usePupData from "../hooks/usePupData";
 import PupCard from "./PupCard";
 import PupCardInfo from "./PupCardInfo";
-import SwipeButtons from "./SwipeButtons";
+
 import useCardActions from "../hooks/useCardActions";
 import getDistanceByCoords from "../helpers/getDistanceByCoords";
 import useLocationData from "../hooks/useLocationData";
 import MatchAlert from "./MatchAlert";
 import MatchAlert2 from "./MatchAlert2";
-import Zoom from "@material-ui/core/Zoom";
+
 
 export default function PupCardStack({ user }) {
   const { pups, setPups } = usePupData();
@@ -67,9 +67,7 @@ export default function PupCardStack({ user }) {
     <section>
       <div className="pupCard__container">
         {showMatchAlert ? (
-          
             <MatchAlert2 />
-     
         ) : showPhoto ? (
           parsedPups
         ) : (

@@ -35,8 +35,6 @@ export default function EditPupForm({ user, location }) {
     editPup,
   } = usePupData();
 
-  console.log(location);
-
   const pupID = formData._id;
 
   const history = useHistory();

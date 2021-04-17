@@ -20,6 +20,7 @@ export default function ChatWindow({ user }) {
     setInput,
   } = useChatWindowData();
   const messagesEndRef = useRef(null);
+  const messageInputRef = useRef(null);
 
   const parsedMessages = messages.map((message) => {
     return <ChatMessage key={message._id} user={user} message={message} />;
@@ -27,6 +28,10 @@ export default function ChatWindow({ user }) {
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const setFocus = () => {
+    messageInputRef.current.focus();
   };
 
   useEffect(() => {
@@ -67,6 +72,7 @@ export default function ChatWindow({ user }) {
           )}
           <div className="chatWindow__messageInputText">
             <mui.Input
+              ref={messageInputRef}
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Type a message here"
