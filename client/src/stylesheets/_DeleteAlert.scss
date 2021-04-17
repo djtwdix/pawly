@@ -1,0 +1,29 @@
+.deleteAlert {
+  display: flex;
+  background-color: rgb(254, 128, 128);
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  color: whitesmoke;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding: 0.77em;
+
+  &__message {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 10em;
+  }
+  &__yep {
+    color: whitesmoke !important;
+  }
+  &__nope {
+    
+    color: whitesmoke !important;
+  }
+}

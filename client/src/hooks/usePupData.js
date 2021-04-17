@@ -64,8 +64,6 @@ export default function usePupData() {
 
   const destroyPup = (pupID, index) => {
     setUserPups((prev) => [...prev.filter((pup) => pup._id !== pupID)]);
-    console.log("user pups: ", userPups);
-
     return axios.delete(`/pups/${pupID}`, {
       _id: pupID,
     });
