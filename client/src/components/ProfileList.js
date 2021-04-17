@@ -13,8 +13,9 @@ export default function ProfileList({ user }) {
         <ListItemContainer>PUPS</ListItemContainer>
       </Link>
       <ListItemContainer>PLAYDATES</ListItemContainer>
+      <ListItemContainer>SETTINGS</ListItemContainer>
       <ListItemContainer signOut={() => signOut(history)}>
-        SIGNOUT
+        SIGN OUT
       </ListItemContainer>
     </div>
   );
