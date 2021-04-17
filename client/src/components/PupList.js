@@ -14,7 +14,6 @@ export default function PupList({ user }) {
         destroyPup={destroyPup}
         key={pup._id}
         pup={pup}
-        index={index}
       />
     );
   });
