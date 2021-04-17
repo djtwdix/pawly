@@ -24,7 +24,6 @@ export default function useUserData() {
       getUserById(user.uid)
         .then((res) => {
          const currentUser = res.data
-         console.log(currentUser)
           const currentBio = currentUser.bio;
           setBio(currentBio)
           console.log('current bio:', currentBio);
