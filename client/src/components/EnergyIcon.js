@@ -16,7 +16,7 @@ export default function EnergyIcon({ energy }) {
       {energy === 2 && (
         <BatteryCharging50RoundedIcon
           fontSize="large"
-          style={{ color: "yellow" }}
+          style={{ color: "#ffce44" }}
         />
       )}
       {energy === 3 && (
