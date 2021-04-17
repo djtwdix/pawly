@@ -16,10 +16,13 @@ export default function PupCardStack({ user }) {
   const { location } = useLocationData();
   const [showMatchAlert, setShowMatchAlert] = useState(false);
 
-  /* const nearPups = pups.filter(
-    (pup) => console.log(pup) getDistanceByCoords(pup.location.coordinates, location.coordinates) < 50 
-  ); */
-
+   const nearPups = pups.filter(
+    (pup) => {
+      if(location){
+      return getDistanceByCoords(pup.location.coordinates, location.coordinates) < 50 
+      }
+    }); 
+    console.log(nearPups)
   /* const matchAlert = () => {
     if (showMatchAlert) {
       setShowMatchAlert(false);
@@ -33,7 +36,7 @@ export default function PupCardStack({ user }) {
     setPups((prev) => [...prev.slice(0, prev.length - 1)]);
   };
 
-  const parsedPups = pups.map((pup, index) => {
+  const parsedPups = nearPups.map((pup, index) => {
     return (
       <PupCard
         index={index}
