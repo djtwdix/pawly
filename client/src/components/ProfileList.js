@@ -5,10 +5,11 @@ import { Link, useHistory } from "react-router-dom";
 
 export default function ProfileList({ user }) {
   const history = useHistory();
-
   return (
     <div>
+      <Link to={{pathname:"/user"}}>
       <ListItemContainer>PROFILE</ListItemContainer>
+      </Link>
       <Link to="/pups">
         <ListItemContainer>PUPS</ListItemContainer>
       </Link>
