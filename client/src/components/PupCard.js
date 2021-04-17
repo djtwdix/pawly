@@ -13,7 +13,7 @@ export default function PupCard({
   photoController,
   removePup,
   index,
-  matchAlert
+  setShowMatchAlert,
 }) {
   const { checkMatch } = useCardActions();
   const { pups } = usePupData();
@@ -28,7 +28,7 @@ export default function PupCard({
 
   const swipe = (direction) => {
     if (pups.length) {
-      childRefs[index].current.swipe(direction)
+      childRefs[index].current.swipe(direction);
     }
   };
 
@@ -39,7 +39,9 @@ export default function PupCard({
       });
       const isMatch = await checkMatch(user.uid, pup.owner_id);
       if (isMatch) {
-        matchAlert()
+        setShowMatchAlert(true);
+       
+        setTimeout(() => setShowMatchAlert(false), 2000);
         const participants = [user.uid, pup.owner_id];
         axios.post("/chats", {
           participants,
