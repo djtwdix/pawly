@@ -1,15 +1,24 @@
-import React from "react";
+import React, {useState} from "react";
 import { Avatar, Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import EditIcon from "@material-ui/icons/Edit";
-import usePupData from "../hooks/usePupData";
 import { useHistory } from "react-router-dom";
+import DeleteAlert from "./DeleteAlert";
+import useDeleteAlert from "../hooks/useDeleteAlert";
 
-export default function PupListItem({ pup, index, destroyPup }) {
+export default function PupListItem({ pup, destroyPup }) {
   const history = useHistory();
+  const {showDeleteAlert, deleteAlert} = useDeleteAlert();
+
   return (
-    <section style={{ display: "flex", justifyContent: "space-between" }}>
+    <section>
+      {showDeleteAlert ? <DeleteAlert 
+      destroyPup={destroyPup} 
+      pup={pup} 
+      deleteAlert={deleteAlert}
+      /> :  
+        <section style={{ display: "flex", justifyContent: "space-between" }}>
       <Link to={{ pathname: `/pups/edit`, state: pup }}>
         <Button
           style={{ backgroundColor: "transparent" }}
@@ -39,9 +48,12 @@ export default function PupListItem({ pup, index, destroyPup }) {
           <EditIcon />
         </Button>
         <Button className="pupListItem__destroy">
-          <DeleteForeverIcon onClick={() => destroyPup(pup._id, index)} />
+          <DeleteForeverIcon onClick={() => deleteAlert()} />
         </Button>
-      </div>
+      </div> 
+      
+    </section>
+     }
     </section>
   );
 }
