@@ -4,7 +4,7 @@ import getUserById from "../helpers/getUserById";
 
 export default function ChatMessage({ user, message }) {
   const [otherUser, setOtherUser] = useState({});
-  
+
   useEffect(() => {
     if (message && user) {
       if (message.sender_id !== user.uid) {
@@ -13,8 +13,8 @@ export default function ChatMessage({ user, message }) {
         });
       }
     }
-  });
-  
+  }, [message, user]);
+
   return (
     <section>
       {user.uid !== message.sender_id ? (

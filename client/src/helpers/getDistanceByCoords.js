@@ -1,7 +1,9 @@
 
  const getDistanceByCoords = (array1,array2) => {
   // coordinate arrays 
+  if(array1 && array2) {
   const lat1 = array1[1]
+  console.log(array1,array2)
   const lat2 = array2[1]
   const lon1 = array1[0]
   const lon2 = array2[0]
@@ -25,6 +27,7 @@ const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 const distanceKm = (R * c) / 1000; // Distance in km 
 
   return Math.floor(distanceKm) ; //rounded 
+  }
 }
 
 export default getDistanceByCoords

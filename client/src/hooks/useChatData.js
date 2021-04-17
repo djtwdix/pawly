@@ -2,9 +2,8 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { auth } from "../firebase/config";
 
-
 export default function useChatData() {
-  const user = auth.currentUser; 
+  const user = auth.currentUser;
   const [chats, setChats] = useState([]);
 
   useEffect(() => {
@@ -16,6 +15,6 @@ export default function useChatData() {
     if (user) {
       getChatsByUserID(user.uid);
     }
-  });
+  }, [user]);
   return { chats };
 }

@@ -1,8 +1,8 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { io } from "socket.io-client";
 import { auth } from "../firebase/config";
-import { useLocation} from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 export default function useChatWindowData() {
   const user = auth.currentUser;
@@ -11,11 +11,12 @@ export default function useChatWindowData() {
   const [connection, setConnection] = useState({});
   const [input, setInput] = useState("");
   const [showEmojis, setShowEmojis] = useState(false);
+  const messageInputRef = useRef(null);
 
   const chatData = useLocation();
   let chatID = null;
   if (chatData.state) {
-    chatID = chatData.state._id
+    chatID = chatData.state._id;
   }
 
   useEffect(() => {
@@ -71,6 +72,7 @@ export default function useChatWindowData() {
 
   const onEmojiClick = (event, emojiObject) => {
     setInput((prev) => prev + emojiObject.emoji);
+    messageInputRef.current.focus();
     setShowEmojis(false);
   };
 
@@ -91,5 +93,6 @@ export default function useChatWindowData() {
     onEmojiClick,
     input,
     setInput,
+    messageInputRef,
   };
 }

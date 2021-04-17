@@ -40,8 +40,6 @@ export default function PupCard({
       const isMatch = await checkMatch(user.uid, pup.owner_id);
       if (isMatch) {
         setShowMatchAlert(true);
-
-        setTimeout(() => setShowMatchAlert(false), 1300);
         const participants = [user.uid, pup.owner_id];
         axios.post("/chats", {
           participants,

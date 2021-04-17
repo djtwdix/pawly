@@ -18,8 +18,10 @@ export default function ChatWindow({ user }) {
     onEmojiClick,
     input,
     setInput,
+    messageInputRef
   } = useChatWindowData();
   const messagesEndRef = useRef(null);
+  
 
   const parsedMessages = messages.map((message) => {
     return <ChatMessage key={message._id} user={user} message={message} />;
@@ -67,6 +69,7 @@ export default function ChatWindow({ user }) {
           )}
           <div className="chatWindow__messageInputText">
             <mui.Input
+              inputRef={messageInputRef}
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Type a message here"

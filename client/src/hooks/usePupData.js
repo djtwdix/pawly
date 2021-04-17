@@ -2,12 +2,10 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { auth } from "../firebase/config";
 import { useLocation } from "react-router-dom";
-import useLocationData from "./useLocationData";
 
 export default function usePupData() {
   const user = auth.currentUser;
   const data = useLocation();
-  const { location } = useLocationData();
   const [selectedDate, setSelectedDate] = useState();
   const [charRemaining, setCharRemaining] = useState(140);
   const [formData, setFormData] = useState({
@@ -41,9 +39,8 @@ export default function usePupData() {
         setUserPups(result.data);
       };
       getPupsByOwnerId(user.uid);
-      console.log(userPups);
     }
-  }, [user, location]);
+  }, [user]);
 
   const addPup = (e, user, location) => {
     e.preventDefault();
@@ -66,10 +63,7 @@ export default function usePupData() {
   };
 
   const destroyPup = (pupID, index) => {
-    console.log("clicked destroy");
     setUserPups((prev) => [...prev.filter((pup) => pup._id !== pupID)]);
-    console.log("user pups: ", userPups);
-
     return axios.delete(`/pups/${pupID}`, {
       _id: pupID,
     });
