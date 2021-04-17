@@ -1,12 +1,11 @@
 .pupListItem {
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-direction: row;
   width: 100%;
+  flex-direction: row;
+  padding-left: 20px;
   &__avatarDetails {
     display: flex;
-    width: 200px;
   }
   &__details {
     display: flex;
@@ -25,16 +24,12 @@
     flex-direction: column;
   }
   &__button {
-    width: 90%;
     height: 15vh;
+    min-width: 200px;
     border-bottom: 1px solid rgb(251, 251, 251);
     color: $light-pink !important;
-    display: flex;
-    justify-content: center;
   }
   &__destroy {
-    display: flex;
-    width: 10%;
-    height: 100px;
+    color: rgb(254, 128, 128) !important;
   }
 }

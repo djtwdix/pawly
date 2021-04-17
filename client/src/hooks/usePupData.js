@@ -41,6 +41,7 @@ export default function usePupData() {
         setUserPups(result.data);
       };
       getPupsByOwnerId(user.uid);
+      console.log(userPups);
     }
   }, [user, location]);
 
@@ -64,11 +65,13 @@ export default function usePupData() {
     });
   };
 
-  const destroyPup = (pupID) => {
-    console.log('clicked destroy')
-    
+  const destroyPup = (pupID, index) => {
+    console.log("clicked destroy");
+    setUserPups([]);
+    console.log("user pups: ", userPups);
+
     return axios.delete(`/pups/${pupID}`, {
-      _id: pupID
+      _id: pupID,
     });
   };
 
@@ -134,6 +137,7 @@ export default function usePupData() {
     userPups,
     editPup,
     setPups,
-    destroyPup
+    destroyPup,
+    setUserPups,
   };
 }

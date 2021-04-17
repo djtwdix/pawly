@@ -6,10 +6,17 @@ import { Link } from "react-router-dom";
 import usePupData from "../hooks/usePupData";
 
 export default function PupList({ user }) {
-  const { userPups } = usePupData();
+  const { userPups, destroyPup } = usePupData();
 
-  const parsedPups = userPups.map((pup) => {
-    return <PupListItem key={pup._id} pup={pup} />;
+  const parsedPups = userPups.map((pup, index) => {
+    return (
+      <PupListItem
+        destroyPup={destroyPup}
+        key={pup._id}
+        pup={pup}
+        index={index}
+      />
+    );
   });
 
   return (
