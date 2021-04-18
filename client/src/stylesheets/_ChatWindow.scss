@@ -52,4 +52,11 @@
     margin-left: 20px;
     color: $dark-pink;
   }
+
+  &__userLink {
+    color: $dark-pink;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
