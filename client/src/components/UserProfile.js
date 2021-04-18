@@ -42,7 +42,7 @@ export default function UserProfile() {
         <div className="userBio__info">
           <h1>{profile.name}</h1>
         </div>
-        <p className="userBio__about">{`About me:`}</p>
+        <p className="userBio__about">About me</p>
         <p className="userBio__aboutUser"> {profile.bio}</p>
       </div> }
       
