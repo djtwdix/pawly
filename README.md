@@ -5,6 +5,6 @@ Pawly is a website that helps you connect with dog owners in your area in order 
 
 This website was a collaborative effort done as our final for Lighthouse Labs.
 The collaborators : 
-- @djtwdix
-- @jessedxi
-- @dawecode
+- [Daniel James](https://github.com/djtwdix)
+- [Jesse Daoust](https://github.com/jessedxi)
+- [Catherine Dawe](https://github.com/dawecode)
