@@ -7,14 +7,14 @@ import dogBark from "../assets/audio/dog bark.wav";
 
 export default function MatchAlert2({ setMatchAlertFalse }) {
   return (
-    <div className="matchAlert2__container" style={{ marginTop: "20px" }}>
+    <div className="matchAlert2__container" style={{ marginTop: "4rem" }}>
       <div className="matchAlert2">
         <img src={matchAlert} alt="match"></img>
         <Link to="/chats">
           <img
             src={goChat}
             alt="chat"
-            style={{ height: "100px", width: "100px" }}
+            style={{ height: "100px", width: "100px",  }}
           ></img>
         </Link>
         <img
