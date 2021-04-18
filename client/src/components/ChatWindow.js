@@ -7,6 +7,7 @@ import Picker from "emoji-picker-react";
 import EmojiEmotionsIcon from "@material-ui/icons/EmojiEmotions";
 import CloseIcon from "@material-ui/icons/Close";
 import useChatWindowData from "../hooks/useChatWindowData";
+import { Link } from "react-router-dom";
 
 export default function ChatWindow({ user }) {
   const {
@@ -18,10 +19,10 @@ export default function ChatWindow({ user }) {
     onEmojiClick,
     input,
     setInput,
-    messageInputRef
+    messageInputRef,
+    otherUser
   } = useChatWindowData();
-  const messagesEndRef = useRef(null);
-  
+  const messagesEndRef = useRef(null);  
 
   const parsedMessages = messages.map((message) => {
     return <ChatMessage key={message._id} user={user} message={message} />;
@@ -39,7 +40,11 @@ export default function ChatWindow({ user }) {
     <div>
       <section className="chatWindow">
         <p className="chatWindow__match">
-          You matched {moment(chatInfo.created_at).fromNow()}
+          You matched  
+          <Link to={{pathname: `/profile/${otherUser._id}`, otherUser: otherUser}}>
+            <mui.Button> {otherUser.name}</mui.Button>
+            </Link>  
+            {moment(chatInfo.created_at).fromNow()}
         </p>
         {parsedMessages}
         <div ref={messagesEndRef} />

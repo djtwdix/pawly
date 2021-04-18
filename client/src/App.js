@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import useLocationData from "./hooks/useLocationData";
 import * as comp from "./components";
 
+
 function App() {
   const [user, loading] = useAuthState(auth);
   const { location } = useLocationData();
@@ -26,7 +27,7 @@ function App() {
               <comp.Navbar backButton={"/chats"} user={user} />
               {user && <comp.ChatWindow user={user} />}
             </Route>
-            <Route path="/profile">
+            <Route exact path="/profile">
               <comp.Navbar backButton={"/"} user={user} />
               <comp.ProfileList user={user} />
             </Route>
@@ -44,6 +45,10 @@ function App() {
             </Route>
             <Route path="/user">
               <comp.Navbar backButton={"/profile"} user={user} />
+              <comp.UserProfile />
+            </Route>
+            <Route path="/profile/:id">
+              <comp.Navbar backButton={"/chats"} user={user}  />
               <comp.UserProfile />
             </Route>
           </comp.AuthChecker>
