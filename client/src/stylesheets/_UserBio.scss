@@ -64,4 +64,16 @@
     margin: auto;
     margin-top: 1rem;
   }
+
+  &__about {
+    color: $blue;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    text-decoration: underline;
+  }
+
+  &__aboutUser {
+    margin-top: 1rem;
+    margin-left: 1rem;
+  }
 }
