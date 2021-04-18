@@ -12,7 +12,7 @@ export default function AuthChecker({ children, user, loading }) {
           <SignIn />
         </>
       ) : (
-        children
+        !loading && children
       )}
     </div>
   );
