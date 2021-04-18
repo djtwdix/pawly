@@ -7,14 +7,19 @@ import { faBone } from "@fortawesome/free-solid-svg-icons";
 
 import React from "react";
 
-export default function SwipeButtons({ swipe }) {
+export default function SwipeButtons({ swipe, throwABone, id }) {
   return (
     <section>
       <footer className="swipeButtons MultiIconButton-root">
         <IconButton onClick={() => swipe("left")}>
           <CloseIcon className="swipeButtons__close" />
         </IconButton>
-        <IconButton>
+        <IconButton
+          onClick={() => {
+            throwABone(id);
+            swipe("up");
+          }}
+        >
           <FontAwesomeIcon className="swipeButtons__bone" icon={faBone} />
         </IconButton>
         <IconButton onClick={() => swipe("right")}>

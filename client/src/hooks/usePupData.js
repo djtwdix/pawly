@@ -41,7 +41,7 @@ export default function usePupData() {
       };
       getPupsByOwnerId(user.uid);
     }
-    setTimeout(() => setLoading(false), 6000);
+    setTimeout(() => setLoading(false), 4000);
   }, [user]);
 
   const addPup = (e, user, location) => {
@@ -62,6 +62,10 @@ export default function usePupData() {
       owner_id: user.uid,
       photoURL: photoURL,
     });
+  };
+
+  const throwABone = (pupID) => {
+    axios.put(`pups/${pupID}/bone`);
   };
 
   const destroyPup = (pupID, index) => {
@@ -136,5 +140,7 @@ export default function usePupData() {
     destroyPup,
     setUserPups,
     loading,
+    throwABone,
+    setLoading,
   };
 }

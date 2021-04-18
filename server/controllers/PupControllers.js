@@ -15,8 +15,8 @@ export const createPup = (req, res) => {
 
 export const editPup = (req, res) => {
   const pupsInfo = req.body;
-  const pupID = req.params.pupId
-  Pups.findOneAndUpdate({_id: pupID}, pupsInfo, (err, data) => {
+  const pupID = req.params.pupId;
+  Pups.findOneAndUpdate({ _id: pupID }, pupsInfo, (err, data) => {
     if (err) {
       res.status(500).send(err);
       console.log(err);
@@ -24,7 +24,23 @@ export const editPup = (req, res) => {
       res.status(200).send(data);
     }
   });
-}
+};
+
+export const addABone = (req, res) => {
+  const pupID = req.params.pupId;
+  Pups.findOneAndUpdate(
+    { _id: pupID },
+    { $inc: { bones: 1 } },
+    (err, data) => {
+      if (err) {
+        res.status(500).send(err);
+        console.log(err);
+      } else {
+        res.status(200).send(data);
+      }
+    }
+  );
+};
 
 export const getPupsByOwner = (req, res) => {
   const owner_id = req.params.userId;
@@ -98,8 +114,8 @@ export const getAllPups = (req, res) => {
 
 export const destroyPupById = (req, res) => {
   const pupID = req.params.pupId;
-console.log(pupID);
-  Pups.deleteOne({_id: pupID},  (err, data) => {
+  console.log(pupID);
+  Pups.deleteOne({ _id: pupID }, (err, data) => {
     if (err) {
       res.status(500).send(err);
       console.log(err);
@@ -107,5 +123,4 @@ console.log(pupID);
       res.status(200).send(data);
     }
   });
-}
-
+};
