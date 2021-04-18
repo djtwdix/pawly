@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import useUserData from "../hooks/useUserData";
 import * as mui from "@material-ui/core";
 import getInitials from "../helpers/getInitials";
 import { Avatar } from "@material-ui/core";
+import { useParams } from "react-router-dom";
+import { ContactsOutlined } from "@material-ui/icons";
+import getUserById from "../helpers/getUserById";
+import useProfileData from "../hooks/useProfileData";
+
 
 export default function UserProfile() {
   const {
@@ -15,9 +20,50 @@ export default function UserProfile() {
     photo,
   } = useUserData();
 
-  return (
+  const { profile } = useProfileData();
+
+ /* const [profile, setUserProfile] = useState({})
+  const params = useParams();
+  //console.log(params)
+   
+   useEffect(() => {
+    getUserById(params.id).then((res) => {
+      setUserProfile(res.data);
+      console.log(profile)
+    })
+   }, [params])
+ */
+
+
+  return ( 
     <section className="userBio__container">
+      
+      {profile &&
       <div className="userBio">
+        <div className="userBio__display">
+          <Avatar
+            className="userBio__avatar"
+            src={profile.photoURL}
+            style={{
+              margin: "0",
+              position: "relative",
+              top: "40px",
+              right: "20px",
+              height: "110px",
+              width: "110px",
+            }}
+          >
+            {/* {getInitials(name)} */}
+          </Avatar>
+        </div>
+        <div className="userBio__info">
+          <h1>{profile.name}</h1>
+        </div>
+        <p className="userBio__otherUser">{profile.bio}</p>
+      </div> }
+      
+      {!profile &&
+        <div className="userBio">
         <div className="userBio__display">
           <Avatar
             className="userBio__avatar"
@@ -70,6 +116,7 @@ export default function UserProfile() {
           </div>
         </form>
       </div>
+      }
     </section>
   );
 }
