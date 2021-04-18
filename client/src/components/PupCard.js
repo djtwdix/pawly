@@ -64,7 +64,7 @@ export default function PupCard({
           style={{ backgroundImage: `url(${pup.photoURL})` }}
         >
           <div className="pupBadge">
-            <h3>{pup.name}</h3>
+            <h1>{pup.name}</h1>
           </div>
           <div className="pupCard__info">
             <IconButton onClick={(e) => photoController()}>
