@@ -27,7 +27,7 @@ export default function useUserData() {
           const currentBio = currentUser.bio;
           setBio(currentBio)
           console.log('current bio:', currentBio);
-          setCharRemaining(140 - currentBio.length);
+          setCharRemaining(140 - bio.length);
         }
         )
     }
