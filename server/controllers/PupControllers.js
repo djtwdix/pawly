@@ -28,18 +28,14 @@ export const editPup = (req, res) => {
 
 export const addABone = (req, res) => {
   const pupID = req.params.pupId;
-  Pups.findOneAndUpdate(
-    { _id: pupID },
-    { $inc: { bones: 1 } },
-    (err, data) => {
-      if (err) {
-        res.status(500).send(err);
-        console.log(err);
-      } else {
-        res.status(200).send(data);
-      }
+  Pups.findOneAndUpdate({ _id: pupID }, { $inc: { bones: 1 } }, (err, data) => {
+    if (err) {
+      res.status(500).send(err);
+      console.log(err);
+    } else {
+      res.status(200).send(data);
     }
-  );
+  });
 };
 
 export const getPupsByOwner = (req, res) => {
@@ -90,6 +86,11 @@ export const getAllPups = (req, res) => {
       {
         $match: {
           owner_id: { $ne: user_id },
+        },
+      },
+      {
+        $sort: {
+          bones: 1,
         },
       },
       {
