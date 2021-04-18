@@ -2,6 +2,7 @@ import React, { useMemo, useState } from "react";
 import usePupData from "../hooks/usePupData";
 import PupCard from "./PupCard";
 import PupCardInfo from "./PupCardInfo";
+import loadingGif from "../assets/images/giphy.gif";
 
 import useCardActions from "../hooks/useCardActions";
 import getDistanceByCoords from "../helpers/getDistanceByCoords";
@@ -9,7 +10,7 @@ import useLocationData from "../hooks/useLocationData";
 import MatchAlert2 from "./MatchAlert2";
 
 export default function PupCardStack({ user }) {
-  const { pups, setPups } = usePupData();
+  const { pups, setPups, loading } = usePupData();
   const { showPhoto, photoController } = useCardActions();
   const { location } = useLocationData();
   const [showMatchAlert, setShowMatchAlert] = useState(false);
@@ -66,6 +67,13 @@ export default function PupCardStack({ user }) {
   return (
     <section>
       <div className="pupCard__container">
+        {loading && !showMatchAlert && (
+          <img
+            src={loadingGif}
+            alt="loading"
+            style={{ width: "200px", height: "200px", borderRadius: "50%" }}
+          />
+        )}
         {showMatchAlert ? (
           <MatchAlert2 setMatchAlertFalse={setMatchAlertFalse} />
         ) : showPhoto ? (
