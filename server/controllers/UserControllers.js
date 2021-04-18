@@ -71,3 +71,21 @@ export const addLike = (req, res) => {
     }
   );
 };
+
+  export const addBio = (req, res) => {
+    const userId = req.params.userId;
+    const bio = req.body.bio;
+    console.log(bio);
+    Users.updateOne(
+      { _id: userId },
+      { bio: bio } ,
+      (err, data) => {
+        if (err) {
+          res.status(500).send(err);
+        } else {
+          res.status(200).send(data);
+        }
+      }
+    );
+  };
+

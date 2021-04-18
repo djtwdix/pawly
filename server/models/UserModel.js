@@ -15,6 +15,7 @@ const userModel = mongoose.Schema({
   name: String,
   email: String,
   photoURL: String,
+  bio: String,
   blocks: Array,
   likes: Array,
   location: {
