@@ -70,8 +70,8 @@ export default function PupCard({
             <div className="infoCard__header">
               <Avatar
                 style={{
-                  height: "80px",
-                  width: "80px",
+                  height: "110px",
+                  width: "110px",
                   marginBottom: "0.5em",
                   position: "relative",
                   top: "40px",
