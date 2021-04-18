@@ -40,11 +40,11 @@ export default function ChatWindow({ user }) {
     <div>
       <section className="chatWindow">
         <p className="chatWindow__match">
-          You matched  
-          <Link to={{pathname: `/profile/${otherUser._id}`, otherUser: otherUser}}>
-            <mui.Button> {otherUser.name}</mui.Button>
+          {"You matched "}
+          <Link to={{pathname: `/profile/${otherUser._id}`, otherUser: otherUser}} className="chatWindow__userLink">
+            { otherUser.name }
             </Link>  
-            {moment(chatInfo.created_at).fromNow()}
+            {" "} {moment(chatInfo.created_at).fromNow()}
         </p>
         {parsedMessages}
         <div ref={messagesEndRef} />
