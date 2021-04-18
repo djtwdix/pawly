@@ -1,7 +1,6 @@
 import React from "react";
 import useUserData from "../hooks/useUserData";
 import * as mui from "@material-ui/core";
-import getInitials from "../helpers/getInitials";
 import { Avatar } from "@material-ui/core";
 
 export default function UserProfile() {

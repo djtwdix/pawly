@@ -14,7 +14,6 @@ export default function PupCard({
   removePup,
   index,
   setShowMatchAlert,
-
 }) {
   const { checkMatch } = useCardActions();
   const { pups, throwABone } = usePupData();
