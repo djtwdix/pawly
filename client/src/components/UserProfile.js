@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import useUserData from "../hooks/useUserData";
 import * as mui from "@material-ui/core";
 import { Avatar } from "@material-ui/core";
-import { useParams } from "react-router-dom";
-import { ContactsOutlined } from "@material-ui/icons";
-import getUserById from "../helpers/getUserById";
 import useProfileData from "../hooks/useProfileData";
 
 
@@ -20,19 +17,6 @@ export default function UserProfile() {
   } = useUserData();
 
   const { profile } = useProfileData();
-
- /* const [profile, setUserProfile] = useState({})
-  const params = useParams();
-  //console.log(params)
-   
-   useEffect(() => {
-    getUserById(params.id).then((res) => {
-      setUserProfile(res.data);
-      console.log(profile)
-    })
-   }, [params])
- */
-
 
   return ( 
     <section className="userBio__container">
