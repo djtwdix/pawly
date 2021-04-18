@@ -34,14 +34,13 @@ export default function usePupData() {
         });
         setPups(result.data);
       };
-      getAllPups(user.uid);
+      getAllPups(user.uid)
       const getPupsByOwnerId = async (owner_id) => {
         const result = await axios.get(`/users/${owner_id}/pups`);
         setUserPups(result.data);
       };
       getPupsByOwnerId(user.uid);
     }
-    setTimeout(() => setLoading(false), 4000);
   }, [user]);
 
   const addPup = (e, user, location) => {
