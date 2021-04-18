@@ -1,32 +1,67 @@
 .userBio {
-  display: flex;
   height: 100%;
+  width: 80vw;
+  display: flex;
+  max-height: 500px;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
- 
+  box-shadow: 0px 2px 5px lightgray;
+  overflow: hidden;
+  border-radius: 5px;
 
+  &__container {
+    margin-top: 2rem;
+    display: flex;
+    height: 75vh;
+    width: 100vw;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+  }
   &__display {
     display: flex;
-    width: 100%;
-    height: 50%;
+    width: 80%;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-   
+    background: linear-gradient($blue, white);
+    padding: 20px;
+    display: flex;
+    flex-direction: column-reverse;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    max-height: 50px;
   }
 
   &__info {
-    display: flex;
-    height: 40%;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
+    font-family: "Roboto", sans-serif;
+    margin-top: 3.5rem;
+    margin-left: 1rem;
+
+    h1 {
+      color: $light-pink;
+      font-size: 2rem;
+      font-weight: 900;
+    }
+    h4 {
+      color: $blue;
+      font-size: 1rem;
+    }
+    h6 {
+      color: $light-gray;
+    }
   }
 
   &__form {
+
+    width: 90%;
+    min-height: 200px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    margin: auto;
+    margin-top: 1rem;
   }
- 
 }
