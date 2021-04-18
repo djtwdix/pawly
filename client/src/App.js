@@ -8,12 +8,13 @@ import * as comp from "./components";
 function App() {
   const [user, loading] = useAuthState(auth);
   const { location } = useLocationData();
+  console.log('location: ', location)
 
   return (
     <div className="App">
       <Router>
         <Switch>
-          <comp.AuthChecker user={user} loading={loading}>
+          <comp.AuthChecker user={user} loading={loading} coords={location}>
             <Route exact path="/">
               <comp.Navbar user={user} />
               <comp.CardStack user={user} />

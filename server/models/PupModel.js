@@ -19,11 +19,13 @@ const pupModel = mongoose.Schema({
   energy: Number,
   owner_id: String,
   gender: String,
+  bones: {
+    type: Number,
+    default: 0,
+  },
   location: {
     type: pointSchema,
   },
 });
-
-
 
 export default mongoose.model("pups", pupModel);

@@ -14,9 +14,10 @@ export default function PupCard({
   removePup,
   index,
   setShowMatchAlert,
+
 }) {
   const { checkMatch } = useCardActions();
-  const { pups } = usePupData();
+  const { pups, throwABone } = usePupData();
 
   const childRefs = useMemo(
     () =>
@@ -37,6 +38,7 @@ export default function PupCard({
       axios.put(`/users/${user.uid}/likes`, {
         likeId: pup.owner_id,
       });
+      throwABone(pup._id);
       const isMatch = await checkMatch(user.uid, pup.owner_id);
       if (isMatch) {
         setShowMatchAlert(true);
@@ -55,7 +57,7 @@ export default function PupCard({
         ref={childRefs[index]}
         className="swipe"
         onSwipe={(dir) => onSwipe(dir)}
-        preventSwipe={["up", "down"]}
+        preventSwipe={["down"]}
         key={pup._id}
         onCardLeftScreen={() => removePup()}
       >
@@ -73,7 +75,7 @@ export default function PupCard({
           </div>
         </div>
       </TinderCard>
-      <SwipeButtons swipe={swipe} />
+      <SwipeButtons swipe={swipe} throwABone={throwABone} id={pup._id} />
     </>
   );
 }

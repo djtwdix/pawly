@@ -1,15 +1,15 @@
 import React from "react";
 import Navbar from "./Navbar";
 import SignIn from "./SignIn";
-import { useHistory } from "react-router-dom";
 
-export default function AuthChecker({ children, user, loading }) {
+export default function AuthChecker({ children, user, loading, coords }) {
+  console.log(coords);
   return (
     <div>
       {!loading && !user ? (
         <>
           <Navbar user={user} hideChatButton={true} />
-          <SignIn />
+          <SignIn coords={coords} />
         </>
       ) : (
         !loading && children
