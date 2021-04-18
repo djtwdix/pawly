@@ -6,7 +6,6 @@ import PupCardInfo from "./PupCardInfo";
 import useCardActions from "../hooks/useCardActions";
 import getDistanceByCoords from "../helpers/getDistanceByCoords";
 import useLocationData from "../hooks/useLocationData";
-import MatchAlert from "./MatchAlert";
 import MatchAlert2 from "./MatchAlert2";
 
 export default function PupCardStack({ user }) {
