@@ -18,6 +18,7 @@ export default function usePupData() {
   });
   const [photoURL, setPhotoURL] = useState("");
   const [pups, setPups] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const [userPups, setUserPups] = useState([]);
   let pupID = null;
@@ -40,6 +41,7 @@ export default function usePupData() {
       };
       getPupsByOwnerId(user.uid);
     }
+    setTimeout(() => setLoading(false), 6000);
   }, [user]);
 
   const addPup = (e, user, location) => {
@@ -133,5 +135,6 @@ export default function usePupData() {
     setPups,
     destroyPup,
     setUserPups,
+    loading,
   };
 }
