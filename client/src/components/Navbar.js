@@ -22,9 +22,7 @@ export default function Navbar({ user, backButton, hideChatButton }) {
           <ArrowBackIosIcon fontSize="large" />
         </IconButton>
       ) : user ? (
-        <Link
-          to={"/profile"}
-        >
+        <Link to={"/profile"}>
           <IconButton>
             <Avatar
               className="navbar__avatar"

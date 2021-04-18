@@ -8,47 +8,45 @@ import * as comp from "./components";
 function App() {
   const [user, loading] = useAuthState(auth);
   const { location } = useLocationData();
-  
+
   return (
     <div className="App">
       <Router>
         <Switch>
-          <Route exact path="/">
-            <comp.Navbar user={user} />
-            {!loading && !user ? (
-              <comp.SignIn location={location} />
-            ) : (
+          <comp.AuthChecker user={user} loading={loading}>
+            <Route exact path="/">
+              <comp.Navbar user={user} />
               <comp.CardStack user={user} />
-            )}
-          </Route>
-          <Route exact path="/chats">
-            <comp.Navbar backButton={"/"} user={user} hideChatButton={true} />
-            <comp.ChatList user={user} />
-          </Route>
-          <Route path="/chats/messages">
-            <comp.Navbar backButton={"/chats"} user={user} />
-            {user && <comp.ChatWindow user={user} />}
-          </Route>
-          <Route path="/profile">
-            <comp.Navbar backButton={"/"} user={user} />
-            <comp.ProfileList user={user}/>
-          </Route>
-          <Route exact path="/pups">
-            <comp.Navbar backButton={"/profile"} user={user} />
-            <comp.PupList user={user} />
-          </Route>
-          <Route path="/pups/new">
-            <comp.Navbar backButton={"/pups"} user={user} />
-            <comp.EditPupForm user={user} location={location} />
-          </Route>
-          <Route path="/pups/edit">
-            <comp.Navbar backButton={"/pups"} user={user} />
-            <comp.EditPupForm user={user} location={location} />
-          </Route>
-          <Route path="/user">
-          <comp.Navbar backButton={"/profile"} user={user} />
-            <comp.UserProfile />
-          </Route>
+            </Route>
+            <Route exact path="/chats">
+              <comp.Navbar backButton={"/"} user={user} hideChatButton={true} />
+              <comp.ChatList user={user} />
+            </Route>
+            <Route path="/chats/messages">
+              <comp.Navbar backButton={"/chats"} user={user} />
+              {user && <comp.ChatWindow user={user} />}
+            </Route>
+            <Route path="/profile">
+              <comp.Navbar backButton={"/"} user={user} />
+              <comp.ProfileList user={user} />
+            </Route>
+            <Route exact path="/pups">
+              <comp.Navbar backButton={"/profile"} user={user} />
+              <comp.PupList user={user} />
+            </Route>
+            <Route path="/pups/new">
+              <comp.Navbar backButton={"/pups"} user={user} />
+              <comp.EditPupForm user={user} location={location} />
+            </Route>
+            <Route path="/pups/edit">
+              <comp.Navbar backButton={"/pups"} user={user} />
+              <comp.EditPupForm user={user} location={location} />
+            </Route>
+            <Route path="/user">
+              <comp.Navbar backButton={"/profile"} user={user} />
+              <comp.UserProfile />
+            </Route>
+          </comp.AuthChecker>
         </Switch>
       </Router>
     </div>
