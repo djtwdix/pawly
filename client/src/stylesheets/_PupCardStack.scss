@@ -125,4 +125,16 @@
     bottom: 1px;
     color: $blue;
   }
+  &__bone {
+    color:rgb(224, 213, 192);
+  }
+  &__bones{
+    h6 {
+      margin-left: 5px;
+    }
+    display: flex;
+    align-items:center;
+    color: $light-gray;
+    font-family: "Roboto", sans-serif;
+  }
 }
