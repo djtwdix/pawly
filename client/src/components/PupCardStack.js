@@ -71,7 +71,7 @@ export default function PupCardStack({ user }) {
           <img
             src={loadingGif}
             alt="loading"
-            style={{ width: "300px", height: "300px" }}
+            style={{ width: "400px", height: "400px" }}
           />
         )}
         {showMatchAlert ? (
