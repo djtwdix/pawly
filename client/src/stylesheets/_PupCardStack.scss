@@ -42,52 +42,80 @@
 
 .infoCard {
   background-color: white;
+  overflow: hidden;
 
   &__details {
-    margin-bottom: -20px;
     height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
     color: $dark-gray;
   }
-  &__breedName {
-    margin-top: 1rem;
+  &__header {
+    background: linear-gradient($blue, white);
+    padding: 20px;
     display: flex;
-    width: 50%;
+    flex-direction: column-reverse;
+    width: 100%;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
+    border-radius: 5px;
+    max-height: 50px;
   }
+  &__breedName {
+    font-family: "Luckiest Guy", cursive;
+    margin-top: 2.5rem;
+    h1 {
+      color: $light-pink;
+      font-size: 3rem;
+    }
+    h4 {
+      color: $blue;
+      font-size: 1.5rem;
+    }
+    h6 {
+      color: $light-gray;
+    }
+  }
+  &__main {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 10px;
+  }
+
   &__bio {
-    max-width: 70%;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    margin-bottom: 20px;
   }
   &__cake {
     position: relative;
-    top: -2px;
+    bottom: 3px;
+    margin-right: 8px;
     color: #a000a0;
+    font-size: 1.1rem;
   }
   &__return {
     align-self: flex-end;
-    position: relative;
-    bottom: 20px;
+    position: absolute;
+    bottom: 0;
   }
   &__genderEnergy {
     display: flex;
+    font-size: 1rem;
+    align-items: center;
     color: $dark-gray;
   }
   &__genderIconMale {
-    font-size: 30px;
+    font-size: 1.3rem;
     position: relative;
-    top: 2px;
+    bottom: 1px;
     color: orange;
   }
   &__genderIconFemale {
-    font-size: 30px;
+    font-size: 1.3rem;
     position: relative;
-    top: 2px;
+    bottom: 1px;
     color: $blue;
   }
 }

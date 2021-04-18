@@ -17,7 +17,7 @@ export default function PupCard({
   user,
   photoController,
   removePup,
-  matchAlert,
+  setShowMatchAlert,
   index,
 }) {
   const { checkMatch } = useCardActions();
@@ -45,6 +45,7 @@ export default function PupCard({
       });
       const isMatch = await checkMatch(user.uid, pup.owner_id);
       if (isMatch) {
+        setShowMatchAlert(true);
         const participants = [user.uid, pup.owner_id];
         axios.post("/chats", {
           participants,
@@ -66,29 +67,47 @@ export default function PupCard({
       >
         <div className="pupCard infoCard">
           <div className="infoCard__details">
-            <div className="infoCard__breedName">
+            <div className="infoCard__header">
               <Avatar
-                style={{ height: "80px", width: "80px", marginBottom: "0.5em" }}
+                style={{
+                  height: "80px",
+                  width: "80px",
+                  marginBottom: "0.5em",
+                  position: "relative",
+                  top: "40px",
+                  right: "15px",
+                }}
                 src={pup.photoURL}
               />
-              <div>
-                <h1>{pup.name}</h1>
+            </div>
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <div
+                className="infoCard__breedName"
+                style={{
+                  marginLeft: "20px",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <div>
+                  <h1>{pup.name}</h1>
+                </div>
+                <div>
+                  <h4>{pup.breed}</h4>
+                </div>
+                <div className="infoCard__genderEnergy">
+                  <GenderIcon gender={pup.gender} />
+                  <EnergyIcon energy={pup.energy} />
+                  <FontAwesomeIcon
+                    className="infoCard__cake"
+                    icon={faBirthdayCake}
+                  />
+                  <h6>{` ${moment(pup.birthday).format("MMMM Do YYYY")}`}</h6>
+                </div>
               </div>
             </div>
-            <div>
-              <h4>{pup.breed}</h4>
-            </div>
-            <div>
-              <FontAwesomeIcon
-                className="infoCard__cake"
-                icon={faBirthdayCake}
-              />
-              {` ${moment(pup.birthday).format("MMMM Do YYYY")}`}
-            </div>
-            <div className="infoCard__bio">{pup.bio}</div>
-            <div className="infoCard__genderEnergy">
-              <GenderIcon gender={pup.gender} />
-              <EnergyIcon energy={pup.energy} />
+            <div className="infoCard__main">
+              <div className="infoCard__bio">{pup.bio}</div>
             </div>
             <div className="infoCard__return">
               <IconButton onClick={(e) => photoController()}>

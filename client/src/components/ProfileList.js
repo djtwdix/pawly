@@ -7,7 +7,7 @@ export default function ProfileList({ user }) {
   const history = useHistory();
 
   return (
-    <div>
+    <div className="profileList">
       <ListItemContainer>PROFILE</ListItemContainer>
       <Link to="/pups">
         <ListItemContainer>PUPS</ListItemContainer>

@@ -3,6 +3,7 @@ $dark-gray: rgb(98, 98, 98);
 $dark-pink: #ff00b8;
 $light-pink: #fd93ff;
 $blue: rgb(49, 158, 254);
+$light-blue: #b2edef;
 $lighter-pink: #fed7ff;
 
 @import "_AddPupForm";
@@ -16,6 +17,7 @@ $lighter-pink: #fed7ff;
 @import "_PupCardStack";
 @import "_MatchAlert";
 @import "_DeleteAlert";
+@import "_ProfileList";
 
 .App {
   height: 100vh;

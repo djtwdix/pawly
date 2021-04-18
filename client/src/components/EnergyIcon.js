@@ -9,25 +9,21 @@ export default function EnergyIcon({ energy }) {
     <div>
       {energy === 1 && (
         <BatteryCharging20RoundedIcon
-          fontSize="large"
           style={{ color: "red" }}
         />
       )}
       {energy === 2 && (
         <BatteryCharging50RoundedIcon
-          fontSize="large"
           style={{ color: "#ffce44" }}
         />
       )}
       {energy === 3 && (
         <BatteryCharging80RoundedIcon
-          fontSize="large"
           style={{ color: "yellowgreen" }}
         />
       )}
       {energy === 4 && (
         <BatteryChargingFullRoundedIcon
-          fontSize="large"
           style={{ color: "lightgreen" }}
         />
       )}
