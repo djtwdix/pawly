@@ -1,5 +1,8 @@
 import Pups from "../models/PupModel.js";
 import mongoose from "mongoose";
+import express from "express"
+
+const app = express();
 
 export const createPup = (req, res) => {
   const pupsInfo = req.body;
@@ -42,8 +45,8 @@ export const addABone = (req, res) => {
   );
 };
 
-export const getPupsByOwner = (req, res) => {
-  const owner_id = req.params.userId;
+export const getPupsByOwner = (req, res) => { 
+  const owner_id = req.session.user_id
   Pups.find({ owner_id: owner_id }, (err, data) => {
     if (err) {
       res.status(500).send(err);
@@ -84,7 +87,7 @@ export const getPupById = (req, res) => {
 };
 
 export const getAllPups = (req, res) => {
-  const user_id = req.body.user_id;
+  const user_id = req.session.user_id
   Pups.aggregate(
     [
       {

@@ -7,8 +7,8 @@ export default function useChatData() {
   const [chats, setChats] = useState([]);
 
   useEffect(() => {
-    const getChatsByUserID = async (userId) => {
-      const result = await axios.post("/chats/all", { user_id: userId });
+    const getChatsByUserID = async () => {
+      const result = await axios.get("/chats/all");
       setChats(result.data);
     };
 

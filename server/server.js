@@ -8,6 +8,7 @@ import { userRoutes } from "./routes/users.js";
 import { pupsRoutes } from "./routes/pups.js";
 import { chatRoutes } from "./routes/chats.js";
 import { messageRoutes } from "./routes/messages.js";
+import  cookieSession from "cookie-session";
 
 dotenv.config();
 
@@ -20,6 +21,12 @@ const httpServer = http.createServer(app);
 app.use(cors());
 
 app.use(express.json());
+
+app.use(cookieSession({
+  name: 'session',
+  keys: ['key1', 'key2']
+}));
+
 
 //websockets with CORS init
 const io = new Server(httpServer, {

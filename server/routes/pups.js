@@ -10,7 +10,7 @@ import {
 const router = express.Router();
 
 router.post("/", createPup);
-router.post("/all", getAllPups);
+router.get("/all", getAllPups);
 router.get("/:pupId", getPupById);
 router.put("/:pupId", editPup);
 router.put("/:pupId/bone", addABone);

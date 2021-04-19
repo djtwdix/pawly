@@ -29,9 +29,7 @@ export default function usePupData() {
   useEffect(() => {
     if (user) {
       const getAllPups = async (user_id) => {
-        const result = await axios.post("/pups/all", {
-          user_id: user_id,
-        });
+        const result = await axios.get("/pups/all");
         setPups(result.data);
       };
       getAllPups(user.uid);
