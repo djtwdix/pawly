@@ -6,7 +6,7 @@ import loadingGif from "../assets/images/giphy.gif";
 import useCardActions from "../hooks/useCardActions";
 import MatchAlert2 from "./MatchAlert2";
 
-export default function PupCardStack({ user }) {
+export default function PupCardStack({ user, soundOff }) {
   const { pups, setPups, loading } = usePupData();
   const { showPhoto, photoController } = useCardActions();
   const [showMatchAlert, setShowMatchAlert] = useState(false);
@@ -62,7 +62,10 @@ export default function PupCardStack({ user }) {
           />
         )}
         {showMatchAlert ? (
-          <MatchAlert2 setMatchAlertFalse={setMatchAlertFalse} />
+          <MatchAlert2
+            setMatchAlertFalse={setMatchAlertFalse}
+            soundOff={soundOff}
+          />
         ) : showPhoto ? (
           parsedPups
         ) : (

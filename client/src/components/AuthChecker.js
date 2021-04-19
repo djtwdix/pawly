@@ -11,7 +11,7 @@ export default function AuthChecker({ children, user, loading, coords }) {
           <SignIn coords={coords} />
         </>
       ) : (
-        !loading && children
+        !loading && user && children
       )}
     </div>
   );
