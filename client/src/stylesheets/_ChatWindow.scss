@@ -41,6 +41,9 @@
     width: 100%;
     border-top: 1px solid rgb(227, 227, 227);
     background-color: white;
+    input {
+      font-size: 1rem !important;
+    }
   }
   &__messageInputText {
     flex: 1;
