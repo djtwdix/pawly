@@ -32,7 +32,7 @@ export default function SignIn({ coords }) {
   return (
     <div className="signInForm">
       <div className="signInForm__card">
-        <img src={welcome} alt="welcome" style={{ height: "150px" }} />
+        <img src={welcome} alt="welcome" style={{ height: "300px" }} />
         <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
       </div>
     </div>

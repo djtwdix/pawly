@@ -3,13 +3,15 @@ import usePupData from "../hooks/usePupData";
 import PupCard from "./PupCard";
 import PupCardInfo from "./PupCardInfo";
 import loadingGif from "../assets/images/giphy.gif";
+import allDone from "../assets/images/alldone.png";
 import useCardActions from "../hooks/useCardActions";
 import MatchAlert2 from "./MatchAlert2";
 
 export default function PupCardStack({ user, soundOff }) {
-  const { pups, setPups, loading } = usePupData();
+  const { pups, setPups } = usePupData();
   const { showPhoto, photoController } = useCardActions();
   const [showMatchAlert, setShowMatchAlert] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const setMatchAlertFalse = () => {
     if (showMatchAlert) {
@@ -17,8 +19,16 @@ export default function PupCardStack({ user, soundOff }) {
     }
   };
 
+  const stopLoading = () => {
+    setTimeout(() => setLoading(false), 5000);
+  };
+
+  stopLoading();
+
   const removePup = () => {
     setPups((prev) => [...prev.slice(0, prev.length - 1)]);
+    parsedPups.slice(0, parsedPups.length - 1);
+    parsedPupsInfo.slice(0, parsedPups.length - 1);
   };
 
   const parsedPups = pups.map((pup, index) => {
@@ -54,13 +64,25 @@ export default function PupCardStack({ user, soundOff }) {
   return (
     <section>
       <div className="pupCard__container">
-        {loading && !showMatchAlert && (
+        {!parsedPups.length && !showMatchAlert && loading ? (
           <img
             src={loadingGif}
             alt="loading"
-            style={{ width: "400px", height: "400px" }}
+            style={{ width: "300px", height: "300px" }}
           />
+        ) : (
+          !parsedPups.length &&
+          !showMatchAlert && (
+            <img
+              className="pupCard__allDone"
+              src={allDone}
+              alt="loading"
+              style={{ width: "400px", height: "400px" }}
+              onClick={() => window.location.reload()}
+            />
+          )
         )}
+
         {showMatchAlert ? (
           <MatchAlert2
             setMatchAlertFalse={setMatchAlertFalse}
