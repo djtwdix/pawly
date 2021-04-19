@@ -7,13 +7,11 @@ import { muiTheme } from "../stylesheets/muiTheme";
 import { ThemeProvider } from "@material-ui/styles";
 
 export default function UserProfile({ user }) {
-  console.log("user: ", user);
   const { handleChange, addBio, charRemaining, bio } = useUserData();
 
   const [edit, setEdit] = useState(false);
 
   const { profile } = useProfileData();
-  console.log("profile: ", profile);
 
   const showEditButton = profile._id === user.uid;
 

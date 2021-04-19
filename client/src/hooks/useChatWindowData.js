@@ -23,7 +23,6 @@ export default function useChatWindowData() {
 
   useEffect(() => {
     if (chatID) {
-      console.log(chatID);
       const getMessagesByChatId = (chatId) => {
         return axios.get(`/chats/${chatId}/messages`);
       };

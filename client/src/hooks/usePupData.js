@@ -18,7 +18,7 @@ export default function usePupData() {
   }
 
   useEffect(() => {
-    if (user) {
+    if (user && location) {
       const getAllPups = async (user_id) => {
         const result = await axios.get("/pups/all");
         setPups(
@@ -56,7 +56,6 @@ export default function usePupData() {
 
   const editPup = (e, user, location, formData, photoURL) => {
     e.preventDefault();
-    console.log("formData: ", formData);
     return axios.put(`/pups/${pupID}`, {
       ...formData,
       _id: pupID,

@@ -1,7 +1,6 @@
 import { auth } from "../firebase/config"
 import axios from "axios";
 
-
 export default function signOut(history) {
     auth
     .signOut()

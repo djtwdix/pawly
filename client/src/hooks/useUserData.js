@@ -9,7 +9,6 @@ export default function useUserData() {
   const [bio, setBio] = useState("");
 
   const addBio = () => {
-    console.log(bio);
     axios.put(`/users/${user.uid}/bio`, {
       bio: bio,
     });

@@ -1,3 +1,7 @@
+/**
+ * getDistanceByCoords() returns computed distance
+ * based on the inputted sets of coordinates
+ */
 const getDistanceByCoords = (array1, array2) => {
   // coordinate arrays
   if (array1 && array2) {
