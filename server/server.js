@@ -18,10 +18,12 @@ const app = express();
 
 const httpServer = http.createServer(app);
 
+//CORS used for websockets
 app.use(cors());
 
 app.use(express.json());
 
+//cookies for back-end session
 app.use(cookieSession({
   name: 'session',
   keys: ['key1', 'key2']
