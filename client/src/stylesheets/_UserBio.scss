@@ -2,7 +2,6 @@
   height: 100%;
   width: 80vw;
   display: flex;
-  max-height: 500px;
   flex-direction: column;
   box-shadow: 0px 2px 5px lightgray;
   overflow: hidden;
@@ -60,7 +59,6 @@
     min-height: 200px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     margin: auto;
     margin-top: 1rem;
   }

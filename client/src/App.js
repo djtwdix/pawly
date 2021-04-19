@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import useLocationData from "./hooks/useLocationData";
 import * as comp from "./components";
 
-
 function App() {
   const [user, loading] = useAuthState(auth);
   const { location } = useLocationData();
@@ -43,13 +42,9 @@ function App() {
               <comp.Navbar backButton={"/pups"} user={user} />
               <comp.EditPupForm user={user} location={location} />
             </Route>
-            <Route path="/user">
-              <comp.Navbar backButton={"/profile"} user={user} />
-              <comp.UserProfile />
-            </Route>
             <Route path="/profile/:id">
-              <comp.Navbar backButton={"/chats"} user={user}  />
-              <comp.UserProfile />
+              <comp.Navbar backButton={"/profile"} user={user} />
+              <comp.UserProfile user={user} />
             </Route>
           </comp.AuthChecker>
         </Switch>

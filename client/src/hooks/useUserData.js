@@ -2,15 +2,11 @@ import { useState, useEffect } from "react";
 import { auth } from "../firebase/config";
 import axios from "axios";
 import getUserById from "../helpers/getUserById";
-import firebase from "firebase/app";
 
 export default function useUserData() {
   const user = auth.currentUser;
   const [charRemaining, setCharRemaining] = useState(240);
   const [bio, setBio] = useState("");
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [photo, setPhoto] = useState("");
 
   const addBio = () => {
     console.log(bio);
@@ -36,13 +32,10 @@ export default function useUserData() {
     }
   };
 
-  firebase.auth().onAuthStateChanged(function (user) {
-    if (user != null) {
-      setName(user.displayName);
-      setEmail(user.email);
-      setPhoto(user.photoURL);
-    }
-  });
-
-  return { addBio, handleChange, bio, name, email, photo, charRemaining };
+  return {
+    addBio,
+    handleChange,
+    bio,
+    charRemaining,
+  };
 }

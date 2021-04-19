@@ -7,8 +7,8 @@ export default function ProfileList({ user }) {
   const history = useHistory();
   return (
     <div className="profileList">
-      <Link to={{pathname:"/user"}}>
-      <ListItemContainer>PROFILE</ListItemContainer>
+      <Link to={{ pathname: `/profile/${user.uid}` }}>
+        <ListItemContainer>PROFILE</ListItemContainer>
       </Link>
       <Link to="/pups">
         <ListItemContainer>PUPS</ListItemContainer>
