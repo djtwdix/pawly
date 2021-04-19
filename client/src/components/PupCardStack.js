@@ -77,7 +77,7 @@ export default function PupCardStack({ user, soundOff }) {
               className="pupCard__allDone"
               src={allDone}
               alt="loading"
-              style={{ width: "400px", height: "400px" }}
+              style={{ width: "350px", height: "350px" }}
               onClick={() => window.location.reload()}
             />
           )
