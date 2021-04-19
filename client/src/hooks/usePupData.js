@@ -10,13 +10,15 @@ export default function usePupData() {
   const data = useLocation();
   const [pups, setPups] = useState([]);
   const { location } = useLocationData();
-
   const [userPups, setUserPups] = useState([]);
+
+  //gets pupID by passed state prop on click of list item, used for below functions:
   let pupID = null;
   if (data.state) {
     pupID = data.state._id;
   }
 
+  //gets all pups other than users for card stack, and pups for owner for pup list
   useEffect(() => {
     if (user) {
       const getAllPups = async (user_id) => {
@@ -44,6 +46,7 @@ export default function usePupData() {
     }
   }, [user, location]);
 
+  //posts new pup info to DB on pupform submit
   const addPup = (e, user, location, formData, photoURL) => {
     e.preventDefault();
     return axios.post("/pups", {
@@ -54,6 +57,7 @@ export default function usePupData() {
     });
   };
 
+  //edits pup in db and sets state of current pup to updated data
   const editPup = (e, user, location, formData, photoURL) => {
     e.preventDefault();
     console.log("formData: ", formData);
@@ -65,10 +69,12 @@ export default function usePupData() {
     });
   };
 
+  //adds a "bone" (like) to pup in DB
   const throwABone = (pupID) => {
     axios.put(`pups/${pupID}/bone`);
   };
 
+  // removes selected pup from DB
   const destroyPup = (pupID, index) => {
     setUserPups((prev) => [...prev.filter((pup) => pup._id !== pupID)]);
     return axios.delete(`/pups/${pupID}`, {
