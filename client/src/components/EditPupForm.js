@@ -1,6 +1,10 @@
 import React from "react";
-import usePupData from "../hooks/usePupData";
 import { useHistory } from "react-router-dom";
+
+//hooks
+
+import usePupData from "../hooks/usePupData";
+import usePupFormData from "../hooks/usePupFormData";
 
 //material ui components
 
@@ -22,22 +26,21 @@ import { faVenus, faMars } from "@fortawesome/free-solid-svg-icons";
 //Component for adding new pup
 
 export default function EditPupForm({ user, location }) {
+  const history = useHistory();
+  const { addPup, editPup } = usePupData();
   const {
     formData,
     handleChange,
     handleDateChange,
     handleEnergyChange,
-    addPup,
     charRemaining,
     selectedDate,
     uploadImage,
     photoURL,
-    editPup,
-  } = usePupData();
+  } = usePupFormData();
 
   const pupID = formData._id;
 
-  const history = useHistory();
   const male = <FontAwesomeIcon className="pupForm__icons" icon={faMars} />;
   const female = <FontAwesomeIcon className="pupForm__icons" icon={faVenus} />;
 
@@ -49,12 +52,12 @@ export default function EditPupForm({ user, location }) {
           onSubmit={
             !pupID
               ? (e) => {
-                  addPup(e, user, location).then(() => {
+                  addPup(e, user, location, formData, photoURL).then(() => {
                     history.goBack();
                   });
                 }
               : (e) => {
-                  editPup(e, user, location).then(() => {
+                  editPup(e, user, location, formData, photoURL).then(() => {
                     history.goBack();
                   });
                 }
@@ -187,7 +190,6 @@ export default function EditPupForm({ user, location }) {
           </mui.InputLabel>
 
           <mui.Slider
-            
             value={formData.energy}
             id="energy"
             name="energy"
