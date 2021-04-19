@@ -30,7 +30,7 @@ export default function usePupData() {
                 getDistanceByCoords(
                   pup.location.coordinates,
                   location.coordinates
-                ) < 1000
+                ) < 10000000
               );
             }
             return null;
