@@ -12,7 +12,7 @@ Contributors :
 
 
 ### Final product 
-![Pawly making a match](https://gph.is/g/EG8PMVM)
+![Pawly making a match](https://media.giphy.com/media/S2hdfqaql0JAc6zEEh/giphy.gif)
 
 ### Tech/Framework 
 - MongoDB, Express, React, Node.js
