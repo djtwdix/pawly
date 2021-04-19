@@ -6,8 +6,6 @@ import loadingGif from "../assets/images/giphy.gif";
 import allDone from "../assets/images/alldone.png";
 import useCardActions from "../hooks/useCardActions";
 import MatchAlert2 from "./MatchAlert2";
-import { Link } from "react-router-dom";
-import { faLessThanEqual } from "@fortawesome/free-solid-svg-icons";
 
 export default function PupCardStack({ user, soundOff }) {
   const { pups, setPups } = usePupData();
@@ -79,7 +77,7 @@ export default function PupCardStack({ user, soundOff }) {
               className="pupCard__allDone"
               src={allDone}
               alt="loading"
-              style={{ width: "400px", height: "400px" }}
+              style={{ width: "350px", height: "350px" }}
               onClick={() => window.location.reload()}
             />
           )
