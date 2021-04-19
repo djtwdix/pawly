@@ -2,6 +2,8 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { auth } from "../firebase/config";
 import { useLocation } from "react-router-dom";
+import useLocationData from "../hooks/useLocationData";
+import getDistanceByCoords from "../helpers/getDistanceByCoords";
 
 export default function usePupData() {
   const user = auth.currentUser;
@@ -19,6 +21,7 @@ export default function usePupData() {
   const [photoURL, setPhotoURL] = useState("");
   const [pups, setPups] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { location } = useLocationData();
 
   const [userPups, setUserPups] = useState([]);
   let pupID = null;
@@ -30,16 +33,28 @@ export default function usePupData() {
     if (user) {
       const getAllPups = async (user_id) => {
         const result = await axios.get("/pups/all");
-        setPups(result.data);
+        setPups(
+          result.data.filter((pup) => {
+            if (location) {
+              return (
+                getDistanceByCoords(
+                  pup.location.coordinates,
+                  location.coordinates
+                ) < 50
+              );
+            }
+            return null;
+          })
+        );
       };
-      getAllPups(user.uid)
+      getAllPups(user.uid).then(() => setLoading(false));
       const getPupsByOwnerId = async (owner_id) => {
         const result = await axios.get(`/users/${owner_id}/pups`);
         setUserPups(result.data);
       };
       getPupsByOwnerId(user.uid);
     }
-  }, [user]);
+  }, [user, location]);
 
   const addPup = (e, user, location) => {
     e.preventDefault();
