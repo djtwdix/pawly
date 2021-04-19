@@ -15,12 +15,16 @@ export default function useChatWindowData() {
   const [otherUser, setOtherUser] = useState({});
   const messageInputRef = useRef(null);
 
+  //pulls chat data information passed as state prop via useLocation()
   const chatData = useLocation();
+
+  //defaults chatID to null unless chataData.state exists, extracts chatID to be used in below functions
   let chatID = null;
   if (chatData.state) {
     chatID = chatData.state._id;
   }
 
+  //if chatID is present, gets messages for current chat window based on ID
   useEffect(() => {
     if (chatID) {
       console.log(chatID);
@@ -42,6 +46,7 @@ export default function useChatWindowData() {
     }
   }, [chatID, user]);
 
+  //websocket connections
   useEffect(() => {
     const socket = io();
     setConnection(socket);
@@ -54,6 +59,7 @@ export default function useChatWindowData() {
     };
   }, []);
 
+  //handles submission of new messages to chat window/database for that chat
   const handleSubmit = (e) => {
     let id = Math.random().toString(36).substring(7);
     e.preventDefault();
@@ -81,12 +87,14 @@ export default function useChatWindowData() {
     }
   };
 
+  //handles clicking of emojis from emoji window in chat window
   const onEmojiClick = (event, emojiObject) => {
     setInput((prev) => prev + emojiObject.emoji);
     messageInputRef.current.focus();
     setShowEmojis(false);
   };
 
+  //sets whether emoji window is displayed by toggling state upon click of emoji button
   const showEmojiKeyboard = (e) => {
     if (showEmojis) {
       setShowEmojis(false);
