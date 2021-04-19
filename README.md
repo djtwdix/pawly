@@ -12,8 +12,10 @@ Contributors :
 
 
 ### Final product 
+![Pawly making a match](https://gph.is/g/EG8PMVM)
 
-### Getting Started 
+### Tech/Framework 
+- MongoDB, Express, React, Node.js
 
 ### Dependencies 
 #### Client Dependencies
