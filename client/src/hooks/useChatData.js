@@ -15,6 +15,7 @@ export default function useChatData() {
     if (user) {
       getChatsByUserID(user.uid);
     }
+
   }, [user]);
   return { chats };
 }

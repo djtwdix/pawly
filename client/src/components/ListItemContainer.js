@@ -6,10 +6,9 @@ export default function ListItemContainer({ children, signOut }) {
     <div>
       <Button
         className="listItemContainer pupListItemListItem"
-        style={{ textTransform: "none" }}
+        style={{ textTransform: "none", minHeight: "100px" }}
         onClick={signOut ? signOut : undefined}
       >
-        {" "}
         {children}
       </Button>
     </div>

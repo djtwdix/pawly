@@ -47,7 +47,7 @@ export default function usePupData() {
           })
         );
       };
-      getAllPups(user.uid).then(() => setLoading(false));
+      getAllPups(user.uid);
       const getPupsByOwnerId = async (owner_id) => {
         const result = await axios.get(`/users/${owner_id}/pups`);
         setUserPups(result.data);
