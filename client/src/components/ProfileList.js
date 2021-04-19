@@ -13,8 +13,12 @@ export default function ProfileList({ user }) {
       <Link to="/pups">
         <ListItemContainer>PUPS</ListItemContainer>
       </Link>
-      <ListItemContainer>PLAYDATES</ListItemContainer>
-      <ListItemContainer>SETTINGS</ListItemContainer>
+      <Link to="/playdates">
+        <ListItemContainer>PLAYDATES</ListItemContainer>
+      </Link>
+      <Link to="/settings">
+        <ListItemContainer>SETTINGS</ListItemContainer>
+      </Link>
       <ListItemContainer signOut={() => signOut(history)}>
         SIGN OUT
       </ListItemContainer>

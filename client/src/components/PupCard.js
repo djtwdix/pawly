@@ -56,7 +56,7 @@ export default function PupCard({
         ref={childRefs[index]}
         className="swipe"
         onSwipe={(dir) => onSwipe(dir)}
-        preventSwipe={["down"]}
+        preventSwipe={["up", "down"]}
         key={pup._id}
         onCardLeftScreen={() => removePup()}
       >

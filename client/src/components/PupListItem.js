@@ -23,7 +23,7 @@ export default function PupListItem({ pup, destroyPup }) {
             <Button
               style={{ backgroundColor: "transparent" }}
               className="pupListItem__button"
-              disable={true}
+              disabled={true}
             >
               <section key={pup._id} className="pupListItem">
                 <div className="pupListItem__avatarDetails">
