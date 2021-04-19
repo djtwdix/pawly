@@ -16,11 +16,13 @@ export default function usePupData() {
   });
   const [photoURL, setPhotoURL] = useState("");
 
+  //gets pupID from state data passed from link
   let pupID = null;
   if (data.state) {
     pupID = data.state._id;
   }
 
+  //sets form information to input data of bio form
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     if (e.target.name === "bio") {
@@ -28,6 +30,7 @@ export default function usePupData() {
     }
   };
 
+  //sets date change from date selector of pup form
   const handleDateChange = (date) => {
     if (date) {
       const birthday = date._d.toDateString();
@@ -36,10 +39,12 @@ export default function usePupData() {
     }
   };
 
+  //sets energy change from slider in pup form
   const handleEnergyChange = (event, number) => {
     setFormData({ ...formData, energy: number });
   };
 
+  //uploads image to hosting site for storage
   const uploadImage = (imageFile) => {
     const formData = new FormData();
     formData.append("file", imageFile);
@@ -51,6 +56,7 @@ export default function usePupData() {
       });
   };
 
+  //loads pup information and sets state to pup info
   useEffect(() => {
     if (pupID) {
       const getPupById = async (pupID) => {
