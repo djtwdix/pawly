@@ -5,12 +5,12 @@ import goChat from "../assets/images/2.png";
 import keepFetching from "../assets/images/3.png";
 import dogBark from "../assets/audio/dog bark.wav";
 
-export default function MatchAlert2({ setMatchAlertFalse, soundOff }) {
+export default function MatchAlert2({ setMatchAlertFalse, soundOff, chat }) {
   return (
     <div className="matchAlert2__container" style={{ marginTop: "4rem" }}>
       <div className="matchAlert2">
         <img src={matchAlert} alt="match"></img>
-        <Link to="/chats">
+        <Link to={{ pathname: `/chats/messages`, state: chat }}>
           <img
             src={goChat}
             alt="chat"

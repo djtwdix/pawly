@@ -14,6 +14,7 @@ export default function PupCard({
   removePup,
   index,
   setShowMatchAlert,
+  setChat
 }) {
   const { checkMatch } = useCardActions();
   const { pups, throwABone } = usePupData();
@@ -42,10 +43,14 @@ export default function PupCard({
       if (isMatch) {
         setShowMatchAlert(true);
         const participants = [user.uid, pup.owner_id];
-        axios.post("/chats", {
-          participants,
-          last_message: { text: "Say hello!" },
-        });
+        axios
+          .post("/chats", {
+            participants,
+            last_message: { text: "Say hello!" },
+          })
+          .then((res) => {
+            setChat(res.data)
+          });
       }
     }
   };
