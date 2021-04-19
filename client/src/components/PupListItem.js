@@ -33,7 +33,7 @@ export default function PupListItem({ pup, destroyPup }) {
                     src={pup.photoURL}
                   ></Avatar>
                   <div className="pupListItem__details">
-                    <h1>{pup.name}</h1>
+                    <h1 className="pupListItem__name">{pup.name}</h1>
                     <p>{pup.breed}</p>
                   </div>
                 </div>
