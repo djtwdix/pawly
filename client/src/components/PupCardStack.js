@@ -3,16 +3,12 @@ import usePupData from "../hooks/usePupData";
 import PupCard from "./PupCard";
 import PupCardInfo from "./PupCardInfo";
 import loadingGif from "../assets/images/giphy.gif";
-
 import useCardActions from "../hooks/useCardActions";
-import getDistanceByCoords from "../helpers/getDistanceByCoords";
-import useLocationData from "../hooks/useLocationData";
 import MatchAlert2 from "./MatchAlert2";
 
 export default function PupCardStack({ user }) {
   const { pups, setPups, loading } = usePupData();
   const { showPhoto, photoController } = useCardActions();
-  const { location } = useLocationData();
   const [showMatchAlert, setShowMatchAlert] = useState(false);
 
   const setMatchAlertFalse = () => {
@@ -21,20 +17,11 @@ export default function PupCardStack({ user }) {
     }
   };
 
-  const nearPups = pups.filter((pup) => {
-    if (location) {
-      return (
-        getDistanceByCoords(pup.location.coordinates, location.coordinates) < 50
-      );
-    }
-    return null;
-  });
-
   const removePup = () => {
     setPups((prev) => [...prev.slice(0, prev.length - 1)]);
   };
 
-  const parsedPups = nearPups.map((pup, index) => {
+  const parsedPups = pups.map((pup, index) => {
     return (
       <PupCard
         index={index}
@@ -49,7 +36,7 @@ export default function PupCardStack({ user }) {
     );
   });
 
-  const parsedPupsInfo = nearPups.map((pup, index) => {
+  const parsedPupsInfo = pups.map((pup, index) => {
     return (
       <PupCardInfo
         index={index}
