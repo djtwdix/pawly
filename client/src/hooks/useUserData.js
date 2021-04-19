@@ -8,6 +8,7 @@ export default function useUserData() {
   const [charRemaining, setCharRemaining] = useState(240);
   const [bio, setBio] = useState("");
 
+  //adds information of user bio form to database
   const addBio = () => {
     console.log(bio);
     axios.put(`/users/${user.uid}/bio`, {
@@ -15,6 +16,7 @@ export default function useUserData() {
     });
   };
 
+  //get user info to populate profile and updates bio on bio update
   useEffect(() => {
     if (user) {
       getUserById(user.uid).then((res) => {
@@ -25,6 +27,7 @@ export default function useUserData() {
     }
   }, [user]);
 
+  //logs changes in bio form upon entry
   const handleChange = (e) => {
     setBio(e.target.value);
     if (e.target.name === "bio") {
