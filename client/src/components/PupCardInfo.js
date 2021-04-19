@@ -8,7 +8,7 @@ import moment from "moment";
 import EnergyIcon from "./EnergyIcon";
 import KeyboardReturnIcon from "@material-ui/icons/KeyboardReturn";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBirthdayCake , faBone } from "@fortawesome/free-solid-svg-icons";
+import { faBirthdayCake, faBone } from "@fortawesome/free-solid-svg-icons";
 import GenderIcon from "./GenderIcon";
 import usePupData from "../hooks/usePupData";
 
@@ -19,6 +19,7 @@ export default function PupCard({
   removePup,
   setShowMatchAlert,
   index,
+  setChat,
 }) {
   const { checkMatch } = useCardActions();
 
@@ -43,15 +44,19 @@ export default function PupCard({
       axios.put(`/users/${user.uid}/likes`, {
         likeId: pup.owner_id,
       });
-      throwABone(pup._id)
+      throwABone(pup._id);
       const isMatch = await checkMatch(user.uid, pup.owner_id);
       if (isMatch) {
         setShowMatchAlert(true);
         const participants = [user.uid, pup.owner_id];
-        axios.post("/chats", {
-          participants,
-          last_message: { text: "Say hello!" },
-        });
+        axios
+          .post("/chats", {
+            participants,
+            last_message: { text: "Say hello!" },
+          })
+          .then((res) => {
+            setChat(res.data);
+          });
       }
     }
   };
@@ -97,9 +102,11 @@ export default function PupCard({
                   <h4>{pup.breed}</h4>
                 </div>
                 <div className="infoCard__bones">
-                  <FontAwesomeIcon className="infoCard__bone" icon={faBone} /> 
-                 <h6>{pup.name} has {pup.bones} bones</h6>
-                  </div>
+                  <FontAwesomeIcon className="infoCard__bone" icon={faBone} />
+                  <h6>
+                    {pup.name} has {pup.bones} bones
+                  </h6>
+                </div>
                 <div className="infoCard__genderEnergy">
                   <GenderIcon gender={pup.gender} />
                   <EnergyIcon energy={pup.energy} />

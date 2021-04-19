@@ -12,6 +12,7 @@ export default function PupCardStack({ user, soundOff }) {
   const { showPhoto, photoController } = useCardActions();
   const [showMatchAlert, setShowMatchAlert] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [chat, setChat] = useState(null)
 
   const setMatchAlertFalse = () => {
     if (showMatchAlert) {
@@ -42,6 +43,7 @@ export default function PupCardStack({ user, soundOff }) {
         owner={pup.owner_id}
         photoController={photoController}
         setShowMatchAlert={setShowMatchAlert}
+        setChat={setChat}
       />
     );
   });
@@ -57,6 +59,7 @@ export default function PupCardStack({ user, soundOff }) {
         owner={pup.owner_id}
         photoController={photoController}
         setShowMatchAlert={setShowMatchAlert}
+        setChat={setChat}
       />
     );
   });
@@ -85,6 +88,7 @@ export default function PupCardStack({ user, soundOff }) {
 
         {showMatchAlert ? (
           <MatchAlert2
+            chat={chat}
             setMatchAlertFalse={setMatchAlertFalse}
             soundOff={soundOff}
           />

@@ -12,6 +12,7 @@ export const createChat = async (req, res) => {
         res.status(500).send(err);
       } else {
         res.status(201).send(data);
+        console.log(data)
       }
     });
   }
