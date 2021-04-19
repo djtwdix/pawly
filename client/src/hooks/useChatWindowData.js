@@ -22,7 +22,6 @@ export default function useChatWindowData() {
   }
 
   useEffect(() => {
-
     if (chatID) {
       console.log(chatID);
       const getMessagesByChatId = (chatId) => {
