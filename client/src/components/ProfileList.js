@@ -7,14 +7,18 @@ export default function ProfileList({ user }) {
   const history = useHistory();
   return (
     <div className="profileList">
-      <Link to={{pathname:"/user"}}>
-      <ListItemContainer>PROFILE</ListItemContainer>
+      <Link to={{ pathname: `/profile/${user.uid}` }}>
+        <ListItemContainer>PROFILE</ListItemContainer>
       </Link>
       <Link to="/pups">
         <ListItemContainer>PUPS</ListItemContainer>
       </Link>
-      <ListItemContainer>PLAYDATES</ListItemContainer>
-      <ListItemContainer>SETTINGS</ListItemContainer>
+      <Link to="/playdates">
+        <ListItemContainer>PLAYDATES</ListItemContainer>
+      </Link>
+      <Link to="/settings">
+        <ListItemContainer>SETTINGS</ListItemContainer>
+      </Link>
       <ListItemContainer signOut={() => signOut(history)}>
         SIGN OUT
       </ListItemContainer>

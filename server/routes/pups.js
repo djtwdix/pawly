@@ -4,14 +4,16 @@ import {
   getAllPups,
   getPupById,
   editPup,
-  destroyPupById
+  destroyPupById,
+  addABone,
 } from "../controllers/PupControllers.js";
 const router = express.Router();
 
 router.post("/", createPup);
-router.post("/all", getAllPups);
+router.get("/all", getAllPups);
 router.get("/:pupId", getPupById);
-router.put("/:pupId", editPup)
-router.delete("/:pupId", destroyPupById)
+router.put("/:pupId", editPup);
+router.put("/:pupId/bone", addABone);
+router.delete("/:pupId", destroyPupById);
 
 export { router as pupsRoutes };

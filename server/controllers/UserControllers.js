@@ -1,4 +1,6 @@
 import Users from "../models/UserModel.js";
+import express from "express";
+const app = express();
 
 const checkIfUserExists = (userId) => {
   return Users.findById(userId, (err, data) => {
@@ -23,7 +25,9 @@ export const getUserById = (req, res) => {
 
 export const createUser = async (req, res) => {
   const userInfo = req.body;
-  console.log(req.body);
+  req.session.user_id = userInfo._id;
+  console.log('cookie-session:', req.session.user_id);
+  req.session.save(); 
   const userExists = await checkIfUserExists(req.body._id);
   if (!userExists) {
     Users.create(userInfo, (err, data) => {
@@ -88,4 +92,9 @@ export const addLike = (req, res) => {
       }
     );
   };
+
+  export const signOut = (req, res) => {
+    req.session.user_id = null;
+    console.log("cookie:", req.session.user_id)
+  }
 

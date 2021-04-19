@@ -5,7 +5,7 @@ import goChat from "../assets/images/2.png";
 import keepFetching from "../assets/images/3.png";
 import dogBark from "../assets/audio/dog bark.wav";
 
-export default function MatchAlert2({ setMatchAlertFalse }) {
+export default function MatchAlert2({ setMatchAlertFalse, soundOff }) {
   return (
     <div className="matchAlert2__container" style={{ marginTop: "4rem" }}>
       <div className="matchAlert2">
@@ -14,7 +14,7 @@ export default function MatchAlert2({ setMatchAlertFalse }) {
           <img
             src={goChat}
             alt="chat"
-            style={{ height: "100px", width: "100px",  }}
+            style={{ height: "100px", width: "100px" }}
           ></img>
         </Link>
         <img
@@ -23,7 +23,7 @@ export default function MatchAlert2({ setMatchAlertFalse }) {
           style={{ height: "100px", width: "100px", cursor: "pointer" }}
           onClick={() => setMatchAlertFalse()}
         ></img>
-        <audio autoPlay>
+        <audio autoPlay muted={soundOff}>
           <source src={dogBark} type="audio/mpeg" />
         </audio>
       </div>

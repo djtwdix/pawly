@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.post("/", createChat);
 router.put("/", updateLastMessage);
-router.post("/all", getChatsByUserId);
+router.get("/all", getChatsByUserId);
 router.get("/:chatId/messages", getMessagesByChatId);
 router.get("/:chatId", getChatById);
 

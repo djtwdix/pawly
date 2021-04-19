@@ -6,6 +6,7 @@
   padding-left: 20px;
   &__avatarDetails {
     display: flex;
+    align-items: center;
   }
   &__details {
     display: flex;
@@ -35,5 +36,8 @@
   &__edit {
     color: #96e582 !important;
     height: 100%;
+  }
+  &__name {
+    font-size: 1rem;
   }
 }

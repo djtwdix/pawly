@@ -8,7 +8,7 @@ import moment from "moment";
 import EnergyIcon from "./EnergyIcon";
 import KeyboardReturnIcon from "@material-ui/icons/KeyboardReturn";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBirthdayCake } from "@fortawesome/free-solid-svg-icons";
+import { faBirthdayCake , faBone } from "@fortawesome/free-solid-svg-icons";
 import GenderIcon from "./GenderIcon";
 import usePupData from "../hooks/usePupData";
 
@@ -22,7 +22,7 @@ export default function PupCard({
 }) {
   const { checkMatch } = useCardActions();
 
-  const { pups } = usePupData();
+  const { pups, throwABone } = usePupData();
 
   const childRefs = useMemo(
     () =>
@@ -43,6 +43,7 @@ export default function PupCard({
       axios.put(`/users/${user.uid}/likes`, {
         likeId: pup.owner_id,
       });
+      throwABone(pup._id)
       const isMatch = await checkMatch(user.uid, pup.owner_id);
       if (isMatch) {
         setShowMatchAlert(true);
@@ -61,7 +62,7 @@ export default function PupCard({
         ref={childRefs[index]}
         className="swipe"
         onSwipe={(dir) => onSwipe(dir)}
-        preventSwipe={["up", "down"]}
+        preventSwipe={["down"]}
         key={pup._id}
         onCardLeftScreen={() => removePup()}
       >
@@ -95,6 +96,10 @@ export default function PupCard({
                 <div>
                   <h4>{pup.breed}</h4>
                 </div>
+                <div className="infoCard__bones">
+                  <FontAwesomeIcon className="infoCard__bone" icon={faBone} /> 
+                 <h6>{pup.name} has {pup.bones} bones</h6>
+                  </div>
                 <div className="infoCard__genderEnergy">
                   <GenderIcon gender={pup.gender} />
                   <EnergyIcon energy={pup.energy} />
@@ -117,7 +122,7 @@ export default function PupCard({
           </div>
         </div>
       </TinderCard>
-      <SwipeButtons swipe={swipe} />
+      <SwipeButtons swipe={swipe} throwABone={throwABone} id={pup._id} />
     </>
   );
 }

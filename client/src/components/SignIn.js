@@ -6,7 +6,7 @@ import welcome from "../assets/images/4.png";
 
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 
-export default function SignIn({ location }) {
+export default function SignIn({ coords }) {
   const uiConfig = {
     // Popup signin flow rather than redirect flow.
     signInFlow: "popup",
@@ -15,7 +15,6 @@ export default function SignIn({ location }) {
     // We will display Google and Facebook as auth providers.
     signInOptions: [
       firebase.auth.EmailAuthProvider.PROVIDER_ID,
-      firebase.auth.FacebookAuthProvider.PROVIDER_ID,
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
     ],
     callbacks: {
@@ -25,7 +24,7 @@ export default function SignIn({ location }) {
           name: userObj.user.displayName,
           email: userObj.user.email,
           photoURL: userObj.user.photoURL,
-          location,
+          location: coords,
         });
       },
     },
@@ -33,7 +32,7 @@ export default function SignIn({ location }) {
   return (
     <div className="signInForm">
       <div className="signInForm__card">
-        <img src={welcome} alt="welcome" style={{ height: "150px" }} />
+        <img src={welcome} alt="welcome" style={{ height: "300px" }} />
         <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
       </div>
     </div>

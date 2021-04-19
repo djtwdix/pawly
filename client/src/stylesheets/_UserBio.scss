@@ -2,17 +2,13 @@
   height: 100%;
   width: 80vw;
   display: flex;
-  max-height: 500px;
   flex-direction: column;
   box-shadow: 0px 2px 5px lightgray;
-  overflow: hidden;
   border-radius: 5px;
-
+  overflow: hidden;
   &__container {
-    margin-top: 2rem;
+    margin-top: 3rem;
     display: flex;
-    height: 70vh;
-    width: 100vw;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -24,7 +20,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    background: linear-gradient($blue, white);
+    background: linear-gradient($light-pink, white);
     padding: 20px;
     display: flex;
     flex-direction: column-reverse;
@@ -41,7 +37,7 @@
     margin-left: 1rem;
 
     h1 {
-      color: $light-pink;
+      color: $blue;
       font-size: 2rem;
       font-weight: 900;
     }
@@ -55,7 +51,6 @@
   }
 
   &__form {
-
     width: 90%;
     min-height: 200px;
     display: flex;
@@ -63,5 +58,24 @@
     justify-content: space-between;
     margin: auto;
     margin-top: 1rem;
+  }
+
+  &__about {
+    color: $light-pink;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    font-family: "Roboto", sans-serif;
+  }
+
+  &__aboutUser {
+    margin-top: 1rem;
+    margin-left: 1rem;
+    font-family: "Roboto", sans-serif;
+  }
+  &__editButton {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    min-height: 180px;
   }
 }

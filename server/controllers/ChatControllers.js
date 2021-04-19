@@ -44,7 +44,7 @@ export const updateLastMessage = (req, res) => {
 };
 
 export const getChatsByUserId = (req, res) => {
-  const user_id = req.body.user_id;
+  const user_id = req.session.user_id
   Chats.find({ participants: user_id }, (err, data) => {
     if (err) {
       res.status(500).send(err);

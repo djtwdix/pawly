@@ -4,7 +4,8 @@ import {
   updateUser,
   getUserById,
   addLike,
-  addBio
+  addBio,
+  signOut
 } from "../controllers/UserControllers.js";
 import { getPupsByOwner } from "../controllers/PupControllers.js";
 const router = express.Router();
@@ -15,5 +16,6 @@ router.put("/:userId", updateUser);
 router.get("/:userId", getUserById);
 router.put("/:userId/likes", addLike);
 router.put("/:userId/bio", addBio);
+router.post("/signOut", signOut)
 
 export { router as userRoutes };

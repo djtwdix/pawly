@@ -7,6 +7,7 @@ import Picker from "emoji-picker-react";
 import EmojiEmotionsIcon from "@material-ui/icons/EmojiEmotions";
 import CloseIcon from "@material-ui/icons/Close";
 import useChatWindowData from "../hooks/useChatWindowData";
+import { Link } from "react-router-dom";
 
 export default function ChatWindow({ user }) {
   const {
@@ -18,10 +19,10 @@ export default function ChatWindow({ user }) {
     onEmojiClick,
     input,
     setInput,
-    messageInputRef
+    messageInputRef,
+    otherUser,
   } = useChatWindowData();
   const messagesEndRef = useRef(null);
-  
 
   const parsedMessages = messages.map((message) => {
     return <ChatMessage key={message._id} user={user} message={message} />;
@@ -39,7 +40,14 @@ export default function ChatWindow({ user }) {
     <div>
       <section className="chatWindow">
         <p className="chatWindow__match">
-          You matched {moment(chatInfo.created_at).fromNow()}
+          {"You matched "}
+          <Link
+            to={{ pathname: `/profile/${otherUser._id}`, otherUser: otherUser }}
+            className="chatWindow__userLink"
+          >
+            {otherUser.name}
+          </Link>{" "}
+          {moment(chatInfo.created_at).fromNow()}
         </p>
         {parsedMessages}
         <div ref={messagesEndRef} />
@@ -53,10 +61,7 @@ export default function ChatWindow({ user }) {
                   bottom: "325px",
                 }}
                 onClick={showEmojiKeyboard}
-              >
-                <CloseIcon />
-                close
-              </mui.Button>
+              ></mui.Button>
               <Picker onEmojiClick={onEmojiClick} />
             </div>
           ) : (
@@ -67,7 +72,10 @@ export default function ChatWindow({ user }) {
               <EmojiEmotionsIcon className="chatWindow__inputButton" />
             </mui.Button>
           )}
-          <div className="chatWindow__messageInputText">
+          <div
+            className="chatWindow__messageInputText"
+            onClick={showEmojis ? showEmojiKeyboard : undefined}
+          >
             <mui.Input
               inputRef={messageInputRef}
               value={input}

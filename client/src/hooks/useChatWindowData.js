@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { io } from "socket.io-client";
 import { auth } from "../firebase/config";
 import { useLocation } from "react-router-dom";
+import getUserById from "../helpers/getUserById";
 
 export default function useChatWindowData() {
   const user = auth.currentUser;
@@ -11,6 +12,7 @@ export default function useChatWindowData() {
   const [connection, setConnection] = useState({});
   const [input, setInput] = useState("");
   const [showEmojis, setShowEmojis] = useState(false);
+  const [otherUser, setOtherUser] = useState({});
   const messageInputRef = useRef(null);
 
   const chatData = useLocation();
@@ -20,16 +22,25 @@ export default function useChatWindowData() {
   }
 
   useEffect(() => {
-    const getMessagesByChatId = (chatId) => {
-      return axios.get(`/chats/${chatId}/messages`);
-    };
-    getMessagesByChatId(chatID).then((res) => {
-      setMessages(res.data);
-    });
-    axios.get(`/chats/${chatID}`).then((res) => {
-      setChatInfo(res.data);
-    });
-  }, [chatID]);
+    if (chatID) {
+      console.log(chatID);
+      const getMessagesByChatId = (chatId) => {
+        return axios.get(`/chats/${chatId}/messages`);
+      };
+      getMessagesByChatId(chatID).then((res) => {
+        setMessages(res.data);
+      });
+      axios.get(`/chats/${chatID}`).then((res) => {
+        setChatInfo(res.data);
+        const participant = res.data.participants.filter(
+          (id) => id !== user.uid
+        );
+        getUserById(participant).then((res) => {
+          setOtherUser(res.data);
+        });
+      });
+    }
+  }, [chatID, user]);
 
   useEffect(() => {
     const socket = io();
@@ -94,5 +105,6 @@ export default function useChatWindowData() {
     input,
     setInput,
     messageInputRef,
+    otherUser,
   };
 }

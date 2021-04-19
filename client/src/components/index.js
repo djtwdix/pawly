@@ -10,3 +10,5 @@ export { default as CardStack } from "./PupCardStack";
 export { default as EditPupForm } from "./EditPupForm";
 export { default as UserProfile } from "./UserProfile";
 export { default as AuthChecker } from "./AuthChecker";
+export { default as Settings } from "./Settings";
+export { default as Playdates } from "./Playdates";

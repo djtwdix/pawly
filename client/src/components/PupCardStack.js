@@ -1,19 +1,17 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import usePupData from "../hooks/usePupData";
 import PupCard from "./PupCard";
 import PupCardInfo from "./PupCardInfo";
 import loadingGif from "../assets/images/giphy.gif";
-
+import allDone from "../assets/images/alldone.png";
 import useCardActions from "../hooks/useCardActions";
-import getDistanceByCoords from "../helpers/getDistanceByCoords";
-import useLocationData from "../hooks/useLocationData";
 import MatchAlert2 from "./MatchAlert2";
 
-export default function PupCardStack({ user }) {
-  const { pups, setPups, loading } = usePupData();
+export default function PupCardStack({ user, soundOff }) {
+  const { pups, setPups } = usePupData();
   const { showPhoto, photoController } = useCardActions();
-  const { location } = useLocationData();
   const [showMatchAlert, setShowMatchAlert] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const setMatchAlertFalse = () => {
     if (showMatchAlert) {
@@ -21,20 +19,19 @@ export default function PupCardStack({ user }) {
     }
   };
 
-  const nearPups = pups.filter((pup) => {
-    if (location) {
-      return (
-        getDistanceByCoords(pup.location.coordinates, location.coordinates) < 50
-      );
-    }
-    return null;
-  });
+  const stopLoading = () => {
+    setTimeout(() => setLoading(false), 5000);
+  };
+
+  stopLoading();
 
   const removePup = () => {
     setPups((prev) => [...prev.slice(0, prev.length - 1)]);
+    parsedPups.slice(0, parsedPups.length - 1);
+    parsedPupsInfo.slice(0, parsedPups.length - 1);
   };
 
-  const parsedPups = nearPups.map((pup, index) => {
+  const parsedPups = pups.map((pup, index) => {
     return (
       <PupCard
         index={index}
@@ -49,7 +46,7 @@ export default function PupCardStack({ user }) {
     );
   });
 
-  const parsedPupsInfo = nearPups.map((pup, index) => {
+  const parsedPupsInfo = pups.map((pup, index) => {
     return (
       <PupCardInfo
         index={index}
@@ -67,15 +64,30 @@ export default function PupCardStack({ user }) {
   return (
     <section>
       <div className="pupCard__container">
-        {loading && !showMatchAlert && (
+        {!parsedPups.length && !showMatchAlert && loading ? (
           <img
             src={loadingGif}
             alt="loading"
-            style={{ width: "400px", height: "400px" }}
+            style={{ width: "300px", height: "300px" }}
           />
+        ) : (
+          !parsedPups.length &&
+          !showMatchAlert && (
+            <img
+              className="pupCard__allDone"
+              src={allDone}
+              alt="loading"
+              style={{ width: "350px", height: "350px" }}
+              onClick={() => window.location.reload()}
+            />
+          )
         )}
+
         {showMatchAlert ? (
-          <MatchAlert2 setMatchAlertFalse={setMatchAlertFalse} />
+          <MatchAlert2
+            setMatchAlertFalse={setMatchAlertFalse}
+            soundOff={soundOff}
+          />
         ) : showPhoto ? (
           parsedPups
         ) : (
