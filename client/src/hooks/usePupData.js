@@ -20,7 +20,6 @@ export default function usePupData() {
   });
   const [photoURL, setPhotoURL] = useState("");
   const [pups, setPups] = useState([]);
-  const [loading, setLoading] = useState(true);
   const { location } = useLocationData();
 
   const [userPups, setUserPups] = useState([]);
@@ -151,8 +150,6 @@ export default function usePupData() {
     setPups,
     destroyPup,
     setUserPups,
-    loading,
     throwABone,
-    setLoading,
   };
 }
