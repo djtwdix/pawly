@@ -31,7 +31,10 @@ export default function ChatListItem({ chat, user }) {
           ></Avatar>
           <div className="chat__details">
             <h1>{otherUser.name}</h1>
-            <p>{last_message.text}</p>
+            <p>
+              {last_message.text.substring(0, 30)}
+              {last_message.text.length > 30 && "..."}
+            </p>
           </div>
           <p className="chat__timestamp">
             {moment(last_message.created_at).fromNow()}
