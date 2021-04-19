@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import usePupData from "../hooks/usePupData";
 import PupCard from "./PupCard";
 import PupCardInfo from "./PupCardInfo";

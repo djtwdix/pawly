@@ -24,22 +24,23 @@ export default function useChatWindowData() {
   useEffect(() => {
     if (chatID) {
       console.log(chatID);
-    const getMessagesByChatId = (chatId) => {
-      return axios.get(`/chats/${chatId}/messages`);
-    };
-    getMessagesByChatId(chatID).then((res) => {
-      setMessages(res.data);
-    });
-    axios.get(`/chats/${chatID}`).then((res) => {
-      setChatInfo(res.data);
-      const participant = res.data.participants.filter(id => id !== user.uid);
-      getUserById(participant).then((res) => {
-        setOtherUser(res.data);
-        console.log(otherUser);
-      })
-    });
-  } 
-  }, [chatID]);
+      const getMessagesByChatId = (chatId) => {
+        return axios.get(`/chats/${chatId}/messages`);
+      };
+      getMessagesByChatId(chatID).then((res) => {
+        setMessages(res.data);
+      });
+      axios.get(`/chats/${chatID}`).then((res) => {
+        setChatInfo(res.data);
+        const participant = res.data.participants.filter(
+          (id) => id !== user.uid
+        );
+        getUserById(participant).then((res) => {
+          setOtherUser(res.data);
+        });
+      });
+    }
+  }, [chatID, user]);
 
   useEffect(() => {
     const socket = io();
@@ -104,6 +105,6 @@ export default function useChatWindowData() {
     input,
     setInput,
     messageInputRef,
-    otherUser
+    otherUser,
   };
 }

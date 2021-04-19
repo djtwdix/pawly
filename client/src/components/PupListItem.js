@@ -1,14 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { Avatar, Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import EditIcon from "@material-ui/icons/Edit";
-import { useHistory } from "react-router-dom";
 import DeleteAlert from "./DeleteAlert";
 import useDeleteAlert from "../hooks/useDeleteAlert";
 
 export default function PupListItem({ pup, destroyPup }) {
-  const history = useHistory();
   const { showDeleteAlert, deleteAlert } = useDeleteAlert();
 
   return (
@@ -44,10 +42,7 @@ export default function PupListItem({ pup, destroyPup }) {
           </Link>
           <div style={{ display: "flex" }}>
             <Link to={{ pathname: `/pups/edit`, state: pup }}>
-              <Button
-                  className="pupListItem__edit"
-                  
-              >
+              <Button className="pupListItem__edit">
                 <EditIcon />
               </Button>
             </Link>

@@ -8,7 +8,7 @@ import moment from "moment";
 import EnergyIcon from "./EnergyIcon";
 import KeyboardReturnIcon from "@material-ui/icons/KeyboardReturn";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBirthdayCake } from "@fortawesome/free-solid-svg-icons";
+import { faBirthdayCake , faBone } from "@fortawesome/free-solid-svg-icons";
 import GenderIcon from "./GenderIcon";
 import usePupData from "../hooks/usePupData";
 
@@ -96,6 +96,10 @@ export default function PupCard({
                 <div>
                   <h4>{pup.breed}</h4>
                 </div>
+                <div className="infoCard__bones">
+                  <FontAwesomeIcon className="infoCard__bone" icon={faBone} /> 
+                 <h6>{pup.name} has {pup.bones} bones</h6>
+                  </div>
                 <div className="infoCard__genderEnergy">
                   <GenderIcon gender={pup.gender} />
                   <EnergyIcon energy={pup.energy} />

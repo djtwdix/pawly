@@ -3,7 +3,6 @@ import Navbar from "./Navbar";
 import SignIn from "./SignIn";
 
 export default function AuthChecker({ children, user, loading, coords }) {
-  console.log(coords);
   return (
     <div>
       {!loading && !user ? (

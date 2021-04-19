@@ -9,7 +9,6 @@ import * as comp from "./components";
 function App() {
   const [user, loading] = useAuthState(auth);
   const { location } = useLocationData();
-  console.log('location: ', location)
 
   return (
     <div className="App">
