@@ -37,7 +37,6 @@ Contributors :
 
 ### Dependencies 
 #### Client Dependencies
-- @date-io/dayjs: "^1.3.13",
 - @date-io/moment: "^1.3.13",
 - @fortawesome/fontawesome-svg-core: "^1.2.35",
 - @fortawesome/free-solid-svg-icons: "^5.15.3",
