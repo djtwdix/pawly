@@ -9,7 +9,6 @@ export const createPup = (req, res) => {
   Pups.create(pupsInfo, (err, data) => {
     if (err) {
       res.status(500).send(err);
-      console.log(err);
     } else {
       res.status(201).send(data);
     }
@@ -22,7 +21,6 @@ export const editPup = (req, res) => {
   Pups.findOneAndUpdate({ _id: pupID }, pupsInfo, (err, data) => {
     if (err) {
       res.status(500).send(err);
-      console.log(err);
     } else {
       res.status(200).send(data);
     }
@@ -33,8 +31,7 @@ export const addABone = (req, res) => {
   const pupID = req.params.pupId;
   Pups.findOneAndUpdate({ _id: pupID }, { $inc: { bones: 1 } }, (err, data) => {
     if (err) {
-      res.status(500).send(err);
-      console.log(err);
+      res.status(500).send(err); 
     } else {
       res.status(200).send(data);
     }
@@ -46,7 +43,6 @@ export const getPupsByOwner = (req, res) => {
   Pups.find({ owner_id: owner_id }, (err, data) => {
     if (err) {
       res.status(500).send(err);
-      console.log(err);
     } else {
       res.status(200).send(data);
     }
@@ -74,7 +70,6 @@ export const getPupById = (req, res) => {
     (err, data) => {
       if (err) {
         res.status(500).send(err);
-        console.log(err);
       } else {
         res.status(200).send(data);
       }
@@ -108,7 +103,6 @@ export const getAllPups = (req, res) => {
     (err, data) => {
       if (err) {
         res.status(500).send(err);
-        console.log(err);
       } else {
         res.status(200).send(data);
       }
@@ -118,11 +112,9 @@ export const getAllPups = (req, res) => {
 
 export const destroyPupById = (req, res) => {
   const pupID = req.params.pupId;
-  console.log(pupID);
   Pups.deleteOne({ _id: pupID }, (err, data) => {
     if (err) {
       res.status(500).send(err);
-      console.log(err);
     } else {
       res.status(200).send(data);
     }

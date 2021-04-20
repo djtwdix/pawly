@@ -26,7 +26,6 @@ export const getUserById = (req, res) => {
 export const createUser = async (req, res) => {
   const userInfo = req.body;
   req.session.user_id = userInfo._id;
-  console.log('cookie-session:', req.session.user_id);
   req.session.save(); 
   const userExists = await checkIfUserExists(req.body._id);
   if (!userExists) {
@@ -41,7 +40,6 @@ export const createUser = async (req, res) => {
     Users.findOneAndUpdate({ _id: req.body._id }, userInfo, (err, data) => {
       if (err) {
         res.status(500).send(err);
-        console.log(err)
       } else {
         res.status(200).send(data);
       }
@@ -79,7 +77,6 @@ export const addLike = (req, res) => {
   export const addBio = (req, res) => {
     const userId = req.params.userId;
     const bio = req.body.bio;
-    console.log(bio);
     Users.updateOne(
       { _id: userId },
       { bio: bio } ,
@@ -95,6 +92,5 @@ export const addLike = (req, res) => {
 
   export const signOut = (req, res) => {
     req.session.user_id = null;
-    console.log("cookie:", req.session.user_id)
   }
 
