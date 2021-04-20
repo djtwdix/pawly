@@ -13,6 +13,8 @@ Contributors :
 
 ### Final product 
 
+#### Pup form : add your dogs to your profile 
+![Pawly form](https://github.com/djtwdix/pawly/blob/feature/README/client/public/pupform.png)
 
 #### Create a Match 
 ![Pawly making a match](https://media.giphy.com/media/S2hdfqaql0JAc6zEEh/giphy.gif)
