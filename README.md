@@ -20,7 +20,8 @@ Contributors :
 ![Pawly making a match](https://media.giphy.com/media/S2hdfqaql0JAc6zEEh/giphy.gif)
 
 #### Pup Chat : create a conversation with your match 
-![Pawly making a match](https://github.com/djtwdix/pawly/blob/feature/README/client/public/pupChat.png)
+![Pawly creating a chat](https://github.com/djtwdix/pawly/blob/feature/README/client/public/pupChat.png)
+
 
 
 ### Tech/Framework 
