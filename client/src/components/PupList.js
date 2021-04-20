@@ -3,19 +3,13 @@ import React from "react";
 import ListItemContainer from "./ListItemContainer";
 import PupListItem from "./PupListItem";
 import { Link } from "react-router-dom";
-import usePupData from "../hooks/usePupData";
+import useUserPupData from "../hooks/useUserPupData";
 
 export default function PupList({ user }) {
-  const { userPups, destroyPup } = usePupData();
+  const { userPups, destroyPup } = useUserPupData();
 
   const parsedPups = userPups.map((pup, index) => {
-    return (
-      <PupListItem
-        destroyPup={destroyPup}
-        key={pup._id}
-        pup={pup}
-      />
-    );
+    return <PupListItem destroyPup={destroyPup} key={pup._id} pup={pup} />;
   });
 
   return (

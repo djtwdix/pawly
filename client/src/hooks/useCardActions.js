@@ -1,5 +1,6 @@
 import { useState } from "react";
 import getUserById from "../helpers/getUserById";
+import axios from "axios"
 
 export default function useCardActions() {
   const [showPhoto, setShowPhoto] = useState(true);
@@ -22,5 +23,10 @@ export default function useCardActions() {
     }
   };
 
-  return { showPhoto, photoController, checkMatch };
+  //adds a "bone" (like) to pup in DB
+  const throwABone = (pupID) => {
+    axios.put(`pups/${pupID}/bone`);
+  };
+
+  return { showPhoto, photoController, checkMatch, throwABone };
 }

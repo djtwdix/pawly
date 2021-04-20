@@ -31,7 +31,7 @@ export const addABone = (req, res) => {
   const pupID = req.params.pupId;
   Pups.findOneAndUpdate({ _id: pupID }, { $inc: { bones: 1 } }, (err, data) => {
     if (err) {
-      res.status(500).send(err); 
+      res.status(500).send(err);
     } else {
       res.status(200).send(data);
     }
@@ -40,6 +40,7 @@ export const addABone = (req, res) => {
 
 export const getPupsByOwner = (req, res) => {
   const owner_id = req.session.user_id;
+  console.log("owner_id: ", owner_id);
   Pups.find({ owner_id: owner_id }, (err, data) => {
     if (err) {
       res.status(500).send(err);
@@ -51,6 +52,7 @@ export const getPupsByOwner = (req, res) => {
 
 export const getPupById = (req, res) => {
   const pupID = mongoose.Types.ObjectId(req.params.pupId);
+
   Pups.aggregate(
     [
       {

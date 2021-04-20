@@ -12,7 +12,7 @@ export default function PupCardStack({ user, soundOff }) {
   const { showPhoto, photoController } = useCardActions();
   const [showMatchAlert, setShowMatchAlert] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [chat, setChat] = useState(null)
+  const [chat, setChat] = useState(null);
 
   const setMatchAlertFalse = () => {
     if (showMatchAlert) {
@@ -20,21 +20,17 @@ export default function PupCardStack({ user, soundOff }) {
     }
   };
 
-  const stopLoading = () => {
-    setTimeout(() => setLoading(false), 5000);
-  };
-
-  stopLoading();
-
   const removePup = () => {
     setPups((prev) => [...prev.slice(0, prev.length - 1)]);
     parsedPups.slice(0, parsedPups.length - 1);
     parsedPupsInfo.slice(0, parsedPups.length - 1);
+    setLoading(false);
   };
 
   const parsedPups = pups.map((pup, index) => {
     return (
       <PupCard
+        pups={pups}
         index={index}
         removePup={removePup}
         key={pup._id}
@@ -51,6 +47,7 @@ export default function PupCardStack({ user, soundOff }) {
   const parsedPupsInfo = pups.map((pup, index) => {
     return (
       <PupCardInfo
+        pups={pups}
         index={index}
         removePup={removePup}
         key={pup._id}

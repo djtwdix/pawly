@@ -5,7 +5,6 @@ import SwipeButtons from "./SwipeButtons";
 import useCardActions from "../hooks/useCardActions";
 import React, { useMemo } from "react";
 import axios from "axios";
-import usePupData from "../hooks/usePupData";
 
 export default function PupCard({
   pup,
@@ -14,10 +13,10 @@ export default function PupCard({
   removePup,
   index,
   setShowMatchAlert,
-  setChat
+  setChat,
+  pups,
 }) {
-  const { checkMatch } = useCardActions();
-  const { pups, throwABone } = usePupData();
+  const { checkMatch, throwABone } = useCardActions();
 
   const childRefs = useMemo(
     () =>
@@ -49,7 +48,7 @@ export default function PupCard({
             last_message: { text: "Say hello!" },
           })
           .then((res) => {
-            setChat(res.data)
+            setChat(res.data);
           });
       }
     }

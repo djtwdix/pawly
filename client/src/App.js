@@ -9,7 +9,6 @@ import * as comp from "./components";
 function App() {
   const [user, loading] = useAuthState(auth);
   const { soundOff, setSoundOff } = useSettings();
-
   const { location } = useLocationData();
 
   return (
@@ -19,7 +18,7 @@ function App() {
           <comp.AuthChecker user={user} loading={loading} coords={location}>
             <Route exact path="/">
               <comp.Navbar user={user} />
-              <comp.CardStack user={user} soundOff={soundOff} />
+              <comp.CardStack user={user} soundOff={soundOff} coords={location}/>
             </Route>
             <Route exact path="/chats">
               <comp.Navbar backButton={"/"} user={user} hideChatButton={true} />
@@ -27,11 +26,11 @@ function App() {
             </Route>
             <Route path="/chats/messages">
               <comp.Navbar backButton={"/chats"} user={user} />
-              {user && <comp.ChatWindow user={user} />}
+              <comp.ChatWindow user={user} />
             </Route>
             <Route path="/playdates">
               <comp.Navbar backButton={"/profile"} user={user} />
-              {user && <comp.Playdates user={user} />}
+              <comp.Playdates user={user} />
             </Route>
             <Route exact path="/profile">
               <comp.Navbar backButton={"/"} user={user} />
