@@ -29,9 +29,11 @@ Contributors :
 ### Installation 
 
 1. Fork this repository, then clone your fork of this repository.
-2. Install dependencies using the `npm install` command.
+2. Install dependencies using the `npm install` command in both the server and client folders.
 
-
+### Set up 
+1. run the front end server with `npm start`
+2. run the back-back end server with `npm start`
 
 ### Dependencies 
 #### Client Dependencies
