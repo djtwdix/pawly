@@ -19,6 +19,8 @@ Contributors :
 #### Create a Match 
 ![Pawly making a match](https://media.giphy.com/media/S2hdfqaql0JAc6zEEh/giphy.gif)
 
+#### Pup Chat : create a conversation with your match 
+![Pawly making a match]()
 
 
 ### Tech/Framework 
