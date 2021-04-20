@@ -5,7 +5,6 @@ import ChatMessage from "./ChatMessage";
 import SendIcon from "@material-ui/icons/Send";
 import Picker from "emoji-picker-react";
 import EmojiEmotionsIcon from "@material-ui/icons/EmojiEmotions";
-import CloseIcon from "@material-ui/icons/Close";
 import useChatWindowData from "../hooks/useChatWindowData";
 import { Link } from "react-router-dom";
 
@@ -46,8 +45,8 @@ export default function ChatWindow({ user }) {
             className="chatWindow__userLink"
           >
             {otherUser.name}
-          </Link>{" "}
-          {moment(chatInfo.created_at).fromNow()}
+          </Link>
+          {` ${moment(chatInfo.created_at).fromNow()}`}
         </p>
         {parsedMessages}
         <div ref={messagesEndRef} />
