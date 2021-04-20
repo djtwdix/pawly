@@ -1,5 +1,5 @@
 .chatWindow {
-  max-height: calc(100vh - 167.75px);
+  height: calc(100vh - 150px);
   overflow: scroll;
   &__message {
     display: flex;
