@@ -26,6 +26,13 @@ Contributors :
 ### Tech/Framework 
 - MongoDB, Express, React, Node.js
 
+### Installation 
+
+1. Fork this repository, then clone your fork of this repository.
+2. Install dependencies using the `npm install` command.
+
+
+
 ### Dependencies 
 #### Client Dependencies
 - @date-io/dayjs: "^1.3.13",
