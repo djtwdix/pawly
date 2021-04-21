@@ -45,9 +45,6 @@ Contributors :
 - @material-ui/core: "^4.11.3",
 - @material-ui/icons: "^4.11.2",
 - @material-ui/pickers: "^3.3.10",
-- @testing-library/jest-dom: "^5.11.10",
-- @testing-library/react: "^11.2.6",
-- @testing-library/user-event: "^12.8.3",
 - axios: "^0.21.1",
 - emoji-picker-react: "^3.4.4",
 - firebase: "^8.3.3",
@@ -63,7 +60,6 @@ Contributors :
 - react-tinder-card: "^1.4.0",
 - sass: "^1.32.8",
 - socket.io-client: "^4.0.1",
-- web-vitals: "^1.1.1"
 #### Server Dependencies 
 - cookie-session: "^1.4.0",
 - cors: "^2.8.5",
