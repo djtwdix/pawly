@@ -20,16 +20,12 @@ export default function PupCardStack({ user, soundOff }) {
     }
   };
 
-  const stopLoading = () => {
-    setTimeout(() => setLoading(false), 5000);
-  };
-
-  stopLoading();
 
   const removePup = () => {
     setPups((prev) => [...prev.slice(0, prev.length - 1)]);
     parsedPups.slice(0, parsedPups.length - 1);
     parsedPupsInfo.slice(0, parsedPups.length - 1);
+    setLoading(false);
   };
 
   const parsedPups = pups.map((pup, index) => {
@@ -44,6 +40,7 @@ export default function PupCardStack({ user, soundOff }) {
         photoController={photoController}
         setShowMatchAlert={setShowMatchAlert}
         setChat={setChat}
+        pups={pups}
       />
     );
   });
@@ -60,6 +57,7 @@ export default function PupCardStack({ user, soundOff }) {
         photoController={photoController}
         setShowMatchAlert={setShowMatchAlert}
         setChat={setChat}
+        pups={pups}
       />
     );
   });

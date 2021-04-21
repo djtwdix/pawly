@@ -20,7 +20,7 @@ export default function usePupData() {
 
   //gets all pups other than users for card stack, and pups for owner for pup list
   useEffect(() => {
-    if (user && location) {
+    if (user) {
       const getAllPups = async (user_id) => {
         const result = await axios.get("/pups/all");
         setPups(

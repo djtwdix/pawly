@@ -20,10 +20,11 @@ export default function PupCard({
   setShowMatchAlert,
   index,
   setChat,
+  pups
 }) {
   const { checkMatch } = useCardActions();
 
-  const { pups, throwABone } = usePupData();
+  const { throwABone } = usePupData();
 
   const childRefs = useMemo(
     () =>
