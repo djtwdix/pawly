@@ -5,7 +5,6 @@ import SwipeButtons from "./SwipeButtons";
 import useCardActions from "../hooks/useCardActions";
 import React, { useMemo } from "react";
 import axios from "axios";
-import usePupData from "../hooks/usePupData";
 
 export default function PupCard({
   pup,
@@ -17,8 +16,7 @@ export default function PupCard({
   setChat,
   pups,
 }) {
-  const { checkMatch } = useCardActions();
-  const { throwABone } = usePupData();
+  const { checkMatch, throwABone } = useCardActions();
 
   const childRefs = useMemo(
     () =>
