@@ -3,8 +3,12 @@ import { useHistory } from "react-router-dom";
 
 //hooks
 
-import useUserPupData from "../hooks/useUserPupData";
 import usePupFormData from "../hooks/usePupFormData";
+
+//helpers
+
+import createPup from "../helpers/createPup";
+import editPup from "../helpers/editPup";
 
 //material ui components
 
@@ -27,7 +31,6 @@ import { faVenus, faMars } from "@fortawesome/free-solid-svg-icons";
 
 export default function EditPupForm({ user, location }) {
   const history = useHistory();
-  const { addPup, editPup } = useUserPupData();
   const {
     formData,
     handleChange,
@@ -52,12 +55,12 @@ export default function EditPupForm({ user, location }) {
           onSubmit={
             !pupID
               ? (e) => {
-                  addPup(e, user, location, formData, photoURL).then(() => {
+                  createPup(e, user, location, formData, photoURL).then(() => {
                     history.goBack();
                   });
                 }
               : (e) => {
-                  editPup(e, user, location, formData, photoURL).then(() => {
+                  editPup(e, user, formData, photoURL, pupID).then(() => {
                     history.goBack();
                   });
                 }
