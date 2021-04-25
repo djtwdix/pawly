@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 
 //hooks
 
-import usePupData from "../hooks/usePupData";
+import useUserPupData from "../hooks/useUserPupData";
 import usePupFormData from "../hooks/usePupFormData";
 
 //material ui components
@@ -27,7 +27,7 @@ import { faVenus, faMars } from "@fortawesome/free-solid-svg-icons";
 
 export default function EditPupForm({ user, location }) {
   const history = useHistory();
-  const { addPup, editPup } = usePupData();
+  const { addPup, editPup } = useUserPupData();
   const {
     formData,
     handleChange,
