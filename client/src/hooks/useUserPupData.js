@@ -16,15 +16,19 @@ export default function usePupData() {
 
   //gets all pups other than users for card stack, and pups for owner for pup list
   useEffect(() => {
+    let mounted = true;
     if (user) {
       const getPupsByOwnerId = async (owner_id) => {
-        console.log("owner_id: ", owner_id);
         const result = await axios.get(`/users/${owner_id}/pups`);
-        setUserPups(result.data);
-        console.log(result.data);
+        if (mounted) {
+          setUserPups(result.data);
+        }
       };
       getPupsByOwnerId(user.uid);
     }
+    return () => {
+      mounted = false;
+    };
   }, [user]);
 
   //posts new pup info to DB on pupform submit

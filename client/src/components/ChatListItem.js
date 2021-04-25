@@ -10,14 +10,20 @@ export default function ChatListItem({ chat, user }) {
   const last_message = chat.last_message;
 
   useEffect(() => {
+    let mounted = true;
     if (chat && user) {
       const otherUserID = chat.participants.filter((participant) => {
         return participant !== user.uid;
       });
       getUserById(otherUserID[0]).then((res) => {
-        setOtherUser(res.data);
+        if (mounted) {
+          setOtherUser(res.data);
+        }
       });
     }
+    return () => {
+      mounted = false;
+    };
   }, [chat, user]);
 
   return (

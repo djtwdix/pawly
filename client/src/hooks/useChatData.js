@@ -8,14 +8,20 @@ export default function useChatData() {
 
   //fetches chats based on passed user id
   useEffect(() => {
+    let mounted = true;
     const getChatsByUserID = async () => {
       const result = await axios.get("/chats/all");
-      setChats(result.data);
+      if (mounted) {
+        setChats(result.data);
+      }
     };
 
     if (user) {
       getChatsByUserID(user.uid);
     }
+    return () => {
+      mounted = false;
+    };
   }, [user]);
   return { chats };
 }

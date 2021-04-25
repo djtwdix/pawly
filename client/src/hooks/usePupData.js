@@ -11,13 +11,19 @@ export default function usePupData() {
 
   //gets all pups other than users for card stack, and pups for owner for pup list
   useEffect(() => {
+    let mounted = true;
     if (user && location) {
       const getAllPups = async (user_id) => {
         const result = await axios.get("/pups/all");
-        setPups(filterPupsByDistance(result.data, location));
+        if (mounted) {
+          setPups(filterPupsByDistance(result.data, location));
+        }
       };
       getAllPups(user.uid);
     }
+    return () => {
+      mounted = false;
+    };
   }, [user, location]);
 
   //adds a "bone" (like) to pup in DB

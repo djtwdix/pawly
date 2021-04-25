@@ -26,22 +26,32 @@ export default function useChatWindowData() {
 
   //if chatID is present, gets messages for current chat window based on ID
   useEffect(() => {
+    let mounted = true;
     if (chatID) {
       const getMessagesByChatId = (chatId) => {
         return axios.get(`/chats/${chatId}/messages`);
       };
       getMessagesByChatId(chatID).then((res) => {
-        setMessages(res.data);
+        if (mounted) {
+          setMessages(res.data);
+        }
       });
       axios.get(`/chats/${chatID}`).then((res) => {
-        setChatInfo(res.data);
+        if (mounted) {
+          setChatInfo(res.data);
+        }
         const participant = res.data.participants.filter(
           (id) => id !== user.uid
         );
         getUserById(participant).then((res) => {
-          setOtherUser(res.data);
+          if (mounted) {
+            setOtherUser(res.data);
+          }
         });
       });
+    }
+    return () => {
+      mounted = false;
     }
   }, [chatID, user]);
 

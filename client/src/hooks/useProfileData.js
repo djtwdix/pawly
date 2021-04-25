@@ -10,9 +10,15 @@ export default function useProfileData() {
 
   //fetches user based on params of url and sets current user profile to result data
   useEffect(() => {
+    let mounted = true;
     getUserById(params.id).then((res) => {
-      setUserProfile(res.data);
+      if (mounted) {
+        setUserProfile(res.data);
+      }
     });
+    return () => {
+      mounted = false;
+    };
   }, [params]);
 
   return { profile, setUserProfile };
