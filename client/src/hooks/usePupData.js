@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { auth } from "../firebase/config";
 import { useLocation } from "react-router-dom";
 import useLocationData from "../hooks/useLocationData";
-import getDistanceByCoords from "../helpers/getDistanceByCoords";
+import filterPupsByDistance from "../helpers/filterPupsByDistance";
 
 export default function usePupData() {
   const user = auth.currentUser;
@@ -20,22 +20,10 @@ export default function usePupData() {
 
   //gets all pups other than users for card stack, and pups for owner for pup list
   useEffect(() => {
-    if (user) {
+    if (user && location) {
       const getAllPups = async (user_id) => {
         const result = await axios.get("/pups/all");
-        setPups(
-          result.data.filter((pup) => {
-            if (location) {
-              return (
-                getDistanceByCoords(
-                  pup.location.coordinates,
-                  location.coordinates
-                ) < 10000000
-              );
-            }
-            return null;
-          })
-        );
+        setPups(filterPupsByDistance(result.data, location));
       };
       getAllPups(user.uid);
       const getPupsByOwnerId = async (owner_id) => {

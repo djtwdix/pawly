@@ -15,7 +15,7 @@ export default function PupCard({
   index,
   setShowMatchAlert,
   setChat,
-  pups
+  pups,
 }) {
   const { checkMatch } = useCardActions();
   const { throwABone } = usePupData();
@@ -50,7 +50,7 @@ export default function PupCard({
             last_message: { text: "Say hello!" },
           })
           .then((res) => {
-            setChat(res.data)
+            setChat(res.data);
           });
       }
     }

@@ -20,7 +20,6 @@ export default function PupCardStack({ user, soundOff }) {
     }
   };
 
-
   const removePup = () => {
     setPups((prev) => [...prev.slice(0, prev.length - 1)]);
     parsedPups.slice(0, parsedPups.length - 1);
