@@ -1,8 +1,10 @@
 ![Pawly Logo](https://github.com/djtwdix/pawly/blob/main/client/public/pawlylogo.png)
 
+<!-- blank line -->
 <figure class="video_container">
   <iframe src="https://www.youtube.com/watch?v=dOO_K5ENeyg" frameborder="0" allowfullscreen="true"> </iframe>
 </figure>
+<!-- blank line -->
 
 # Pawly
 
