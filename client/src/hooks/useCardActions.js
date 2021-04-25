@@ -1,5 +1,4 @@
 import { useState } from "react";
-import getUserById from "../helpers/getUserById";
 import axios from "axios";
 
 export default function useCardActions() {
@@ -14,19 +13,10 @@ export default function useCardActions() {
     }
   };
 
-  //checks if each user is in each others like array
-  const checkMatch = async (userId, ownerId) => {
-    const result = await getUserById(ownerId);
-    const likes = result.data.likes;
-    if (likes) {
-      return likes.includes(userId) ? true : false;
-    }
-  };
-
   //adds a "bone" (like) to pup in DB
   const throwABone = (pupID) => {
     axios.put(`pups/${pupID}/bone`);
   };
 
-  return { showPhoto, photoController, checkMatch, throwABone };
+  return { showPhoto, photoController, throwABone };
 }
