@@ -10,9 +10,8 @@ import KeyboardReturnIcon from "@material-ui/icons/KeyboardReturn";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBirthdayCake, faBone } from "@fortawesome/free-solid-svg-icons";
 import GenderIcon from "./GenderIcon";
-import usePupData from "../hooks/usePupData";
 
-export default function PupCard({
+export default function PupCardInfo({
   pup,
   user,
   photoController,
@@ -20,11 +19,9 @@ export default function PupCard({
   setShowMatchAlert,
   index,
   setChat,
-  pups
+  pups,
 }) {
-  const { checkMatch } = useCardActions();
-
-  const { throwABone } = usePupData();
+  const { checkMatch, throwABone } = useCardActions();
 
   const childRefs = useMemo(
     () =>
