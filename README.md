@@ -1,5 +1,3 @@
-![Pawly Logo](https://github.com/djtwdix/pawly/blob/main/client/public/pawlylogo.png)
-
 ![Pawly Demo](https://github.com/djtwdix/pawly/blob/main/client/src/assets/images/AccomplishedTeemingBobwhite-size_restricted.gif?raw=true)
 
 # Pawly
