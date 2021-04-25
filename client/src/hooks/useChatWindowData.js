@@ -52,7 +52,7 @@ export default function useChatWindowData() {
     }
     return () => {
       mounted = false;
-    }
+    };
   }, [chatID, user]);
 
   //websocket connections
