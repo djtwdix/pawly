@@ -7,6 +7,8 @@ import Picker from "emoji-picker-react";
 import EmojiEmotionsIcon from "@material-ui/icons/EmojiEmotions";
 import useChatWindowData from "../hooks/useChatWindowData";
 import { Link } from "react-router-dom";
+import DateTimePicker from "./DatePicker";
+import useDatePicker from "../hooks/useDatePicker";
 
 export default function ChatWindow({ user }) {
   const {
@@ -22,6 +24,7 @@ export default function ChatWindow({ user }) {
     otherUser,
   } = useChatWindowData();
   const messagesEndRef = useRef(null);
+  const { showPicker, datePicker } = useDatePicker();
 
   const parsedMessages = messages.map((message) => {
     return <ChatMessage key={message._id} user={user} message={message} />;
@@ -37,8 +40,8 @@ export default function ChatWindow({ user }) {
 
   return (
     <div>
-      <section className="chatWindow">
-        <p className="chatWindow__match">
+      {  <section className="chatWindow">
+        <div className="chatWindow__match">
           {"You matched "}
           <Link
             to={{ pathname: `/profile/${otherUser._id}`, otherUser: otherUser }}
@@ -47,7 +50,20 @@ export default function ChatWindow({ user }) {
             {otherUser.name}
           </Link>
           {` ${moment(chatInfo.created_at).fromNow()}`}
+          <p>Schedule a
+          <mui.Button onClick={datePicker}>
+            Play Date!
+          </mui.Button>
         </p>
+        { showPicker && <section>
+        <DateTimePicker 
+          user={user}
+          otherUser={otherUser}
+          />
+      </section>
+      }
+        </div>
+        
         {parsedMessages}
         <div ref={messagesEndRef} />
         <form onSubmit={handleSubmit} className="chatWindow__messageInput">
@@ -92,6 +108,7 @@ export default function ChatWindow({ user }) {
           </mui.Button>
         </form>
       </section>
+      }
     </div>
   );
 }
