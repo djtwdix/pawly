@@ -33,5 +33,5 @@ export default function useDateData() {
     }
   }, [user])
 
-  return { addDate, dates};
+  return { addDate, dates };
 }
