@@ -4,6 +4,7 @@ import { auth } from "../firebase/config";
 
 export default function useDateData() {
   const [dates, setDates] = useState([]);
+  const user = auth.currentUser;
 
 
   const addDate = (e, user, otherUser, date) => {
@@ -20,11 +21,17 @@ export default function useDateData() {
   }
 
   useEffect(() => {
+    let mounted = true;
     if (user) {
-      get
+       getDatesByUserID(user.uid).then((res) => {
+         setDates(res.data);
+      })
     }
 
-  })
+    return () => {
+      mounted = false;
+    }
+  }, [user])
 
-  return { addDate };
+  return { addDate, dates};
 }
