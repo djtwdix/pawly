@@ -13,3 +13,15 @@ export const createDate = (req, res) => {
     }
   });
 };
+
+export const getDatesForUser = (req, res) => {
+  const user_id = req.session.user_id;
+
+  Dates.find({ participants: user_id }, (err, data) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+}
