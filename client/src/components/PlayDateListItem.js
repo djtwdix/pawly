@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import getUserById from "../helpers/getUserById";
+import Avatar from "@material-ui/core/Avatar";
 
 
-export default function PlayDateListItem({date, user, participants}) {
+export default function PlayDateListItem({ date, user, participants }) {
   const [otherUser, setOtherUser] = useState({});
-  
+
   useEffect(() => {
     let mounted = true;
     if (date && user) {
@@ -25,6 +26,11 @@ export default function PlayDateListItem({date, user, participants}) {
   return (
     <div>
       {date}
+      <Avatar
+        className="playDate__image"
+        alt={otherUser.name}
+        src={otherUser.photoURL}
+      ></Avatar>
       {otherUser.name}
     </div>
   )
