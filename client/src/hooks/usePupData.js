@@ -1,94 +1,94 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { auth } from "../firebase/config";
-import { useLocation } from "react-router-dom";
 import useLocationData from "../hooks/useLocationData";
-import getDistanceByCoords from "../helpers/getDistanceByCoords";
+import filterPupsByDistance from "../helpers/filterPupsByDistance";
+import PupCardInfo from "../components/PupCardInfo";
+import PupCard from "../components/PupCard";
+import useCardActions from './useCardActions';
 
 export default function usePupData() {
   const user = auth.currentUser;
-  const data = useLocation();
   const [pups, setPups] = useState([]);
   const { location } = useLocationData();
-  const [userPups, setUserPups] = useState([]);
-
-  //gets pupID by passed state prop on click of list item, used for below functions:
-  let pupID = null;
-  if (data.state) {
-    pupID = data.state._id;
-  }
+  const [showMatchAlert, setShowMatchAlert] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [chat, setChat] = useState(null);
+  const { showPhoto, photoController } = useCardActions();
 
   //gets all pups other than users for card stack, and pups for owner for pup list
   useEffect(() => {
-    if (user) {
+    let mounted = true;
+    if (user && location) {
       const getAllPups = async (user_id) => {
         const result = await axios.get("/pups/all");
-        setPups(
-          result.data.filter((pup) => {
-            if (location) {
-              return (
-                getDistanceByCoords(
-                  pup.location.coordinates,
-                  location.coordinates
-                ) < 10000000
-              );
-            }
-            return null;
-          })
-        );
+        if (mounted) {
+          setPups(filterPupsByDistance(result.data, location));
+        }
       };
       getAllPups(user.uid);
-      const getPupsByOwnerId = async (owner_id) => {
-        const result = await axios.get(`/users/${owner_id}/pups`);
-        setUserPups(result.data);
-      };
-      getPupsByOwnerId(user.uid);
     }
+    return () => {
+      mounted = false;
+    };
   }, [user, location]);
 
-  //posts new pup info to DB on pupform submit
-  const addPup = (e, user, location, formData, photoURL) => {
-    e.preventDefault();
-    return axios.post("/pups", {
-      ...formData,
-      owner_id: user.uid,
-      photoURL: photoURL,
-      location: location,
-    });
+
+  const setMatchAlertFalse = () => {
+    if (showMatchAlert) {
+      setShowMatchAlert(false);
+    }
   };
 
-  //edits pup in db and sets state of current pup to updated data
-  const editPup = (e, user, location, formData, photoURL) => {
-    e.preventDefault();
-    return axios.put(`/pups/${pupID}`, {
-      ...formData,
-      _id: pupID,
-      owner_id: user.uid,
-      photoURL: photoURL,
-    });
+  const removePup = () => {
+    setPups((prev) => [...prev.slice(0, prev.length - 1)]);
+    parsedPups.slice(0, parsedPups.length - 1);
+    parsedPupsInfo.slice(0, parsedPups.length - 1);
+    setLoading(false);
   };
 
-  //adds a "bone" (like) to pup in DB
-  const throwABone = (pupID) => {
-    axios.put(`pups/${pupID}/bone`);
-  };
+  const parsedPups = pups.map((pup, index) => {
+    return (
+      <PupCard
+        index={index}
+        removePup={removePup}
+        key={pup._id}
+        pup={pup}
+        user={user}
+        owner={pup.owner_id}
+        photoController={photoController}
+        setShowMatchAlert={setShowMatchAlert}
+        setChat={setChat}
+        pups={pups}
+      />
+    );
+  });
 
-  // removes selected pup from DB
-  const destroyPup = (pupID, index) => {
-    setUserPups((prev) => [...prev.filter((pup) => pup._id !== pupID)]);
-    return axios.delete(`/pups/${pupID}`, {
-      _id: pupID,
-    });
-  };
+  const parsedPupsInfo = pups.map((pup, index) => {
+    return (
+      <PupCardInfo
+        index={index}
+        removePup={removePup}
+        key={pup._id}
+        pup={pup}
+        user={user}
+        owner={pup.owner_id}
+        photoController={photoController}
+        setShowMatchAlert={setShowMatchAlert}
+        setChat={setChat}
+        pups={pups}
+      />
+    );
+  });
 
   return {
-    addPup,
-    pups,
-    userPups,
-    editPup,
-    setPups,
-    destroyPup,
-    setUserPups,
-    throwABone,
+    parsedPups,
+    parsedPupsInfo,
+    showMatchAlert,
+    setShowMatchAlert,
+    setMatchAlertFalse,
+    loading,
+    showPhoto,
+    chat
   };
 }

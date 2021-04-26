@@ -5,7 +5,7 @@ import SwipeButtons from "./SwipeButtons";
 import useCardActions from "../hooks/useCardActions";
 import React, { useMemo } from "react";
 import axios from "axios";
-import usePupData from "../hooks/usePupData";
+import checkIfMatchExists from '../helpers/checkIfMatchExists';
 
 export default function PupCard({
   pup,
@@ -15,10 +15,9 @@ export default function PupCard({
   index,
   setShowMatchAlert,
   setChat,
-  pups
+  pups,
 }) {
-  const { checkMatch } = useCardActions();
-  const { throwABone } = usePupData();
+  const { throwABone } = useCardActions();
 
   const childRefs = useMemo(
     () =>
@@ -40,7 +39,7 @@ export default function PupCard({
         likeId: pup.owner_id,
       });
       throwABone(pup._id);
-      const isMatch = await checkMatch(user.uid, pup.owner_id);
+      const isMatch = await checkIfMatchExists(user.uid, pup.owner_id);
       if (isMatch) {
         setShowMatchAlert(true);
         const participants = [user.uid, pup.owner_id];
@@ -50,7 +49,7 @@ export default function PupCard({
             last_message: { text: "Say hello!" },
           })
           .then((res) => {
-            setChat(res.data)
+            setChat(res.data);
           });
       }
     }

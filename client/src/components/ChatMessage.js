@@ -6,13 +6,19 @@ export default function ChatMessage({ user, message }) {
   const [otherUser, setOtherUser] = useState({});
 
   useEffect(() => {
+    let mounted = true;
     if (message && user) {
       if (message.sender_id !== user.uid) {
         getUserById(message.sender_id).then((res) => {
-          setOtherUser(res.data);
+          if (mounted) {
+            setOtherUser(res.data);
+          }
         });
       }
     }
+    return () => {
+      mounted = false;
+    };
   }, [message, user]);
 
   return (
