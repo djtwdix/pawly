@@ -8,6 +8,7 @@ import { userRoutes } from "./routes/users.js";
 import { pupsRoutes } from "./routes/pups.js";
 import { chatRoutes } from "./routes/chats.js";
 import { messageRoutes } from "./routes/messages.js";
+import { dateRoutes } from "./routes/dates.js";
 import  cookieSession from "cookie-session";
 
 dotenv.config();
@@ -62,6 +63,7 @@ app.use("/users", userRoutes);
 app.use("/pups", pupsRoutes);
 app.use("/chats", chatRoutes);
 app.use("/messages", messageRoutes);
+app.use("/dates", dateRoutes);
 
 app.get("/", (req, res) => {
   res.status(200).send("Pawly");
