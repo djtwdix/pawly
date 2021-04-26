@@ -5,6 +5,7 @@ const dateModel = mongoose.Schema(
     participants: Array,
     creator: String,
     date: Date,
+    status: String
   },
   { timestamps: { createdAt: "created_at" } }
 );
