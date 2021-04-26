@@ -16,8 +16,9 @@ export default function useDateData() {
     })
   }
 
-  const getDatesByUserID = async (uid)  =>{ 
-   await axios.get("/dates")
+  const getDatesByUserID = async ()  =>{ 
+   const playDates = await axios.get("/dates")
+   return playDates;
   }
 
   useEffect(() => {
@@ -33,5 +34,5 @@ export default function useDateData() {
     }
   }, [user])
 
-  return { addDate, dates };
+  return { addDate, dates, user};
 }
