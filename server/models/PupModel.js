@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
+const Schema = mongoose.Schema;
 
-const pointSchema = new mongoose.Schema({
+const pointSchema = new Schema({
   type: {
     type: String,
     enum: ["Point"],
@@ -10,7 +11,7 @@ const pointSchema = new mongoose.Schema({
   },
 });
 
-const pupModel = mongoose.Schema({
+const pupModel = new Schema({
   name: String,
   photoURL: String,
   breed: String,

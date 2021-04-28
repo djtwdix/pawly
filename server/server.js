@@ -9,6 +9,8 @@ import { pupsRoutes } from "./routes/pups.js";
 import { chatRoutes } from "./routes/chats.js";
 import { messageRoutes } from "./routes/messages.js";
 import  cookieSession from "cookie-session";
+import { graphqlHTTP } from 'express-graphql'
+import schema from './schema/schema.js';
 
 dotenv.config();
 
@@ -17,6 +19,14 @@ const PORT = process.env.PORT || 8080;
 const app = express();
 
 const httpServer = http.createServer(app);
+
+
+app.use('/graphql', graphqlHTTP({
+
+  schema,
+
+  graphiql:true
+}));
 
 //CORS used for websockets
 app.use(cors());

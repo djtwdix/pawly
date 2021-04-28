@@ -23,6 +23,7 @@ function App() {
   const { soundOff, setSoundOff } = useSettings();
 
   const { location } = useLocationData();
+  
 
   return (
     <div className="App">
