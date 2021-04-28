@@ -2,12 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import { ApolloClient, InMemoryCache } from '@apollo/client';
+import { ApolloProvider } from '@apollo/client/react';
+
+const cache = new InMemoryCache();
+const uri = "https://localhost:8080";
+const client = new ApolloClient({ uri, cache });
 
 ReactDOM.render(
-  
-    <App />,
- 
-  document.getElementById('root')
+  <ApolloProvider client={client}>
+    <App />
+  </ApolloProvider>,
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

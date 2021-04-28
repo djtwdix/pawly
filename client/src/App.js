@@ -5,8 +5,20 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import useLocationData from "./hooks/useLocationData";
 import useSettings from "./hooks/useSettings";
 import * as comp from "./components";
+import { useQuery, gql } from '@apollo/client';
+
+const PUPS = gql`{
+   query pups {
+      name
+    }
+  }
+`;
+
+;
 
 function App() {
+  const { queryLoading, error, data } = useQuery(PUPS);
+  console.log('data: ', data);
   const [user, loading] = useAuthState(auth);
   const { soundOff, setSoundOff } = useSettings();
 
