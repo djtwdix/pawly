@@ -31,7 +31,7 @@ export const addABone = (req, res) => {
   const pupID = req.params.pupId;
   Pups.findOneAndUpdate({ _id: pupID }, { $inc: { bones: 1 } }, (err, data) => {
     if (err) {
-      res.status(500).send(err); 
+      res.status(500).send(err);
     } else {
       res.status(200).send(data);
     }
@@ -78,6 +78,7 @@ export const getPupById = (req, res) => {
 };
 
 export const getAllPups = (req, res) => {
+  console.log("getting pups..")
   const user_id = req.session.user_id;
   Pups.aggregate(
     [
@@ -105,9 +106,11 @@ export const getAllPups = (req, res) => {
         res.status(500).send(err);
       } else {
         res.status(200).send(data);
+        console.log('data: ', data)
       }
     }
   );
+
 };
 
 export const destroyPupById = (req, res) => {

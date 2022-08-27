@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { auth } from "../firebase/config";
 import useLocationData from "../hooks/useLocationData";
-import filterPupsByDistance from "../helpers/filterPupsByDistance";
+//import filterPupsByDistance from "../helpers/filterPupsByDistance";
 import PupCardInfo from "../components/PupCardInfo";
 import PupCard from "../components/PupCard";
 import useCardActions from './useCardActions';
@@ -23,7 +23,7 @@ export default function usePupData() {
       const getAllPups = async (user_id) => {
         const result = await axios.get("/pups/all");
         if (mounted) {
-          setPups(filterPupsByDistance(result.data, location));
+          setPups(result.data, location);
         }
       };
       getAllPups(user.uid);
